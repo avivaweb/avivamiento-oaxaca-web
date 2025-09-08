@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 
 // Simulated data sources (replace with actual database fetches in a real app)
 const sermonsDataPath = path.join(__dirname, '../src/data/sermonsData.js');
-const testimoniesDataPath = path.join(__dirname, '../src/data/testimoniesData.js');
+const testimoniesDataPath = path.join(__dirname, '../src/data/testimoniesData.cjs');
 
 const outputPath = path.join(__dirname, '../public/llms.txt');
 
