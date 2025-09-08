@@ -1,0 +1,45 @@
+# project.mcp - Plan Maestro del Proyecto
+
+**Estado:** VIVO
+**Última Actualización:** 23 de agosto de 2025
+**Analista:** Gemini
+**Propósito:** Hoja de ruta priorizada para el desarrollo, basada en la auditoría del proyecto.
+
+### **Tareas Completadas**
+
+| Tarea | Descripción | Herramienta | Estado |
+| --- | --- | --- | --- |
+| **1.4. Eventos/Grupos** | Depurar y migrar las páginas de Eventos y Grupos Familiares para que se conecten correctamente a Supabase. | CLI | ✅ Completada. Lógica de fetching refactorizada a useSupabaseFetch y manejo de estados implementado. |
+| **2.1. Refactorización** | Centralizar la lógica de `fetching` en hooks personalizados para reutilización. | CLI | ✅ Completada. Lógica de fetching de testimonios refactorizada a useTestimoniesFetch. |
+
+### **Prioridad Alta (1): Seguridad y Estabilidad**
+
+*   **Riesgo:** Crítico. Falta de seguridad y dependencias de datos estáticos.
+*   **Estado:** Completada.
+
+| Tarea | Descripción | Herramienta | Estado |
+| --- | --- | --- | --- |
+| **1.1. Seguridad** | Mover las claves de Supabase a variables de entorno. | Code Assist | ✅ Completada |
+| **1.2. Sermones** | Migrar la página de Sermones para que obtenga datos dinámicamente de Supabase. | Code Assist | ✅ Completada |
+| **1.3. Liderazgo** | Migrar la página de Liderazgo para que obtenga datos dinámicamente de Supabase. | Code Assist | ✅ Completada |
+
+### **Prioridad Media (2): Refactorización y Consistencia**
+
+*   **Riesgo:** Moderado. Lógica de datos dispersa y falta de tipado.
+*   **Estado:** En progreso.
+
+| Tarea | Descripción | Herramienta | Estado |
+| --- | --- | --- | --- |
+| **2.2. Calidad** | Iniciar la migración del proyecto a TypeScript para mayor seguridad de tipos. | CLI | ⬜ Pendiente |
+
+### **Prioridad Baja (3): Mejoras y Optimización**
+
+*   **Riesgo:** Bajo. Mejoras de rendimiento y SEO.
+*   **Estado:** Pendiente.
+
+| Tarea | Descripción | Herramienta | Estado |
+| --- | --- | --- | --- |
+| **3.1. SEO** | Implementar metadatos dinámicos (`Schema.org`) en páginas clave. | Code Assist | ⬜ Pendiente |
+| **3.2. Rendimiento** | Optimizar los componentes para evitar `re-renders` innecesarios. | Code Assist | ⬜ Pendiente |
+| **3.3. Testimonios** | Desarrollar la página de Testimonios desde cero, con lógica para obtener datos de Supabase. | CLI | ⬜ Pendiente |
+| **3.4. Otros** | Corregir páginas pendientes como "Quiénes Somos", "Ministerios" y "Escuela Teológica". | Code Assist | ⬜ Pendiente |

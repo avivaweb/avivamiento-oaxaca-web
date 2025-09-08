@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* Blanco Puro */
+    --foreground: 0 0% 0%;   /* Negro Sagrado */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 343 100% 38.6%; /* Rojo Espiritual */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 20%; /* Gris Oscuro Sutil */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 51 100% 50%; /* Oro Divino */
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 343 100% 32.4%; /* Rojo Espiritual Oscuro */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 343 100% 38.6%; /* Rojo Espiritual */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Definiciones para el modo oscuro si se necesita en el futuro */
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 343 100% 48.6%; /* Un rojo más brillante para el modo oscuro */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 51 100% 55%; /* Un oro más brillante para el modo oscuro */
+    --accent-foreground: 0 0% 0%;
+    --destructive: 343 100% 42.4%; /* Un rojo oscuro más brillante para el modo oscuro */
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 343 100% 48.6%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  textarea {
+    @apply w-full p-3 bg-white border border-gray-300 rounded-full shadow-sm placeholder-gray-400;
+    @apply focus:outline-none focus:ring-2 focus:ring-rojo-espiritual focus:border-transparent;
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  textarea {
+    @apply rounded-2xl;
+  }
+}
+
+:root {
+  --rojo-espiritual: #C70039;
+  --negro-sagrado: #000000;
+  --oro-divino: #FFD700;
+  --blanco-puro: #FFFFFF;
+  --gris-oscuro-sutil: #333333;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.gradient-text {
+  background: var(--rojo-espiritual);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-effect {
+  background: rgba(51, 51, 51, 0.1); /* Gris Oscuro Sutil con transparencia */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 51, 51, 0.2);
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, var(--rojo-espiritual) 0%, var(--negro-sagrado) 100%);
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Sombra Negra */
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra Negra */
+}
+
+.bg-pattern {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(51, 51, 51, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(51, 51, 51, 0.05) 0%, transparent 50%);
+}

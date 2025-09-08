@@ -1,0 +1,21 @@
+## Pages
+- [Acceso Líderes - Ejército Celular](/ejercitocelular): Acceso exclusivo para el liderazgo y equipo del ejército celular de Avivamiento Oaxaca.
+- [Añadir Testimonio - Avivamiento Oaxaca](/addtestimonio): Formulario para añadir nuevos testimonios de sanidad y milagros.
+- [Contacto - Iglesia Avivamiento: El Lugar de su Presencia](/contact): Contáctanos para más información sobre nuestra iglesia, servicios, ministerios y eventos. Estamos ubicados en Oaxaca, México.
+- [Dashboard - Avivamiento Oaxaca](/dashboard): Panel de control con métricas clave y tendencias de crecimiento de los grupos celulares de Avivamiento.
+- [Donaciones - Iglesia Avivamiento: El Lugar de su Presencia](/donations): Apoya la obra de Dios con tu ofrenda. Contribuye al crecimiento de la iglesia, misiones, construcción y programas sociales. Donaciones seguras en línea.
+- [Equipo Pastoral - Iglesia Avivamiento](/pastoralteam): Conoce a nuestros pastores generales, Natanael y Betsy Martínez.
+- [Escuela de Teología - Iglesia Avivamiento: El Lugar de su Presencia](/theologyschool): Formación teológica integral para el liderazgo cristiano. Bachillerato Teológico con certificación reconocida. Desarrolla tu llamado ministerial.
+- [Eventos - Iglesia Avivamiento: El Lugar de su Presencia](/events): Descubre nuestros próximos eventos: congresos, vigilias, bautizos, conferencias y retiros. Regístrate y sé parte de momentos especiales de bendición.
+- [Grupo Celular - Avivamiento Oaxaca](/addcellgroup): No description available
+- [Grupos Familiares | Discipulado y Comunidad | Avivamiento Oaxaca](/familygroups): Encuentra un Grupo Familiar en Avivamiento; El Lugar de su Presencia. Experimenta la bendición de la vida en comunidad, crece en tu fe y sé testigo de la obra de Dios en Oaxaca. ¡Únete hoy!
+- [Iglesia Cristiana en Oaxaca - Avivamiento: Sanidad, Milagros y Poder](/): Descubre Avivamiento, una iglesia cristiana en Oaxaca enfocada en la sanidad divina, milagros y el poder del Espíritu Santo. Experimenta restauración y únete a nuestros Grupos Familiares.
+- [Liderazgo - Iglesia Avivamiento: El Lugar de su Presencia](/leadership): Conoce a nuestro equipo pastoral y líderes espirituales. Pastores Natanael y Betsy Martínez, junto con nuestros pastores de zona en las 8 regiones de Oaxaca.
+- [Mi Perfil - Avivamiento Oaxaca](/profile): Gestiona tu información de perfil en Avivamiento, incluyendo nombre, teléfono y rol.
+- [Ministerios - Iglesia Avivamiento: El Lugar de su Presencia](/ministries): Descubre los diferentes ministerios donde puedes servir y crecer espiritualmente: Alabanza, Niños, Jóvenes, Damas, Varones, Intercesión, Sanidad Interior y Misiones.
+- [Nuevo Reporte de Reunión - Avivamiento Oaxaca](/nuevoreporte): Formulario para enviar el reporte semanal de la reunión de grupo celular.
+- [Quiénes Somos | Avivamiento: El Lugar de su Presencia | Iglesia en Oaxaca](/about): Conoce la visión y la misión de Avivamiento: El Lugar de su Presencia. Somos un mover de Dios que aviva, transforma y reforma, manifestando el poder sobrenatural de Dios en Oaxaca.
+- [Registrarse - Avivamiento Oaxaca](/register): Regístrate para crear una nueva cuenta en Avivamiento y acceder a recursos internos.
+- [Sermones y Prédicas - Avivamiento: El Lugar de su Presencia](/sermons): Sumérgete en un tesoro de sermones y predicaciones diseñados para avivar tu espíritu, equiparte para tu propósito divino y profundizar tu relación con Dios.
+- [Ver Grupos Celulares - Avivamiento Oaxaca](/viewcellgroups): Lista de todos los grupos celulares de la iglesia Avivamiento, con detalles de ubicación, horario y líderes.
+- [Ver Reportes de Reunión - Avivamiento Oaxaca](/viewmeetingreports): Visualiza los reportes semanales de las reuniones de grupos celulares de la iglesia Avivamiento.

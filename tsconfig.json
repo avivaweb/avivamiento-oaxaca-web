@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    // El objetivo de la versión de ECMAScript para el código compilado. 'ESNext' permite usar las últimas características.
+    "target": "ESNext",
+    // Habilita el uso de las últimas características de JavaScript.
+    "useDefineForClassFields": true,
+    // La biblioteca de declaraciones de tipo a incluir. 'DOM' y 'DOM.Iterable' son necesarias para el entorno del navegador.
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    // Permite módulos de JavaScript.
+    "allowJs": false,
+    // Omite la comprobación de tipos en los archivos de declaración.
+    "skipLibCheck": true,
+    // Habilita la interoperabilidad entre CommonJS y módulos ES.
+    "esModuleInterop": true,
+    // Permite la importación de módulos que no tienen una exportación por defecto.
+    "allowSyntheticDefaultImports": true,
+    // Habilita el modo estricto de comprobación de tipos.
+    "strict": true,
+    // Fuerza el uso consistente de mayúsculas y minúsculas en los nombres de archivo.
+    "forceConsistentCasingInFileNames": true,
+    // El sistema de módulos a usar. 'ESNext' es el estándar para aplicaciones modernas.
+    "module": "ESNext",
+    // Cómo resolver los módulos. 'Node' es el estándar para proyectos de Node.js.
+    "moduleResolution": "Node",
+    // Permite la importación de archivos JSON.
+    "resolveJsonModule": true,
+    // No compilar archivos si no se importan.
+    "isolatedModules": true,
+    // No emitir archivos compilados. Vite se encarga de esto.
+    "noEmit": true,
+    // El formato del código JSX a emitir. 'react-jsx' es para el nuevo runtime de React.
+    "jsx": "react-jsx",
+    // Rutas base para la resolución de módulos.
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  // Especifica los archivos a incluir en la compilación.
+  "include": ["src"],
+  // Especifica los archivos a excluir de la compilación.
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
