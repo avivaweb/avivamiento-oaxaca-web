@@ -1,168 +1,52 @@
+
+// Importamos las dependencias necesarias de React y react-router-dom.
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// CONTEXT PROVIDERS
+// Importamos el proveedor de contexto para la autenticación de Supabase.
+// Esto es crucial para que la funcionalidad de suscripción en la LandingPage siga operando.
 import { AuthProvider } from '@/contexts/AuthContext';
-import { TestimoniesProvider } from '@/contexts/TestimoniesContext';
-import { EventsProvider } from '@/contexts/EventsContext';
 
-// UI COMPONENTS
+// Importamos el componente de la página de aterrizaje (LandingPage).
+import LandingPage from '@/pages/LandingPage';
+
+// Importamos el componente Toaster para mostrar notificaciones.
 import { Toaster } from '@/components/ui/toaster';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import ProtectedRoute from '@/components/ProtectedRoute';
 
-// PAGE COMPONENTS
-import Home from '@/pages/Home';
-import About from '@/pages/About';
-import Leadership from '@/pages/Leadership';
-import Ministries from '@/pages/Ministries';
-import Sermons from '@/pages/Sermons';
-import Events from '@/pages/Events';
-import FamilyGroups from '@/pages/FamilyGroups';
-import TheologySchool from '@/pages/TheologySchool';
-import Contact from '@/pages/Contact';
-import Donations from '@/pages/Donations';
-import Testimonios from '@/pages/Testimonios';
-import Store from '@/pages/Store';
-import PastoralTeamPage from '@/pages/PastoralTeamPage';
-import Register from '@/pages/Register';
-import AccessDenied from '@/pages/AccessDenied';
-
-// PROTECTED PAGE COMPONENTS
-import AddTestimonio from '@/pages/AddTestimonio';
-import EjercitoCelular from '@/pages/EjercitoCelular';
-import AddCellGroup from '@/pages/AddCellGroup';
-import ViewCellGroups from '@/pages/ViewCellGroups';
-import Profile from '@/pages/Profile';
-import NuevoReporte from '@/pages/NuevoReporte';
-import ViewMeetingReports from '@/pages/ViewMeetingReports';
-import Dashboard from '@/pages/Dashboard';
-import ManageZones from '@/pages/ManageZones';
-
-// ADMIN COMPONENTS
-import AdminLayout from '@/pages/admin/AdminLayout';
-import AdminDashboard from '@/pages/admin/Dashboard'; // Renamed to avoid conflict
-import ManageTestimonies from '@/pages/admin/ManageTestimonies';
-import TestimonyForm from '@/pages/admin/TestimonyForm';
-import ManageEvents from '@/pages/admin/ManageEvents';
-import EventForm from '@/pages/admin/EventForm';
-
-
+/**
+ * Componente principal de la aplicación.
+ *
+ * En esta versión, hemos simplificado el enrutador para mostrar únicamente la LandingPage.
+ * Esto nos permite tener una página de "próximamente" o de captura de leads
+ * mientras el resto del sitio web está en desarrollo.
+ *
+ * Se mantiene el AuthProvider para asegurar que cualquier componente que dependa
+ * de la conexión con Supabase (como el formulario de suscripción) funcione correctamente.
+ */
 function App() {
   return (
-    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    // El componente Router envuelve toda la aplicación para habilitar el enrutamiento.
+    <Router>
+      {/* AuthProvider provee el contexto de autenticación y la instancia de Supabase. */}
       <AuthProvider>
-        <EventsProvider>
-          <TestimoniesProvider>
-            <div className="min-h-screen bg-blanco-puro text-negro-sagrado">
-              <Navbar />
-              <main className="pt-16 lg:pt-20">
-                <Routes>
-                  {/* Public Routes */}
-                  <Route path="/" element={<Home />} />
-                  <Route path="/quienes-somos" element={<About />} />
-                  <Route path="/liderazgo" element={<Leadership />} />
-                  <Route path="/equipo-pastoral" element={<PastoralTeamPage />} />
-                  <Route path="/ministerios" element={<Ministries />} />
-                  <Route path="/sermones" element={<Sermons />} />
-                  <Route path="/eventos" element={<Events />} />
-                  <Route path="/grupos-familiares" element={<FamilyGroups />} />
-                  <Route path="/escuela-teologia" element={<TheologySchool />} />
-                  <Route path="/testimonios" element={<Testimonios />} />
-                  <Route path="/tienda" element={<Store />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/contacto" element={<Contact />} />
-                  <Route path="/donaciones" element={<Donations />} />
-                  <Route path="/ejercitocelular" element={<EjercitoCelular />} />
-                  <Route path="/access-denied" element={<AccessDenied />} />
-
-                  {/* Admin Routes */}
-                  <Route path="/admin" element={<AdminLayout />}>
-                    <Route index element={<AdminDashboard />} />
-                    <Route path="testimonies" element={<ManageTestimonies />} />
-                    <Route path="testimonies/new" element={<TestimonyForm />} />
-                    <Route path="testimonies/edit/:id" element={<TestimonyForm />} />
-                    <Route path="events" element={<ManageEvents />} />
-                    <Route path="events/new" element={<EventForm />} />
-                    <Route path="events/edit/:id" element={<EventForm />} />
-                  </Route>
-
-                  {/* Existing Protected Routes */}
-                  <Route
-                    path="/add-testimonio"
-                    element={
-                      <ProtectedRoute requiredRoles={['Líder de Célula', 'Pastor de Zona', 'Superusuario']}>
-                        <AddTestimonio />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/add-cell-group"
-                    element={
-                      <ProtectedRoute requiredRoles={['Líder de Célula', 'Pastor de Zona', 'Superusuario']}>
-                        <AddCellGroup />
-                      </ProtectedRoute>
-                    }
-                  />
-                   <Route
-                    path="/nuevo-reporte"
-                    element={
-                      <ProtectedRoute requiredRoles={['Líder de Célula', 'Pastor de Zona', 'Superusuario']}>
-                        <NuevoReporte />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/view-cell-groups"
-                    element={
-                      <ProtectedRoute requiredRoles={['Líder de Célula', 'Pastor de Zona', 'Superusuario']}>
-                        <ViewCellGroups />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/profile"
-                    element={
-                      <ProtectedRoute requiredRoles={['Líder de Célula', 'Pastor de Zona', 'Superusuario']}>
-                        <Profile />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/view-meeting-reports"
-                    element={
-                      <ProtectedRoute requiredRoles={['Líder de Célula', 'Pastor de Zona', 'Superusuario']}>
-                        <ViewMeetingReports />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/dashboard"
-                    element={
-                      <ProtectedRoute requiredRoles={['Líder de Célula', 'Pastor de Zona', 'Superusuario']}>
-                        <Dashboard />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/manage-zones"
-                    element={
-                      <ProtectedRoute requiredRoles={['Superusuario']}>
-                        <ManageZones />
-                      </ProtectedRoute>
-                    }
-                  />
-                </Routes>
-              </main>
-              <Footer />
-              <Toaster />
-            </div>
-          </TestimoniesProvider>
-        </EventsProvider>
+        {/* Contenedor principal de la aplicación. */}
+        <div className="min-h-screen bg-blanco-puro text-negro-sagrado">
+          {/* El componente Routes define las áreas donde las rutas serán renderizadas. */}
+          <Routes>
+            {/* 
+              Definimos una única ruta para la raíz del sitio ('/').
+              Esta ruta renderizará el componente LandingPage.
+              El atributo 'exact' asegura que solo coincida con la ruta exacta.
+            */}
+            <Route path="/" element={<LandingPage />} />
+          </Routes>
+          {/* El componente Toaster se incluye para poder mostrar notificaciones en la UI. */}
+          <Toaster />
+        </div>
       </AuthProvider>
     </Router>
   );
 }
 
+// Exportamos el componente App para ser usado en el punto de entrada de la aplicación (main.jsx).
 export default App;
