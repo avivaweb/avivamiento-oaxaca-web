@@ -1,9 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-
-// Simulated data sources (replace with actual database fetches in a real app)
-import fs from 'fs';
-import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
