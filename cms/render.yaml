@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: aviva-cms-staging
+    runtime: node
+    region: oregon
+    plan: starter
+    branch: develop
+    buildCommand: npm install && npm run build
+    startCommand: npm run serve
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: DATABASE_URI
+        sync: false
+      - key: PAYLOAD_SECRET
+        generateValue: true
+      - key: SERVER_URL
+        value: https://aviva-cms-staging.onrender.com
+      - key: AI_SERVICE_URL
+        value: https://aviva-ai-staging.onrender.com
+    healthCheckPath: /health
