@@ -14,8 +14,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AVIVA - Iglesia Cristiana",
-  description: "Sitio web oficial de AVIVA",
+  // 1. EL TÍTULO DE LA PESTAÑA
+  title: "Avivamiento Oaxaca | El Lugar de Su Presencia",
+
+  description: "Descubre tu lugar para conectar, crecer y encontrar comunidad en Avivamiento Oaxaca.",
+
+  // 2. LA REFERENCIA AL FAVICON
+  icons: {
+    // Apunta al archivo en la carpeta /public
+    icon: "/favicon-aviva.png",
+  },
 };
 
 export default function RootLayout({
