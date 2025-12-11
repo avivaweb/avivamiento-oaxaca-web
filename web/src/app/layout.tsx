@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
+import Header from "@/components/Header";
+import FloatingServiceButton from "@/components/FloatingServiceButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,9 +17,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   // 1. EL TÍTULO DE LA PESTAÑA
-  title: "Avivamiento Oaxaca | El Lugar de Su Presencia",
+  title: "Avivamiento Oaxaca | Iglesia Cristiana, Sanidad y Células",
 
-  description: "Descubre tu lugar para conectar, crecer y encontrar comunidad en Avivamiento Oaxaca.",
+  description: "Encuentra el Lugar de Su Presencia en Oaxaca. Somos un mover de Dios: experimenta Sanidad, Milagros, Adoración y únete a un Grupo Familiar (Célula) para crecer en la Fe.",
 
   // 2. LA REFERENCIA AL FAVICON
   icons: {
@@ -77,9 +79,13 @@ export default function RootLayout({
               })
             }}
           />
-          {children}
+          <Header />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <FloatingServiceButton />
         </AuthProvider>
       </body>
-    </html>
+    </html >
   );
 }
