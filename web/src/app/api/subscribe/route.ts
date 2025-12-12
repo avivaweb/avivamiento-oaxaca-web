@@ -14,23 +14,44 @@ export async function POST(request: NextRequest) {
     const { email, whatsapp_number } = subscribeSchema.parse(body)
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://ltgpdrcwfuwpnqaizsgj.supabase.co'
+    const apiKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
     if (!apiUrl) {
       console.error('API URL not configured')
       return NextResponse.json({ error: 'Configuration error' }, { status: 500 })
     }
 
-    const response = await fetch(`${apiUrl}/newsletter_subscribers`, {
+    // Determine if we are hitting Supabase directly to adjust path and headers
+    const isSupabase = apiUrl.includes('supabase.co')
+    const finalUrl = isSupabase
+      ? `${apiUrl}/rest/v1/newsletter_subscribers`
+      : `${apiUrl}/newsletter_subscribers`
+
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation' // To get the created row back
+    }
+
+    if (isSupabase) {
+      if (!apiKey) {
+        console.error('Supabase Anon Key not configured')
+        return NextResponse.json({ error: 'Configuration error: Missing API Key' }, { status: 500 })
+      }
+      headers['apikey'] = apiKey
+      headers['Authorization'] = `Bearer ${apiKey}`
+    }
+
+    const response = await fetch(finalUrl, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify({ email, whatsapp_number }),
     })
 
     if (!response.ok) {
-      console.error(`Backend responded with ${response.status} for /subscribers`)
+      console.error(`Backend responded with ${response.status} for ${finalUrl}`)
       try {
         const errorBody = await response.json()
+        console.error('Error details:', errorBody)
         return NextResponse.json(errorBody, { status: response.status })
       } catch {
         return NextResponse.json({ error: 'Backend error' }, { status: response.status })
