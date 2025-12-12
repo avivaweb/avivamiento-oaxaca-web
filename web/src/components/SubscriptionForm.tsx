@@ -21,7 +21,7 @@ export default function SubscriptionForm() {
             })
 
             if (response.status === 201 || response.status === 200) {
-                setMessage('¡Gracias! Tu hogar de fe te espera.')
+                setMessage('¡Te has unido a nuestro Aviva-News! Revisa tu correo.')
                 setEmail('')
                 setWhatsapp('')
             } else if (response.status === 409) {

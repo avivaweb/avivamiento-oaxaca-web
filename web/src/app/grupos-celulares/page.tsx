@@ -38,15 +38,34 @@ export default function CellGroupPage() {
     setErrors({})
 
     try {
-      // Validate with Zod
+      // 1. Validate with Zod Client-side
       const validatedData = CellGroupSchema.parse(formData)
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      // 2. Submit to our new API route
+      const response = await fetch('/api/groups', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(validatedData),
+      })
 
-      console.log('Form submitted:', validatedData)
+      const data = await response.json()
+
+      if (!response.ok) {
+        // Handle server-side validation errors or generic errors
+        if (response.status === 400 && data.details) {
+          // Transform Zod-like server errors back to state if possible, 
+          // or just use a generic message for now if structure differs.
+          throw new Error('Verifica los datos ingresados.')
+        }
+        throw new Error(data.error || 'Error al procesar la solicitud')
+      }
+
+      console.log('Form submitted successfully:', data)
       setSuccess(true)
       setFormData({ fullName: '', phone: '', email: '', preference: 'presencial' })
+
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Partial<Record<keyof FormData, string>> = {}
@@ -56,6 +75,9 @@ export default function CellGroupPage() {
           }
         })
         setErrors(newErrors)
+      } else if (error instanceof Error) {
+        // Generic error (network, 500, etc) uses a special 'form' key or alert
+        alert(error.message) // Simple fallback, or add a general error state
       }
     } finally {
       setLoading(false)

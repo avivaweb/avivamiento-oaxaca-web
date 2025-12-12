@@ -1,4 +1,6 @@
 import Image from 'next/image'
+
+export const dynamic = 'force-static'
 import SubscriptionForm from '@/components/SubscriptionForm'
 import CallToAction from '@/components/CallToAction'
 import Footer from '@/components/Footer'

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: "Nosotros - Avivamiento: El Lugar de Su Presencia",
   description: "Conoce más sobre Avivamiento, nuestra misión, visión y valores en la comunidad de fe.",

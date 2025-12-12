@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+
 export default function MessagesPage() {
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
