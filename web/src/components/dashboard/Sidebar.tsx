@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -8,16 +6,20 @@ import {
   DocumentTextIcon,
   ChartBarIcon,
   Cog6ToothIcon,
-  AcademicCapIcon
+  AcademicCapIcon,
+  CalendarIcon,
+  HandRaisedIcon
 } from '@heroicons/react/24/outline';
 
 const navigation = [
   { name: 'Inicio', href: '/dashboard', icon: HomeIcon },
   { name: 'Discipulado', href: '/dashboard/discipulado', icon: AcademicCapIcon },
   { name: 'Mis Células', href: '/dashboard/mis-celulas', icon: UsersIcon },
+  { name: 'Reporte de Célula', href: '/dashboard/mis-celulas/reportar', icon: HandRaisedIcon },
   { name: 'Consolidación', href: '/dashboard/consolidacion', icon: UsersIcon },
   { name: 'Reportes', href: '/dashboard/reportes', icon: DocumentTextIcon },
   { name: 'Estadísticas', href: '/dashboard/estadisticas', icon: ChartBarIcon },
+  { name: 'Agenda', href: '/dashboard/agenda', icon: CalendarIcon },
   { name: 'Configuración', href: '/dashboard/configuracion', icon: Cog6ToothIcon },
 ];
 
@@ -53,8 +55,11 @@ export default function Sidebar() {
 
       {/* Footer */}
       <div className="p-4 border-t border-[#8A0026]">
-        <p className="text-xs text-white text-center">
-          © 2024 AVIVA
+        <p className="text-xs text-white text-center italic mb-2">
+          "Nuestra tarea principal: La evangelización del mundo"
+        </p>
+        <p className="text-xs text-white text-center opacity-75">
+          © 2026 Ecosistema Operativo
         </p>
       </div>
     </div>
