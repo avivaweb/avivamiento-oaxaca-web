@@ -138,7 +138,7 @@ export default function ConsolidationPage() {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-[var(--aviva-principal)]">Gestión de Leads</h1>
+                    <h1 className="text-3xl font-extrabold text-[var(--aviva-principal)] tracking-tight">Gestión de Leads</h1>
                     <p className="mt-1 text-gray-500">Consolidación y seguimiento de nuevos contactos.</p>
                 </div>
                 <div className="flex gap-2">
@@ -156,27 +156,27 @@ export default function ConsolidationPage() {
             </div>
 
             {/* Table Card */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div className="bg-gray-900 rounded-xl shadow-xl border border-white/10 overflow-hidden">
                 <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
+                    <table className="min-w-full divide-y divide-white/5">
+                        <thead className="bg-white/5">
                             <tr>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha</th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Nombre</th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Zona / Preferencia</th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Estado</th>
-                                <th scope="col" className="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Fecha</th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Nombre</th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Zona / Preferencia</th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Estado</th>
+                                <th scope="col" className="px-6 py-3 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-200 bg-white">
+                        <tbody className="divide-y divide-white/5 bg-gray-900">
                             {loading ? (
                                 Array.from({ length: 5 }).map((_, i) => (
                                     <tr key={i} className="animate-pulse">
-                                        <td className="px-6 py-4"><div className="h-4 bg-gray-200 rounded w-24"></div></td>
-                                        <td className="px-6 py-4"><div className="h-4 bg-gray-200 rounded w-48"></div></td>
-                                        <td className="px-6 py-4"><div className="h-4 bg-gray-200 rounded w-32"></div></td>
-                                        <td className="px-6 py-4"><div className="h-6 bg-gray-200 rounded-full w-20"></div></td>
-                                        <td className="px-6 py-4 text-right"><div className="h-4 bg-gray-200 rounded w-8 ml-auto"></div></td>
+                                        <td className="px-6 py-4"><div className="h-4 bg-white/10 rounded w-24"></div></td>
+                                        <td className="px-6 py-4"><div className="h-4 bg-white/10 rounded w-48"></div></td>
+                                        <td className="px-6 py-4"><div className="h-4 bg-white/10 rounded w-32"></div></td>
+                                        <td className="px-6 py-4"><div className="h-6 bg-white/10 rounded-full w-20"></div></td>
+                                        <td className="px-6 py-4 text-right"><div className="h-4 bg-white/10 rounded w-8 ml-auto"></div></td>
                                     </tr>
                                 ))
                             ) : leads.length === 0 ? (
@@ -188,21 +188,21 @@ export default function ConsolidationPage() {
                             ) : leads.map((lead) => (
                                 <tr
                                     key={lead.id}
-                                    className="hover:bg-gray-50 transition-colors cursor-pointer group"
+                                    className="hover:bg-white/5 transition-colors cursor-pointer group"
                                     onClick={() => handleOpenModal(lead)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                                         <div className="flex items-center gap-2">
-                                            <CalendarIcon className="w-4 h-4 text-gray-400 group-hover:text-[var(--aviva-dorado)] transition-colors" />
+                                            <CalendarIcon className="w-4 h-4 text-gray-500 group-hover:text-[var(--aviva-dorado)] transition-colors" />
                                             {new Date(lead.created_at).toLocaleDateString()}
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex items-center">
-                                            <div className="h-8 w-8 rounded-full bg-[var(--aviva-fondo-acogedor)] flex items-center justify-center text-[var(--aviva-principal)] font-bold text-xs mr-3">
+                                            <div className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center text-[var(--aviva-dorado)] font-bold text-xs mr-3 border border-white/10">
                                                 {lead.nombre.charAt(0).toUpperCase()}
                                             </div>
-                                            <div className="text-sm font-medium text-gray-900">{lead.nombre}</div>
+                                            <div className="text-sm font-medium text-gray-200">{lead.nombre}</div>
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -284,12 +284,12 @@ export default function ConsolidationPage() {
                                                 key={s}
                                                 onClick={() => setStatusBuffer(s)}
                                                 className={`flex items-center px-4 py-2 rounded-lg border text-sm font-medium transition-all ${statusBuffer === s
-                                                        ? 'border-[var(--aviva-dorado)] bg-yellow-50 text-[var(--aviva-dorado)] shadow-sm'
-                                                        : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50'
+                                                    ? 'border-[var(--aviva-dorado)] bg-yellow-50 text-[var(--aviva-dorado)] shadow-sm'
+                                                    : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50'
                                                     }`}
                                             >
                                                 <div className={`w-2 h-2 rounded-full mr-3 ${s === 'Pendiente' ? 'bg-red-500' :
-                                                        s === 'Contactado' ? 'bg-yellow-500' : 'bg-green-500'
+                                                    s === 'Contactado' ? 'bg-yellow-500' : 'bg-green-500'
                                                     }`} />
                                                 {s}
                                                 {statusBuffer === s && <CheckCircleIcon className="w-5 h-5 ml-auto" />}

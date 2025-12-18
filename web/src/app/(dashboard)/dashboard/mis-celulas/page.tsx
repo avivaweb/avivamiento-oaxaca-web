@@ -55,15 +55,15 @@ export default function MisCelulasPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Section 1: Attendance Report */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+          <div className="bg-gray-900 rounded-2xl shadow-xl border border-white/10 overflow-hidden">
+            <div className="p-6 border-b border-white/10 flex justify-between items-center bg-white/5">
               <div>
-                <h2 className="text-lg font-semibold text-gray-900">Reporte de Asistencia</h2>
-                <p className="text-sm text-gray-500">Semana del 10 al 16 de Diciembre</p>
+                <h2 className="text-lg font-semibold text-white">Reporte de Asistencia</h2>
+                <p className="text-sm text-gray-400">Semana del 10 al 16 de Diciembre</p>
               </div>
               <div className="text-right">
                 <span className="text-2xl font-bold text-[#A5002F]">{attendanceCount}</span>
-                <span className="text-gray-500 text-sm">/{members.length}</span>
+                <span className="text-gray-400 text-sm">/{members.length}</span>
               </div>
             </div>
 
@@ -71,15 +71,15 @@ export default function MisCelulasPage() {
               {members.map((member) => (
                 <div
                   key={member.id}
-                  className={`flex items-center justify-between p-4 rounded-xl transition-all duration-200 ${member.attended ? 'bg-red-50/30' : 'hover:bg-gray-50'
+                  className={`flex items-center justify-between p-4 rounded-xl transition-all duration-200 ${member.attended ? 'bg-[#A5002F]/10' : 'hover:bg-white/5'
                     }`}
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-sm font-medium text-gray-600 border border-gray-200">
+                    <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-sm font-medium text-[var(--aviva-dorado)] border border-white/10">
                       {member.avatar}
                     </div>
                     <div>
-                      <h3 className={`font-medium ${member.attended ? 'text-gray-900' : 'text-gray-600'}`}>
+                      <h3 className={`font-medium ${member.attended ? 'text-white' : 'text-gray-400'}`}>
                         {member.name}
                       </h3>
                       {member.attended && (
@@ -107,13 +107,13 @@ export default function MisCelulasPage() {
               ))}
             </div>
 
-            <div className="p-6 bg-gray-50 border-t border-gray-100">
+            <div className="p-6 bg-white/5 border-t border-white/10">
               <button
                 onClick={handleSubmitReport}
                 disabled={reportSubmitted}
                 className={`w-full flex justify-center items-center py-3 px-4 rounded-xl text-white font-medium shadow-sm transition-all duration-200 ${reportSubmitted
-                    ? 'bg-green-600 hover:bg-green-700'
-                    : 'bg-[#A5002F] hover:bg-[#8A0026] hover:shadow-md active:scale-[0.98]'
+                  ? 'bg-green-600 hover:bg-green-700'
+                  : 'bg-[#A5002F] hover:bg-[#8A0026] hover:shadow-md active:scale-[0.98]'
                   }`}
               >
                 {reportSubmitted ? (
@@ -132,11 +132,11 @@ export default function MisCelulasPage() {
         {/* Section 2: Group Summary & Quick Actions */}
         <div className="space-y-6">
           {/* Summary Card */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 relative overflow-hidden group hover:shadow-md transition-shadow">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+          <div className="bg-gray-900 rounded-2xl shadow-xl border border-white/10 p-6 relative overflow-hidden group hover:shadow-2xl transition-shadow">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#A5002F]/10 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
 
             <div className="relative">
-              <h2 className="text-lg font-semibold text-gray-900 mb-6">Resumen del Grupo</h2>
+              <h2 className="text-lg font-semibold text-white mb-6">Resumen del Grupo</h2>
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-3">
@@ -179,13 +179,13 @@ export default function MisCelulasPage() {
 
           {/* Quick Stats Mini Cards */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-              <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">Ofrenda</p>
-              <p className="text-xl font-bold text-gray-900 mt-1">$450</p>
+            <div className="bg-gray-900 p-4 rounded-xl shadow-xl border border-white/10 text-center">
+              <p className="text-xs text-gray-400 uppercase font-bold tracking-wider">Ofrenda</p>
+              <p className="text-xl font-bold text-white mt-1">$450</p>
             </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-              <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">Visitas</p>
-              <p className="text-xl font-bold text-gray-900 mt-1">1</p>
+            <div className="bg-gray-900 p-4 rounded-xl shadow-xl border border-white/10 text-center">
+              <p className="text-xs text-gray-400 uppercase font-bold tracking-wider">Visitas</p>
+              <p className="text-xl font-bold text-white mt-1">1</p>
             </div>
           </div>
 

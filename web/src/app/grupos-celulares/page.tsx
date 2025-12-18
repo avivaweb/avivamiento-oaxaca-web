@@ -86,10 +86,10 @@ export default function CellGroupPage() {
 
   return (
     <div className="min-h-screen bg-[var(--aviva-principal)] flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-[var(--aviva-blanco)] rounded-xl shadow-2xl overflow-hidden">
-        <div className="p-8">
-          <h1 className="text-3xl font-bold text-[var(--aviva-principal)] mb-2 text-center">Únete a un Grupo</h1>
-          <p className="text-[var(--aviva-texto)] text-center mb-8">Conecta, crece y comparte la vida en comunidad.</p>
+      <div className="max-w-md w-full bg-[var(--aviva-blanco)] rounded-xl shadow-2xl overflow-hidden border border-white/10">
+        <div className="p-8 bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl rounded-xl">
+          <h1 className="text-3xl font-extrabold text-[var(--aviva-principal)] mb-2 text-center tracking-tight">Únete a un Grupo</h1>
+          <p className="text-[var(--aviva-texto)] text-center mb-8 text-balance">Conecta, crece y comparte la vida en comunidad.</p>
 
           {success ? (
             <div className="text-center py-8">

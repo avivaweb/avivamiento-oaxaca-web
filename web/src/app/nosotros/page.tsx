@@ -110,8 +110,8 @@ export default function AboutPage() {
 
         <div className="relative z-10 max-w-4xl mx-auto space-y-6">
           <span className="text-[var(--aviva-dorado)] font-bold tracking-[0.2em] uppercase text-sm">Nuestra Identidad</span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
-            Nuestra Historia
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-6">
+            NOSOTROS
           </h1>
           <p className="text-xl md:text-2xl font-light text-gray-300 mt-4 max-w-2xl mx-auto leading-relaxed">
             El testimonio del mover de Dios en Oaxaca

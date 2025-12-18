@@ -97,11 +97,11 @@ export default function ReportPage() {
     return (
         <div className="max-w-xl mx-auto p-4 sm:p-6 pb-20">
             <div className="mb-6 flex items-center">
-                <Link href="/dashboard/mis-celulas" className="mr-4 p-2 -ml-2 rounded-full hover:bg-gray-100/50 transition-colors">
-                    <ArrowLeftIcon className="w-6 h-6 text-gray-500" />
+                <Link href="/dashboard/mis-celulas" className="mr-4 p-2 -ml-2 rounded-full hover:bg-white/10 transition-colors">
+                    <ArrowLeftIcon className="w-6 h-6 text-gray-400" />
                 </Link>
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Nuevo Reporte</h1>
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-900">Nuevo Reporte</h1>
                     <p className="text-sm text-gray-500">Registra la actividad de tu célula semanal</p>
                 </div>
             </div>

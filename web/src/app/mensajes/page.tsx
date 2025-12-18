@@ -7,10 +7,10 @@ export default function MessagesPage() {
     <div className="container mx-auto px-4 py-8 md:py-12">
       {/* 1. Encabezado de la Página */}
       <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-5xl font-bold text-[var(--aviva-principal)] mb-4">
+        <h1 className="text-3xl md:text-5xl font-extrabold text-[var(--aviva-principal)] mb-4 tracking-tight">
           Recursos de Formación y Profundidad Doctrinal
         </h1>
-        <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+        <p className="text-lg text-gray-700 max-w-2xl mx-auto text-balance">
           Encuentra alimento sólido para tu espíritu. Del púlpito a tu dispositivo, para que la Palabra corra y seas edificado.
         </p>
       </div>
@@ -18,10 +18,10 @@ export default function MessagesPage() {
       {/* 2. Sección Principal: Video (YouTube) */}
       <section className="mb-16">
         <div className="flex flex-col items-center">
-          <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-[var(--aviva-texto)] text-center">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-[var(--aviva-texto)] text-center text-balance">
             Sermones Dominicales: La Palabra para tu Crecimiento
           </h2>
-          <div className="w-full max-w-4xl aspect-video bg-gray-100 rounded-xl overflow-hidden shadow-lg">
+          <div className="w-full max-w-4xl aspect-video bg-gray-100 rounded-xl overflow-hidden shadow-xl border border-white/10">
             <iframe
               className="w-full h-full"
               src="https://www.youtube.com/embed/0jbuKnubCj0?rel=0"

@@ -74,8 +74,8 @@ export default function EventsPage() {
       <div className="relative py-16 px-4 bg-gradient-to-b from-neutral-900 to-neutral-950 border-b border-white/5">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519750783826-e2420f4d687f?q=80&w=2788&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
         <div className="container mx-auto relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight bg-gradient-to-r from-amber-200 via-white to-amber-200 bg-clip-text text-transparent">
-            Agenda de la Casa
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight bg-gradient-to-r from-amber-200 via-white to-amber-200 bg-clip-text text-transparent">
+            Calendario de Eventos
           </h1>
           <p className="text-neutral-400 text-lg font-light tracking-wide uppercase">
             Caminando en una Gloria Mayor

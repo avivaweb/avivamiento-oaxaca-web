@@ -24,10 +24,13 @@ export default function Home() {
           className="mx-auto mb-6 h-auto drop-shadow-lg"
         />
 
-        <h1 className="text-4xl md:text-6xl font-extrabold text-[var(--aviva-blanco)] mb-4 tracking-tight">
-          Iglesia Cristiana en Oaxaca | Avivamiento
+        <h1 className="text-4xl md:text-6xl font-extrabold text-[var(--aviva-blanco)] mb-4 tracking-tight leading-tight">
+          IGLESIA CRISTIANA EN OAXACA | <span className="text-[var(--aviva-dorado)]">AVIVAMIENTO</span>
         </h1>
-        <h2 className="text-xl md:text-2xl font-light text-[var(--aviva-dorado)] mb-8 tracking-widest uppercase">
+        <p className="text-xl md:text-2xl mb-8 font-light text-balance">
+          Una casa de adoración, milagros y transformación.
+        </p>
+        <h2 className="text-xl md:text-2xl font-light text-[var(--aviva-dorado)] mb-8 tracking-widest uppercase text-balance">
           La Voz de la Tórtola: Únete a la migración hacia una Gloria Mayor en Cristo.
         </h2>
 

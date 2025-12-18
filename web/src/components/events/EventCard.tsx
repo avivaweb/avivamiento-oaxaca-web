@@ -57,11 +57,7 @@ export default function EventCard({ event, view = 'grid' }: EventCardProps) {
 
     return (
         <div
-            className={`
-        relative overflow-hidden rounded-xl p-5 shadow-lg border border-white/5
-        transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-neutral-900/50 group
-        ${style}
-        ${view === 'list' ? 'flex flex-col md:flex-row md:items-center gap-6' : 'flex flex-col gap-4'}
+            className={`group relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-[var(--aviva-dorado)]/10 ${style} ${view === 'list' ? 'flex flex-col md:flex-row md:items-center gap-6' : 'flex flex-col gap-4'}
       `}
         >
             {/* Date/Time Badge for Grid - Repositioned/Styled */}
