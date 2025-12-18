@@ -24,8 +24,8 @@ export async function POST(request: NextRequest) {
     // Determine if we are hitting Supabase directly to adjust path and headers
     const isSupabase = apiUrl.includes('supabase.co')
     const finalUrl = isSupabase
-      ? `${apiUrl}/rest/v1/newsletter_subscribers`
-      : `${apiUrl}/newsletter_subscribers`
+      ? `${apiUrl}/rest/v1/subscriber` // TARGET TABLE: 'subscriber'
+      : `${apiUrl}/subscriber`
 
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',

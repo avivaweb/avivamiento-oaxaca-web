@@ -20,14 +20,22 @@ export default function Home() {
         />
 
         <h1 className="text-4xl md:text-6xl font-extrabold text-[var(--aviva-blanco)] mb-4 tracking-tight">
-          Avivamiento
+          Avivamiento: Iglesia Cristiana en Oaxaca | El Lugar de Su Presencia
         </h1>
         <h2 className="text-xl md:text-2xl font-light text-[var(--aviva-dorado)] mb-8 tracking-widest uppercase">
-          El Lugar de Su Presencia
+          Levántate, Amada mía, y ven. El invierno ha pasado; únete a la migración hacia una Gloria Mayor en Cristo.
         </h2>
 
         <CallToAction />
       </div>
+
+      <section className="text-center max-w-4xl w-full px-4 mx-auto mb-12">
+        <p className="text-lg md:text-xl text-[var(--aviva-blanco)] leading-relaxed">
+          Somos una comunidad cristiana con sede en San Raymundo Jalpan, Oaxaca.
+          Nuestra misión es Evangelizar, Afirmar, Discipular y Enviar.
+          Como la Amada de Cristo, trabajamos por la restauración de la familia y el despertar de los valientes.
+        </p>
+      </section>
 
       <MiraclesSection />
 

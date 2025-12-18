@@ -2,17 +2,20 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { 
-  HomeIcon, 
-  UsersIcon, 
+import {
+  HomeIcon,
+  UsersIcon,
   DocumentTextIcon,
   ChartBarIcon,
-  Cog6ToothIcon
+  Cog6ToothIcon,
+  AcademicCapIcon
 } from '@heroicons/react/24/outline';
 
 const navigation = [
-  { name: 'Inicio', href: '/dashboard/home', icon: HomeIcon },
+  { name: 'Inicio', href: '/dashboard', icon: HomeIcon },
+  { name: 'Discipulado', href: '/dashboard/discipulado', icon: AcademicCapIcon },
   { name: 'Mis Células', href: '/dashboard/mis-celulas', icon: UsersIcon },
+  { name: 'Consolidación', href: '/dashboard/consolidacion', icon: UsersIcon },
   { name: 'Reportes', href: '/dashboard/reportes', icon: DocumentTextIcon },
   { name: 'Estadísticas', href: '/dashboard/estadisticas', icon: ChartBarIcon },
   { name: 'Configuración', href: '/dashboard/configuracion', icon: Cog6ToothIcon },
@@ -36,11 +39,10 @@ export default function Sidebar() {
             <Link
               key={item.name}
               href={item.href}
-              className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
-                isActive
-                  ? 'bg-white text-[#A5002F]'
-                  : 'text-white hover:bg-[#8A0026]'
-              }`}
+              className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${isActive
+                ? 'bg-white text-[#A5002F]'
+                : 'text-white hover:bg-[#8A0026]'
+                }`}
             >
               <item.icon className="w-5 h-5 mr-3" />
               {item.name}

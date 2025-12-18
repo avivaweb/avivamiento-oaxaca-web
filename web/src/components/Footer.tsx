@@ -1,4 +1,4 @@
-import { FaFacebookF, FaInstagram, FaYoutube, FaTiktok, FaWhatsapp, FaSpotify } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram, FaYoutube, FaTiktok, FaWhatsapp, FaSpotify, FaMapMarkerAlt } from 'react-icons/fa'
 
 export default function Footer() {
     return (
@@ -29,6 +29,18 @@ export default function Footer() {
                         <FaWhatsapp size={24} />
                     </a>
                 </div>
+
+                {/* Physical Location */}
+                <div className="mb-6 flex flex-col items-center gap-1">
+                    <div className="flex items-center gap-2 text-[var(--aviva-dorado)] font-semibold">
+                        <FaMapMarkerAlt size={18} />
+                        <span>Auditorio Avivamiento</span>
+                    </div>
+                    <p className="text-sm text-neutral-300">
+                        Oaxaca de Juárez, Oax., México
+                    </p>
+                </div>
+
                 <div className="flex justify-center space-x-4">
                     <div className="flex flex-col items-center text-[var(--aviva-blanco)] space-y-1">
                         <FaSpotify size={20} />
