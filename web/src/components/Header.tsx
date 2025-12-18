@@ -17,8 +17,18 @@ export default function Header() {
                             </Link>
                         </li>
                         <li>
+                            <Link href="/nosotros" className="hover:text-[var(--aviva-dorado)] transition-colors">
+                                Nosotros
+                            </Link>
+                        </li>
+                        <li>
                             <Link href="/grupos-celulares" className="hover:text-[var(--aviva-dorado)] transition-colors">
                                 Grupos Familiares
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/eventos" className="hover:text-[var(--aviva-dorado)] transition-colors">
+                                Eventos
                             </Link>
                         </li>
                         <li>
@@ -26,13 +36,6 @@ export default function Header() {
                                 Sermones
                             </Link>
                         </li>
-                        {/* Future Link
-            <li>
-              <Link href="/ministerios" className="hover:text-[var(--aviva-dorado)] transition-colors opacity-70 cursor-not-allowed">
-                Ministerios
-              </Link>
-            </li>
-            */}
                     </ul>
                 </nav>
             </div>

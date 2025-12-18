@@ -11,7 +11,7 @@ export default function CallToAction() {
             </p>
             <Link
                 href="/grupos-celulares"
-                className="inline-block bg-[var(--aviva-dorado)] text-[var(--aviva-principal)] font-bold py-3 px-8 rounded-full hover:bg-white hover:text-[var(--aviva-principal)] transition-all transform hover:scale-105 shadow-lg"
+                className="inline-block bg-[var(--aviva-dorado)] text-[var(--aviva-principal)] font-extrabold text-xl py-4 px-10 rounded-full hover:bg-white hover:text-[var(--aviva-principal)] transition-all transform hover:scale-105 shadow-2xl hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]"
             >
                 Unirme a un Grupo (Linaje Escogido)
             </Link>
