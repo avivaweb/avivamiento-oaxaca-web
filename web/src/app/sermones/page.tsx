@@ -40,11 +40,11 @@ export default async function SermonesPage() {
         <div className="container mx-auto px-4 py-8 md:py-12">
             {/* Header */}
             <div className="text-center mb-12">
-                <h1 className="text-3xl md:text-5xl font-extrabold text-[var(--aviva-principal)] mb-4 tracking-tight">
-                    Biblioteca de Sermones
+                <h1 className="text-3xl md:text-5xl font-extrabold text-[var(--aviva-principal)] mb-4 tracking-tight uppercase">
+                    Alimento para el <br /> <span className="text-[var(--aviva-dorado)]">Perfeccionamiento</span>
                 </h1>
-                <p className="text-lg text-gray-700 max-w-2xl mx-auto text-balance">
-                    Encuentra alimento sólido para tu espíritu. Explora nuestra colección de mensajes filtrados por pastor y tema.
+                <p className="text-lg text-gray-700 max-w-2xl mx-auto text-balance font-medium">
+                    <strong className="text-[var(--aviva-principal)]">Instrucción Apostólica y Profética</strong> para edificar tu hombre interior.
                 </p>
             </div>
 

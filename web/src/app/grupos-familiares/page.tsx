@@ -88,14 +88,14 @@ export default function CellGroupPage() {
     <div className="min-h-screen bg-[var(--aviva-principal)] text-[var(--aviva-blanco)]">
 
       {/* --- HERO SECTION --- */}
-      <section className="relative py-20 px-4 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center opacity-20 filter blur-sm"></div> {/* Placeholder for background */}
+      <section className="relative py-24 px-4 text-center overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center opacity-20 filter blur-sm"></div>
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-[var(--aviva-dorado)] mb-4 tracking-tighter">
-            Grupos Familiares
+          <h1 className="text-4xl md:text-7xl font-extrabold text-[var(--aviva-dorado)] mb-4 tracking-tighter uppercase">
+            Tu Familia Espiritual <br /> <span className="text-white">Te Espera</span>
           </h1>
-          <p className="text-xl md:text-2xl font-light text-white/90 italic">
-            "Donde la Iglesia se hace familia."
+          <p className="text-xl md:text-3xl font-light text-white/90 italic mt-6">
+            "No es una reunión. Es vinculación."
           </p>
         </div>
       </section>
@@ -103,13 +103,13 @@ export default function CellGroupPage() {
       {/* --- VISION SECTION (Acts 2) --- */}
       <section className="py-16 px-4 bg-white/5 backdrop-blur-sm border-y border-white/5">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8 text-[var(--aviva-dorado)]">El Objetivo de Nuestros Grupos</h2>
+          <h2 className="text-3xl font-bold mb-8 text-[var(--aviva-dorado)]">El Diseño Apostólico</h2>
           <div className="space-y-6 text-lg text-gray-300 leading-relaxed text-balance">
             <p>
-              El objetivo de nuestros grupos es restaurar el modelo de la Iglesia naciente (<span className="text-white font-semibold">Hechos 2</span>), llevando la presencia de Dios de las grandes celebraciones a la intimidad de tu hogar.
+              El objetivo no es llenar casas, sino <strong className="text-white">vincular corazones</strong>. Restauramos el modelo de Hechos 2, donde el pan se partía con alegría y sencillez de corazón.
             </p>
             <blockquote className="my-10 p-6 border-l-4 border-[var(--aviva-dorado)] bg-white/5 italic text-2xl text-white font-serif max-w-3xl mx-auto shadow-2xl">
-              "La célula es la Iglesia penetrando en las estructuras del mundo"
+              "La célula es el lugar donde eres pastoreado, amado y procesado."
             </blockquote>
           </div>
         </div>
@@ -121,23 +121,23 @@ export default function CellGroupPage() {
           {[
             {
               icon: <GiShepherdsCrook className="w-10 h-10" />,
-              title: "Pastoreo",
-              desc: "Que nadie camine solo. Recibe la atención y el cuidado que una multitud dificulta."
+              title: "Cobertura",
+              desc: "Un padre espiritual que vela por tu alma. Nunca más caminarás solo."
             },
             {
               icon: <GiOpenBook className="w-10 h-10" />,
-              title: "Edificación",
-              desc: "Formamos discípulos maduros que conozcan la Palabra y vivan en el poder del Espíritu."
+              title: "Madurez",
+              desc: "Instrucción sólida para dejar de ser niños fluctuantes y crecer en autoridad."
             },
             {
               icon: <FaHeart className="w-10 h-10" />,
-              title: "Evangelismo",
-              desc: "Ser un faro de luz en cada colonia, facilitando un encuentro personal con Cristo."
+              title: "Expansión",
+              desc: "Llevamos la luz de Cristo a las tinieblas de nuestra ciudad."
             },
             {
               icon: <GiThreeFriends className="w-10 h-10" />,
-              title: "Comunión",
-              desc: "Amigos que se convierten en hermanos, orando unos por otros en todo tiempo."
+              title: "Pacto",
+              desc: "Relaciones de reino. Amigos que se convierten en escuderos de oración."
             }
           ].map((item, idx) => (
             <div key={idx} className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all group hover:-translate-y-1">
@@ -193,17 +193,17 @@ export default function CellGroupPage() {
         <div className="flex items-center">
           <div className="w-full bg-[var(--aviva-blanco)] rounded-3xl shadow-2xl overflow-hidden border border-white/20 transform md:rotate-1 hover:rotate-0 transition-transform duration-500">
             <div className="p-8 md:p-10">
-              <h3 className="text-2xl font-extrabold text-[var(--aviva-principal)] mb-2 text-center">
-                Únete a una Familia
+              <h3 className="text-2xl font-extrabold text-[var(--aviva-principal)] mb-2 text-center uppercase tracking-wide">
+                TU LUGAR ESTÁ AQUÍ
               </h3>
               <p className="text-center text-gray-600 mb-6 font-medium text-balance">
-                "Déjanos tus datos y un Pastor de Zona se pondrá en contacto contigo para darte la bienvenida a tu nueva familia."
+                "Déjanos tus datos. Un padre espiritual te contactará para abrirte las puertas de casa."
               </p>
 
               {success ? (
                 <div className="text-center py-12">
                   <div className="text-6xl mb-4 animate-bounce">🎉</div>
-                  <h3 className="text-xl font-bold text-[var(--aviva-principal)] mb-2">¡Solicitud Recibida!</h3>
+                  <h3 className="text-xl font-bold text-[var(--aviva-principal)] mb-2">¡Bienvenido a Casa!</h3>
                   <p className="text-gray-600">Tu Pastor de Zona te contactará pronto.</p>
                   <button
                     onClick={() => setSuccess(false)}
@@ -282,9 +282,9 @@ export default function CellGroupPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[var(--aviva-principal)] text-white py-4 rounded-xl font-bold text-lg min-h-[48px] border border-white/20 hover:bg-opacity-90 active:scale-95 transition-all shadow-xl hover:shadow-2xl disabled:opacity-70 disabled:cursor-not-allowed mt-4"
+                    className="w-full bg-[var(--aviva-principal)] text-white py-4 rounded-xl font-bold text-lg min-h-[48px] border border-white/20 hover:bg-opacity-90 active:scale-95 transition-all shadow-xl hover:shadow-2xl disabled:opacity-70 disabled:cursor-not-allowed mt-4 uppercase tracking-wider"
                   >
-                    {loading ? 'Enviando...' : 'QUIERO UNIRME AHORA'}
+                    {loading ? 'Enviando...' : 'QUIERO SER PARTE DE LA FAMILIA'}
                   </button>
                 </form>
               )}

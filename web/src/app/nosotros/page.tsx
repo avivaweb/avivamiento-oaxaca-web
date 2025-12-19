@@ -4,199 +4,122 @@ import Footer from '@/components/Footer'
 
 // SEO Metadata
 export const metadata: Metadata = {
-  title: 'Nuestra Historia: El Mover de Dios en Oaxaca',
-  description: 'Conoce la historia del mover de Dios en Oaxaca, nuestros fundadores y el credo que sostiene nuestra fe. Somos Linaje Escogido.',
+  title: 'Nuestra Historia | Avivamiento Oaxaca',
+  description: 'La historia de un mover de Dios en Oaxaca. Desde 4 familias en 2014 hasta una casa de adoración y obediencia radical.',
 }
-
-// Timeline Data
-const historyMilestones = [
-  {
-    year: 'El Inicio',
-    title: 'La Visión Original',
-    content: 'Todo comenzó con una visión y cuatro familias valientes. Hombres y mujeres que, guiados por el Espíritu, decidieron creerle a Dios por un avivamiento en nuestra tierra. Sin grandes recursos, pero con una fe inquebrantable.',
-    side: 'left'
-  },
-  {
-    year: 'La Promesa',
-    title: 'El Milagro de Rehoboth',
-    content: 'Sembraron la semilla en un lugar al que llamaron proféticamente Rehoboth. Como está escrito en Génesis 26:22: "Porque ahora Jehová nos ha prosperado, y fructificaremos en la tierra".',
-    side: 'right'
-  },
-  {
-    year: 'La Expansión',
-    title: 'Un Mover en las Naciones',
-    content: 'Años después, lo que inició como un clamor en lo secreto se ha convertido en una voz que resuena en las naciones. Un testimonio vivo de que Dios honra la fe de aquellos que se atreven a creerle.',
-    side: 'left'
-  },
-  {
-    year: 'Hoy',
-    title: 'Linaje Escogido',
-    content: 'Hoy somos una familia extendida, un linaje escogido, real sacerdocio y nación santa, trabajando por la restauración de las familias y el despertar de los valientes.',
-    side: 'right'
-  }
-]
-
-// Credo Data
-const credoItems = [
-  {
-    title: 'La Biblia',
-    content: 'Escrituras inspiradas por Dios, infalibles y autoridad final de fe (2 Tim 3:16).',
-    icon: '📖'
-  },
-  {
-    title: 'La Trinidad',
-    content: 'Un solo Dios eterno en tres personas: Padre, Hijo y Espíritu Santo (Mateo 28:19).',
-    icon: '🕊️'
-  },
-  {
-    title: 'Salvación por Gracia',
-    content: 'Don de Dios recibido por fe en el sacrificio de Cristo, no por obras (Efesios 2:8).',
-    icon: '✝️'
-  },
-  {
-    title: 'Sanidad Divina',
-    content: 'Sanidad integral provista para el creyente a través de la redención (Isaías 53:5).',
-    icon: '❤️‍🔥'
-  },
-  {
-    title: 'Deidad de Cristo',
-    content: 'Hijo de Dios, nacido de virgen, sin pecado, muerto y resucitado en gloria.',
-    icon: '👑'
-  },
-  {
-    title: 'Espíritu Santo',
-    content: 'Ministerio activo que regenera, santifica y empodera a la Iglesia hoy.',
-    icon: '🔥'
-  },
-  {
-    title: 'Bautismo en Agua',
-    content: 'Testimonio público de fe e identificación con la muerte y resurrección de Cristo.',
-    icon: '💧'
-  },
-  {
-    title: 'La Iglesia',
-    content: 'Cuerpo de Cristo, llamado a predicar el Evangelio a todas las naciones.',
-    icon: '⛪'
-  },
-  {
-    title: 'Santificación',
-    content: 'Vida separada del mundo y consagrada a Dios por el poder del Espíritu.',
-    icon: '✨'
-  },
-  {
-    title: 'Segunda Venida',
-    content: 'Retorno visible y glorioso de Cristo para establecer Su reino eterno.',
-    icon: '☁️'
-  },
-  {
-    title: 'Resurrección',
-    content: 'Vida eterna para los justos y juicio eterno para los injustos.',
-    icon: '⚡'
-  },
-  {
-    title: 'Ministerios',
-    content: 'Cinco ministerios (Ef 4:11) para edificar a la iglesia hacia la plenitud.',
-    icon: '🛡️'
-  }
-]
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[var(--aviva-principal)] text-[var(--aviva-blanco)] font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#000000] text-[#F9FAFB] font-sans overflow-x-hidden selection:bg-[#D4AF37] selection:text-black">
 
-      {/* 1. Hero Section */}
-      <section className="relative w-full py-24 md:py-32 flex flex-col items-center justify-center text-center px-6">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--aviva-dorado)_0%,_transparent_25%)] opacity-20 blur-3xl"></div>
+      {/* 1. Hero Section - El Título de Gloria */}
+      <section className="relative w-full min-h-[60vh] flex flex-col items-center justify-center text-center px-6 border-b border-white/5">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.15)_0%,transparent_30%)] opacity-40 blur-3xl pointer-events-none"></div>
 
-        <div className="relative z-10 max-w-4xl mx-auto space-y-6">
-          <span className="text-[var(--aviva-dorado)] font-bold tracking-[0.2em] uppercase text-sm">Nuestra Identidad</span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-6">
-            NOSOTROS
+        <div className="relative z-10 max-w-5xl mx-auto space-y-8 animate-fade-in-up">
+          <span className="text-[#D4AF37] font-bold tracking-[0.3em] uppercase text-sm md:text-base mb-4 block">
+            Identidad del Mover
+          </span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-none text-white mb-6">
+            Avivamiento: <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F9A825]">
+              El Lugar de Su Presencia
+            </span>
           </h1>
-          <p className="text-xl md:text-2xl font-light text-gray-300 mt-4 max-w-2xl mx-auto leading-relaxed">
-            El testimonio del mover de Dios en Oaxaca
+          <p className="text-xl md:text-3xl font-light text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            No somos solo una iglesia; somos una habitación diseñada para Dios en Oaxaca.
           </p>
         </div>
       </section>
 
-      {/* 2. Timeline Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-[var(--aviva-principal)] to-black/40 relative">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-[var(--aviva-dorado)]">El Camino de Fe</h2>
+      {/* 2. Nuestra Historia: El Génesis */}
+      <section className="min-h-[50vh] flex items-center justify-center py-24 px-6 md:px-12 relative">
+        <div className="max-w-4xl mx-auto text-center space-y-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#D4AF37] tracking-tight mb-8">
+            Nuestra Historia: El Génesis
+          </h2>
 
-          <div className="relative">
-            {/* Central Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-[var(--aviva-dorado)] to-transparent opacity-30"></div>
-
-            <div className="space-y-12 md:space-y-24">
-              {historyMilestones.map((milestone, index) => (
-                <div key={index} className={`flex flex-col md:flex-row items-center justify-between w-full group ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-
-                  {/* Empty space for layout balance */}
-                  <div className="md:w-5/12"></div>
-
-                  {/* Dot */}
-                  <div className="z-10 bg-[var(--aviva-principal)] border-4 border-[var(--aviva-dorado)] w-6 h-6 rounded-full shadow-[0_0_15px_rgba(196,166,97,0.5)] my-4 md:my-0"></div>
-
-                  {/* Content Card */}
-                  <div className="md:w-5/12 w-full">
-                    <div className={`bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-2xl md:text-${index % 2 === 0 ? 'left' : 'right'} text-center hover:border-[var(--aviva-dorado)] hover:bg-white/10 transition-all duration-300`}>
-                      <span className="text-[var(--aviva-dorado)] font-bold text-lg">{milestone.year}</span>
-                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{milestone.title}</h3>
-                      <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-                        {milestone.content}
-                      </p>
-                    </div>
-                  </div>
-
-                </div>
-              ))}
-            </div>
+          <div className="space-y-8 text-lg md:text-2xl font-light leading-loose text-white/90">
+            <p>
+              Todo comenzó con un solo deseo: <span className="text-[#D4AF37] font-normal">Alabar y Adorar</span>.
+              A finales de <span className="font-bold text-white">octubre de 2014</span>, el fuego de este mover se encendió en la intimidad de una sala.
+              Lo que hoy es una multitud, inició con <span className="font-bold text-white border-b border-[#D4AF37]/50 pb-1">4 familias</span> rendidos ante Su Presencia, buscando nada más que Su rostro.
+            </p>
+            <p>
+              Esa semilla de adoración dio a luz a lo que hoy celebramos cada <span className="font-bold text-white">diciembre</span>:
+              el nacimiento de una casa que no se detiene, que no calla y que ha decidido que la vida se trata de Dios y de Su visión.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* 3. Clean Grid Credo Section */}
-      <section className="py-24 px-6 bg-[var(--aviva-principal)]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <span className="text-gray-500 uppercase tracking-widest text-xs font-bold mb-2 block">Fundamentos</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Nuestro Credo</h2>
-            <div className="max-w-xl mx-auto text-gray-400">
-              <p>12 Verdades inquebrantables que sostienen nuestra fe y práctica diaria.</p>
-            </div>
-          </div>
+      {/* 3. Hitos de Obediencia Radical */}
+      <section className="min-h-[50vh] py-24 px-6 bg-white/5 border-y border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#D4AF37] text-center mb-20 tracking-tight">
+            Hitos de Obediencia Radical
+          </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-            {credoItems.map((item, index) => (
-              <div key={index} className="flex flex-col items-start px-4 group">
-                <div className="mb-4 text-3xl opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                  {item.icon}
+          <div className="relative space-y-24 before:absolute before:inset-0 before:ml-5 md:before:mx-auto before:-translate-x-px md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-[#D4AF37]/50 before:to-transparent">
+
+            {/* Hito 1: Rehoboth */}
+            <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-[#000000] bg-[#D4AF37] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(212,175,55,0.5)] z-10 ml-0 md:ml-auto md:mr-auto"></div>
+
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-10 rounded-2xl bg-black border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 shadow-xl">
+                <div className="flex flex-col gap-2 mb-4">
+                  <span className="text-[#D4AF37] font-bold text-sm uppercase tracking-wider">El Milagro</span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white">El Milagro de Rehoboth</h3>
+                  <span className="text-gray-500 text-sm font-bold uppercase tracking-widest">(Auditoria Avivamiento)</span>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[var(--aviva-dorado)] transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
-                  {item.content}
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  Nuestra casa no fue levantada por manos humanas simplemente; fue un milagro de fe.
+                  El auditorio se construyó en tan solo una semana, demostrando que cuando Dios da la visión, Él desata la provisión acelerada.
                 </p>
               </div>
-            ))}
+            </div>
+
+            {/* Hito 2: No Cierres la Iglesia */}
+            <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-[#000000] bg-[#D4AF37] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(212,175,55,0.5)] z-10 ml-0 md:ml-auto md:mr-auto"></div>
+
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-10 rounded-2xl bg-black border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 shadow-xl">
+                <div className="flex flex-col gap-2 mb-4">
+                  <span className="text-[#D4AF37] font-bold text-sm uppercase tracking-wider">La Prueba (2020)</span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white">¡No Cierres la Iglesia!</h3>
+                </div>
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  En el momento de mayor crisis global, recibimos un grito profético de obediencia.
+                  Mientras el mundo se encerraba, nosotros nos mantuvimos como un faro abierto, creyendo que la realidad del cielo es mayor que cualquier crisis terrenal.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* 4. Call to Action */}
-      <section className="py-32 px-6 text-center bg-gradient-to-t from-black to-[var(--aviva-principal)]">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8">
-            Sé Parte de la Historia
+      {/* 4. Nuestro Diseño: El Real Sacerdocio */}
+      <section className="min-h-[50vh] flex items-center justify-center py-24 px-6 md:px-12 bg-gradient-to-t from-[#A5002F]/10 to-transparent">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">
+            Nuestro Diseño: <span className="text-[#D4AF37] block mt-2">El Real Sacerdocio</span>
           </h2>
-          <Link
-            href="/grupos-familiares"
-            className="inline-block bg-[var(--aviva-dorado)] text-black font-bold text-lg px-10 py-4 rounded-full min-h-[48px] border border-white/20 hover:bg-yellow-400 hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(196,166,97,0.3)]"
-          >
-            Únete al Linaje Escogido
-          </Link>
+
+          <p className="text-xl md:text-2xl font-light text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
+            Creemos que no eres un espectador, sino un <span className="text-white font-bold">Sacerdote</span>.
+            Según nuestro fundamento en <span className="text-[#D4AF37]">Hechos 2</span>, hemos restaurado el altar en las casas a través del Ejército Celular,
+            donde cada miembro es activado en su propósito para evangelizar, afirmar, discipular y enviar.
+          </p>
+
+          <div className="mt-12">
+            <Link
+              href="/grupos-familiares"
+              className="inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-black transition-all duration-300 bg-[#D4AF37] rounded-full hover:bg-white hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+            >
+              Únete al Ejército
+            </Link>
+          </div>
         </div>
       </section>
 

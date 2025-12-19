@@ -36,6 +36,11 @@ export default function Header() {
                                 Sermones
                             </Link>
                         </li>
+                        <li>
+                            <Link href="/generosidad" className="hover:text-[var(--aviva-dorado)] transition-colors">
+                                Generosidad
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </div>

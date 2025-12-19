@@ -25,13 +25,14 @@ export default function Home() {
         />
 
         <h1 className="text-4xl md:text-6xl font-extrabold text-[var(--aviva-blanco)] mb-4 tracking-tight leading-tight">
-          IGLESIA CRISTIANA EN OAXACA | <span className="text-[var(--aviva-dorado)]">AVIVAMIENTO</span>
+          IGLESIA CRISTIANA EN OAXACA | <span className="text-[var(--aviva-dorado)]">CASA DE SU PRESENCIA</span>
         </h1>
         <p className="text-xl md:text-2xl mb-8 font-light text-balance">
-          Una casa de adoración, milagros y transformación.
+          Entra a la dimensión de <strong className="text-[var(--aviva-dorado)] font-medium">Gloria Mayor</strong>.
         </p>
         <h2 className="text-xl md:text-2xl font-light text-[var(--aviva-dorado)] mb-8 tracking-widest uppercase text-balance">
-          La Voz de la Tórtola: Únete a la migración hacia una Gloria Mayor en Cristo.
+          <span className="block font-bold mb-2">LA VOZ DE LA TÓRTOLA HA HABLADO.</span>
+          El invierno ha pasado. El tiempo de la canción ha llegado.
         </h2>
 
         <CallToAction />
@@ -39,9 +40,9 @@ export default function Home() {
 
       <section className="text-center max-w-4xl w-full px-4 mx-auto mb-12">
         <p className="text-lg md:text-xl text-[var(--aviva-blanco)] leading-relaxed">
-          Somos una comunidad cristiana con sede en San Raymundo Jalpan, Oaxaca.
-          Nuestra misión es Evangelizar, Afirmar, Discipular y Enviar.
-          Como la Amada de Cristo, trabajamos por la restauración de la familia y el despertar de los valientes.
+          No somos solo una comunidad. <br className="hidden md:block" />
+          <strong className="text-[var(--aviva-dorado)]">SOMOS EL LUGAR DE SU HABITACIÓN.</strong> <br />
+          Existimos para provocar un despertar en los valientes.
         </p>
       </section>
 
