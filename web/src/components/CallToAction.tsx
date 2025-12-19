@@ -10,7 +10,7 @@ export default function CallToAction() {
                 Encuentra apoyo y comunidad en nuestro Ejército Celular. Somos agentes de transformación en Oaxaca, caminando como Real Sacerdocio.
             </p>
             <Link
-                href="/grupos-celulares"
+                href="/grupos-familiares"
                 className="inline-block bg-[var(--aviva-dorado)] text-[var(--aviva-principal)] font-extrabold text-xl py-4 px-10 rounded-full hover:bg-white hover:text-[var(--aviva-principal)] transition-all transform hover:scale-105 shadow-2xl hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]"
             >
                 Unirme a un Grupo (Linaje Escogido)

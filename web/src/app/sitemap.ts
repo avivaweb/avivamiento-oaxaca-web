@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/grupos-celulares`, // Assuming this is the public page for groups
+            url: `${baseUrl}/grupos-familiares`, // Assuming this is the public page for groups
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.8,

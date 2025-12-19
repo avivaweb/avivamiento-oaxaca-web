@@ -22,7 +22,7 @@ export default function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/grupos-celulares" className="hover:text-[var(--aviva-dorado)] transition-colors">
+                            <Link href="/grupos-familiares" className="hover:text-[var(--aviva-dorado)] transition-colors">
                                 Grupos Familiares
                             </Link>
                         </li>
