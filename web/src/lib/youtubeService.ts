@@ -11,8 +11,11 @@ export async function fetchLatestSermons(): Promise<Sermon[]> {
         return [];
     }
 
-    // Call playlistItems to get latest videos from the "Uploads" playlist
-    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${UPLOADS_PLAYLIST_ID}&maxResults=5&key=${YOUTUBE_API_KEY}`;
+    // We use the 'search' endpoint because 'playlistItems' is currently returning errors/restrictions.
+    // Search allows us to get the latest videos from the channel.
+    // Note: Search relies on quota (100 units) vs playlistItems (1 unit), but it is the working path.
+    const channelId = 'UCcOMgfZtPbjoMBVHuzqWYSg';
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&type=video&maxResults=5&key=${YOUTUBE_API_KEY}`;
 
     try {
         const res = await fetch(url, { next: { revalidate: 3600 } }); // Cache for 1 hour
@@ -20,8 +23,6 @@ export async function fetchLatestSermons(): Promise<Sermon[]> {
         if (!res.ok) {
             const errorBody = await res.text();
             console.error(`YouTube API Error: ${res.status} ${res.statusText}`, errorBody);
-            // We return empty array so the page can fallback to something else if needed, 
-            // or just show nothing.
             return [];
         }
 
@@ -34,7 +35,7 @@ export async function fetchLatestSermons(): Promise<Sermon[]> {
 
         return data.items.map((item: any) => {
             const snippet = item.snippet;
-            const videoId = snippet.resourceId.videoId;
+            const videoId = item.id.videoId; // In search response, it's id.videoId
 
             return {
                 id: videoId,
@@ -45,7 +46,7 @@ export async function fetchLatestSermons(): Promise<Sermon[]> {
                 pastor: "Avivamiento Oaxaca",
                 topic: "Mensaje General",
                 date: snippet.publishedAt,
-                thumbnailUrl: snippet.thumbnails?.maxres?.url || snippet.thumbnails?.high?.url || snippet.thumbnails?.medium?.url || snippet.thumbnails?.default?.url
+                thumbnailUrl: snippet.thumbnails?.high?.url || snippet.thumbnails?.medium?.url || snippet.thumbnails?.default?.url
             };
         });
 
