@@ -193,7 +193,7 @@ export default function AboutPage() {
           </h2>
           <Link
             href="/grupos-familiares"
-            className="inline-block bg-[var(--aviva-dorado)] text-black font-bold text-lg px-10 py-4 rounded-full hover:bg-yellow-400 hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(196,166,97,0.3)]"
+            className="inline-block bg-[var(--aviva-dorado)] text-black font-bold text-lg px-10 py-4 rounded-full min-h-[48px] border border-white/20 hover:bg-yellow-400 hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(196,166,97,0.3)]"
           >
             Únete al Linaje Escogido
           </Link>

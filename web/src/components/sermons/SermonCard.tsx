@@ -43,7 +43,7 @@ export default function SermonCard({ sermon }: SermonCardProps) {
                     </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-2 leading-tight group-hover:text-[var(--aviva-principal)] transition-colors">
+                <h3 className="text-xl font-bold text-white mb-2 leading-tight line-clamp-2 group-hover:text-[var(--aviva-principal)] transition-colors">
                     {sermon.title}
                 </h3>
 

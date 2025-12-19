@@ -282,7 +282,7 @@ export default function CellGroupPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[var(--aviva-principal)] text-white py-4 rounded-xl font-extrabold text-lg hover:bg-opacity-90 active:scale-95 transition-all shadow-xl hover:shadow-2xl disabled:opacity-70 disabled:cursor-not-allowed mt-4"
+                    className="w-full bg-[var(--aviva-principal)] text-white py-4 rounded-xl font-bold text-lg min-h-[48px] border border-white/20 hover:bg-opacity-90 active:scale-95 transition-all shadow-xl hover:shadow-2xl disabled:opacity-70 disabled:cursor-not-allowed mt-4"
                   >
                     {loading ? 'Enviando...' : 'QUIERO UNIRME AHORA'}
                   </button>

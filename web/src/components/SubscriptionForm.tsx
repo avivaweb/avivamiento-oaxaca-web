@@ -57,7 +57,7 @@ export default function SubscriptionForm() {
                 <button
                     type="submit"
                     disabled={loading}
-                    className="bg-[#A5002F] hover:bg-[#8A0026] text-white px-8 py-3 rounded-full transition-all shadow-lg hover:shadow-[#A5002F]/20 font-semibold disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto transform hover:-translate-y-0.5"
+                    className="bg-[#A5002F] hover:bg-[#8A0026] text-white px-8 py-3 rounded-full transition-all shadow-lg hover:shadow-[#A5002F]/20 font-bold text-lg min-h-[48px] border border-white/20 disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto transform hover:-translate-y-0.5"
                 >
                     {loading ? 'Suscribiendo...' : 'Avísame cuando lancen'}
                 </button>
