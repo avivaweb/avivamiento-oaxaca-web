@@ -32,7 +32,7 @@ export default function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/mensajes" className="hover:text-[var(--aviva-dorado)] transition-colors">
+                            <Link href="/sermones" className="hover:text-[var(--aviva-dorado)] transition-colors">
                                 Sermones
                             </Link>
                         </li>
