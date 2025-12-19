@@ -20,7 +20,7 @@ export default function SermonCard({ sermon }: SermonCardProps) {
             {/* Thumbnail Section */}
             <div className="relative aspect-video overflow-hidden">
                 <img
-                    src={getYoutubeThumbnail(sermon.video_url)}
+                    src={sermon.thumbnailUrl || getYoutubeThumbnail(sermon.video_url)}
                     alt={sermon.title}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />
