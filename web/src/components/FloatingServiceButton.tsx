@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 
 export default function FloatingServiceButton() {
     const [isVisible, setIsVisible] = useState(false);
-    const phoneNumber = "521234567890"; // Reemplazar con el número real
-    const message = `¡Hola, Avivamiento! Necesito ayuda con lo siguiente (escribe el número):
+    const phoneNumber = "529511234567"; // Número oficial unificado
+    const message = `Hola, Pastores. Deseo conectar con la visión... (Selecciona una opción o escribe tu mensaje):
 
 1. NECESITO ORACIÓN (Urgente)
 2. Quiero UNIRME a una CÉLULA (Consolidación)

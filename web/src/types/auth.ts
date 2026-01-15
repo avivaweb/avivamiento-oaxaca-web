@@ -2,7 +2,7 @@ export interface User {
   id: string;
   email: string;
   name: string;
-  role: 'admin' | 'supervisor' | 'leader' | 'member';
+  role: 'Lider de Celula' | 'Supervisor' | 'Pastor de Zona' | 'Pastor General' | 'admin' | 'CMAvivamiento';
 }
 
 export interface AuthContextType {

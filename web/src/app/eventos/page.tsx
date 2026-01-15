@@ -49,14 +49,46 @@ export default function EventsPage() {
         if (error) {
           console.error('Error fetching events:', error);
         } else {
-          // Cast data to Event type, assuming DB columns match or we map them here
-          // If category is string in DB, we rely on it matching 'general'|'special'|'workshop'
-          // Defaulting if missing
-          const mappedEvents: Event[] = (data || []).map((e: any) => ({
+          let mappedEvents: Event[] = (data || []).map((e: any) => ({
             ...e,
-            category: e.category || 'general' // Default to general
+            category: e.category || 'general'
           }));
-          setEvents(mappedEvents);
+
+          // INJECTED EVENTS (PASIÓN 2026)
+          const manualEvents: Event[] = [
+            {
+              id: 'evt-zocalo-01',
+              title: 'Oración en el Zócalo',
+              description: 'Clamor por Oaxaca. Un tiempo de intercesión profética en el corazón de nuestra ciudad. #Pasión2026',
+              start_time: new Date(year, month, 15, 18, 0).toISOString(), // Example: 15th of current month
+              end_time: new Date(year, month, 15, 20, 0).toISOString(),
+              location: 'Zócalo de la Ciudad, Oaxaca',
+              category: 'special'
+            },
+            {
+              id: 'evt-mujeres-01',
+              title: 'Mujeres en Victoria',
+              description: 'Reunión exclusiva para mujeres. "Levántate y resplandece".',
+              start_time: new Date(year, month, 22, 10, 0).toISOString(), // Example: 22nd of current month
+              end_time: new Date(year, month, 22, 12, 0).toISOString(),
+              location: 'Auditorio Avivamiento',
+              category: 'workshop'
+            }
+          ];
+
+          // Merge and Sort
+          const allEvents = [...mappedEvents, ...manualEvents];
+          allEvents.sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime());
+
+          // GEM Numerology: Show only top 3 upcoming/relevant events for the view
+          // Filter to show only future events from "now" if we were strict, but here we scope by month window.
+          // We will just slice the first 3 of the month for the "Focus" view if needed, 
+          // but the prompt implies "No satures... muestra las 3 más próximos".
+          // So we should probably strictly limit the 'events' state or have a separate 'highlightedEvents'.
+          // For this implementation, we will limit the main list to 3 if in 'list' view, or generally limit.
+          // Let's limit the displayed array to 3 for now as requested.
+
+          setEvents(allEvents.slice(0, 3));
         }
       } catch (err) {
         console.error('Unexpected error:', err);
@@ -75,10 +107,10 @@ export default function EventsPage() {
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519750783826-e2420f4d687f?q=80&w=2788&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
         <div className="container mx-auto relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight bg-gradient-to-r from-amber-200 via-white to-amber-200 bg-clip-text text-transparent">
-            Calendario de Eventos
+            Calendario Operativo PASIÓN 2026
           </h1>
           <p className="text-neutral-400 text-lg font-light tracking-wide uppercase">
-            Caminando en una Gloria Mayor
+            Agenda Oficial | Avivamiento Oaxaca
           </p>
         </div>
       </div>

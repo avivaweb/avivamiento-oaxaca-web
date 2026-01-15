@@ -1,4 +1,7 @@
 import Image from 'next/image'
+import { Suspense } from 'react'
+import MediaGallery from '@/components/media/MediaGallery'
+import MediaSkeleton from '@/components/media/MediaSkeleton'
 
 export const dynamic = 'force-static'
 import SubscriptionForm from '@/components/SubscriptionForm'
@@ -38,6 +41,44 @@ export default function Home() {
         <CallToAction />
       </div>
 
+      <section className="w-full max-w-5xl mx-auto px-4 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-[#0a0a0a] border border-[#DAA520]/20 p-8 rounded-xl shadow-[0_0_30px_rgba(218,165,32,0.1)]">
+          <div className="text-center md:text-left">
+            <h3 className="text-2xl font-bold text-[var(--aviva-dorado)] mb-2 uppercase tracking-widest">Nuestros Horarios</h3>
+            <p className="text-gray-300 mb-1">Ven y recibe lo que Dios tiene para ti.</p>
+          </div>
+          <div className="flex flex-col gap-4 text-center md:text-right">
+            <div>
+              <p className="text-sm text-gray-400 uppercase tracking-widest">Reunión General</p>
+              <p className="text-xl md:text-2xl font-bold text-white">Domingo 11:00 AM</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-400 uppercase tracking-widest">Reunión de Oración</p>
+              <p className="text-xl md:text-2xl font-bold text-white">Martes 6:30 PM</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="text-center max-w-6xl w-full px-4 mx-auto mb-20">
+        <span className="text-[var(--aviva-dorado)] font-bold tracking-[0.2em] text-sm uppercase mb-4 block">Nuestra Misión</span>
+        <h2 className="text-3xl md:text-5xl font-bold text-white mb-12">Cuatro Pilares de <span className="text-[var(--aviva-dorado)]">Avivamiento</span></h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { title: "Evangelizar", text: "Llevamos las buenas nuevas de salvación a cada rincón." },
+            { title: "Afirmar", text: "Cimentamos la fe de los creyentes en la Palabra de Dios." },
+            { title: "Discipular", text: "Formamos seguidores de Cristo comprometidos con Su Reino." },
+            { title: "Enviar", text: "Lanzamos líderes a cumplir su propósito divino." }
+          ].map((item, index) => (
+            <div key={index} className="bg-white/5 border border-white/10 p-6 rounded-lg hover:border-[#DAA520]/50 transition-all hover:-translate-y-1 duration-300">
+              <h3 className="text-xl font-bold text-[var(--aviva-dorado)] mb-3">{item.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="text-center max-w-4xl w-full px-4 mx-auto mb-12">
         <p className="text-lg md:text-xl text-[var(--aviva-blanco)] leading-relaxed">
           No somos solo una comunidad. <br className="hidden md:block" />
@@ -45,6 +86,10 @@ export default function Home() {
           Existimos para provocar un despertar en los valientes.
         </p>
       </section>
+
+      <Suspense fallback={<MediaSkeleton />}>
+        <MediaGallery />
+      </Suspense>
 
       <MiraclesSection />
 

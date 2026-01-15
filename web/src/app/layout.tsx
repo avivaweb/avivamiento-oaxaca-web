@@ -16,16 +16,40 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  themeColor: 'black',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
-  // 1. EL TÍTULO DE LA PESTAÑA
-  title: "Avivamiento Oaxaca | Iglesia Cristiana, Sanidad y Células",
-
-  description: "Encuentra el Lugar de Su Presencia en Oaxaca. Somos un mover de Dios: experimenta Sanidad, Milagros, Adoración y únete a un Grupo Familiar (Célula) para crecer en la Fe.",
-
-  // 2. LA REFERENCIA AL FAVICON
+  metadataBase: new URL('https://www.avivamientooaxaca.com'),
+  keywords: ["Vida Zoé", "Oaxaca", "Nueva Creación", "Iglesia Cristiana", "Avivamiento"],
+  title: {
+    default: "Avivamiento Oaxaca | El Lugar de Su Presencia",
+    template: "%s | Avivamiento Oaxaca"
+  },
+  description: "Una casa apostólica donde se manifiesta la Vida Zoé. Somos una Nueva Creación levantada para establecer el Reino de Dios en Oaxaca.",
   icons: {
-    // Apunta al archivo en la carpeta /public
     icon: "/favicon-aviva.png",
+    apple: "/favicon-aviva.png",
+  },
+  openGraph: {
+    title: "Avivamiento Oaxaca | El Lugar de Su Presencia",
+    description: "El tiempo de la canción ha llegado. Una atmósfera de adoración y milagros donde el Cielo toca la Tierra.",
+    url: 'https://www.avivamientooaxaca.com',
+    siteName: 'Avivamiento Oaxaca',
+    locale: 'es_MX',
+    type: 'website',
+    images: [
+      {
+        url: 'https://www.avivamientooaxaca.com/logo-aviva.png',
+        width: 1200,
+        height: 630,
+        alt: 'Avivamiento Oaxaca - El tiempo de la canción ha llegado',
+      },
+    ],
   },
 };
 
@@ -93,8 +117,8 @@ export default function RootLayout({
                 "@context": "https://schema.org",
                 "@type": "ReligiousOrganization",
                 "name": "Avivamiento Oaxaca",
-                "url": "https://avivamiento.com",
-                "logo": "https://avivamiento.com/logo-aviva.png",
+                "url": "https://www.avivamientooaxaca.com",
+                "logo": "https://www.avivamientooaxaca.com/logo-aviva.png",
                 "address": {
                   "@type": "PostalAddress",
                   "addressLocality": "Oaxaca",

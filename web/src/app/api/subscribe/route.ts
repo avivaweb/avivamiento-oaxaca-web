@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import { supabase } from '@/lib/supabase'
 
 export const runtime = 'edge'
 
@@ -13,54 +14,26 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { email, whatsapp_number } = subscribeSchema.parse(body)
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://ltgpdrcwfuwpnqaizsgj.supabase.co'
-    const apiKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    const { data, error } = await supabase
+      .from('subscriber')
+      .insert({
+        email,
+        phone: whatsapp_number, // User context implies whatsapp is the phone field in my new schema
+        whatsapp_number, // Keeping it populated as well just in case
+        source: 'newsletter'
+      })
+      .select()
 
-    if (!apiUrl) {
-      console.error('API URL not configured')
-      return NextResponse.json({ error: 'Configuration error' }, { status: 500 })
-    }
-
-    // Determine if we are hitting Supabase directly to adjust path and headers
-    const isSupabase = apiUrl.includes('supabase.co')
-    const finalUrl = isSupabase
-      ? `${apiUrl}/rest/v1/subscriber` // TARGET TABLE: 'subscriber'
-      : `${apiUrl}/subscriber`
-
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation' // To get the created row back
-    }
-
-    if (isSupabase) {
-      if (!apiKey) {
-        console.error('Supabase Anon Key not configured')
-        return NextResponse.json({ error: 'Configuration error: Missing API Key' }, { status: 500 })
+    if (error) {
+      // Handle unique constraint violation for email
+      if (error.code === '23505') {
+        return NextResponse.json({ error: 'Este correo ya está suscrito.' }, { status: 409 })
       }
-      headers['apikey'] = apiKey
-      headers['Authorization'] = `Bearer ${apiKey}`
+      console.error('Supabase error:', error)
+      return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
-    const response = await fetch(finalUrl, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ email, whatsapp_number }),
-    })
-
-    if (!response.ok) {
-      console.error(`Backend responded with ${response.status} for ${finalUrl}`)
-      try {
-        const errorBody = await response.json()
-        console.error('Error details:', errorBody)
-        return NextResponse.json(errorBody, { status: response.status })
-      } catch {
-        return NextResponse.json({ error: 'Backend error' }, { status: response.status })
-      }
-    }
-
-    const responseBody = await response.json()
-
-    return NextResponse.json(responseBody, { status: 201 })
+    return NextResponse.json(data, { status: 201 })
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: 'Invalid input', details: error.issues }, { status: 400 })

@@ -18,12 +18,12 @@ export default function AboutPage() {
 
         <div className="relative z-10 max-w-5xl mx-auto space-y-8 animate-fade-in-up">
           <span className="text-[#D4AF37] font-bold tracking-[0.3em] uppercase text-sm md:text-base mb-4 block">
-            Nuestra Historia
+            Thissis Kainós
           </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-none text-white mb-6">
-            11 Años de <br />
+            Nueva <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F9A825]">
-              Fe Radical
+              Creación
             </span>
           </h1>
         </div>
@@ -66,7 +66,7 @@ export default function AboutPage() {
 
           <div className="flex-1 text-left order-2 md:order-3">
             <span className="text-[#D4AF37] font-bold text-6xl md:text-8xl opacity-20 block mb-4">2020</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">El Grito de la Fe Radical</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">2020: La Obediencia y la Fe Radical</h2>
             <p className="text-xl text-gray-300 leading-relaxed">
               En el sexto año, cuando el mundo se detuvo por la pandemia, escuchamos una voz innegable: <span className="text-white italic">"¡No cierres la Iglesia!"</span>.
             </p>
@@ -108,7 +108,8 @@ export default function AboutPage() {
             <span className="text-[#D4AF37] font-bold text-6xl md:text-8xl opacity-20 block mb-4">2026</span>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">11 Años: PASIÓN 2026</h2>
             <p className="text-xl text-gray-300 leading-relaxed">
-              Tras diez años de fortalecer nuestro corazón en la 'Guerra Espiritual', hoy entramos en nuestro 11º Aniversario.
+              Tras diez años de fortalecer nuestro corazón, hoy entendemos nuestra asignación superior.
+              No solo somos una iglesia, somos un movimiento llamado a <strong className="text-white">"Reformar nuestra generación"</strong>.
             </p>
             <p className="text-xl text-gray-300 leading-relaxed mt-4">
               El invierno ha pasado. La voz de la tórtola se oye en nuestra tierra y caminamos hacia una Etapa Mayor en una Gloria Mayor.

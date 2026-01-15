@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import { supabase } from '@/lib/supabase'
 
 export const runtime = 'edge'
 
@@ -18,35 +19,24 @@ export async function POST(request: NextRequest) {
         // Validate request body
         const validatedData = groupSchema.parse(body)
 
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL
-        if (!apiUrl) {
-            console.error('API URL not configured')
-            return NextResponse.json({ error: 'Configuration error' }, { status: 500 })
+        // Insert into 'subscriber' table (acting as Leads)
+        const { data, error } = await supabase
+            .from('subscriber')
+            .insert({
+                full_name: validatedData.fullName,
+                email: validatedData.email,
+                phone: validatedData.phone,
+                preference: validatedData.preference,
+                source: 'unete-form'
+            })
+            .select()
+
+        if (error) {
+            console.error('Supabase error:', error)
+            return NextResponse.json({ error: error.message }, { status: 500 })
         }
 
-        // Proxy to backend
-        const response = await fetch(`${apiUrl}/groups`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(validatedData),
-        })
-
-        // If backend returns error, try to pass it through or default to 500
-        if (!response.ok) {
-            console.error(`Backend responded with ${response.status} for /groups`)
-            // Try to read error body if possible
-            try {
-                const errorBody = await response.json()
-                return NextResponse.json(errorBody, { status: response.status })
-            } catch {
-                return NextResponse.json({ error: 'Backend error' }, { status: response.status })
-            }
-        }
-
-        const responseBody = await response.json()
-        return NextResponse.json(responseBody, { status: 201 })
+        return NextResponse.json({ success: true, data }, { status: 201 })
 
     } catch (error) {
         if (error instanceof z.ZodError) {

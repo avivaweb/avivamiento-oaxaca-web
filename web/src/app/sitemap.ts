@@ -11,19 +11,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1,
         },
         {
+            url: `${baseUrl}/eventos`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9,
+        },
+        {
             url: `${baseUrl}/nosotros`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/eventos`,
+            url: `${baseUrl}/contacto`,
             lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.8,
+            changeFrequency: 'yearly',
+            priority: 0.7,
         },
         {
-            url: `${baseUrl}/grupos-familiares`, // Assuming this is the public page for groups
+            url: `${baseUrl}/grupos-familiares`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.8,
@@ -32,19 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: `${baseUrl}/mensajes`,
             lastModified: new Date(),
             changeFrequency: 'weekly',
-            priority: 0.7,
-        },
-        {
-            url: `${baseUrl}/contacto`,
-            lastModified: new Date(),
-            changeFrequency: 'yearly',
-            priority: 0.5,
-        },
-        {
-            url: `${baseUrl}/login`,
-            lastModified: new Date(),
-            changeFrequency: 'yearly',
-            priority: 0.3,
+            priority: 0.8,
         },
     ]
 }
