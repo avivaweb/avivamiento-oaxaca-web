@@ -28,11 +28,13 @@ export default function YouTubeGalleryClient({ sermons }: YouTubeGalleryClientPr
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {sermons.map((sermon, index) => {
-                    const pinned = isPinned(sermon);
+                    // Enforce Majestic Gold on the FIRST card (Primacía)
+                    const isFirst = index === 0;
+                    const pinned = isPinned(sermon) || isFirst;
                     return (
                         <div
                             key={sermon.id}
-                            className={`group relative rounded-xl overflow-hidden bg-[#0a0a0a] border ${pinned ? 'border-[#DAA520] shadow-[0_0_20px_rgba(218,165,32,0.2)]' : 'border-white/10'} hover:border-[#DAA520]/50 transition-all duration-300 hover:-translate-y-1`}
+                            className={`group relative rounded-xl overflow-hidden bg-[#0a0a0a] border ${pinned ? 'border-2 border-[#DAA520] shadow-[0_0_15px_rgba(218,165,32,0.4)]' : 'border-white/10'} hover:border-[#DAA520]/50 transition-all duration-300 hover:-translate-y-1`}
                         >
                             <div
                                 className="aspect-video relative cursor-pointer"

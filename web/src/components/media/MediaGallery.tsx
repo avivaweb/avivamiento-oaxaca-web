@@ -3,8 +3,12 @@ import { fetchPasionMedia } from '@/lib/mediaFetcher';
 import SpotifyEmbed from './SpotifyEmbed';
 import YouTubeGalleryClient from './YouTubeGalleryClient'; // Client wrapper for interactivity
 
-export default async function MediaGallery() {
-    const { sermons, podcasts } = await fetchPasionMedia();
+interface MediaGalleryProps {
+    limit?: number;
+}
+
+export default async function MediaGallery({ limit = 3 }: MediaGalleryProps) {
+    const { sermons, podcasts } = await fetchPasionMedia(limit);
 
     return (
         <section className="w-full max-w-7xl mx-auto px-4 py-16 md:py-24" id="media-gallery">
@@ -15,14 +19,14 @@ export default async function MediaGallery() {
                         Media Center
                     </span>
                     <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
-                        Últimos <span className="text-[var(--aviva-dorado)]">Mensajes</span>
+                        Últimos Diseños: <span className="text-[var(--aviva-dorado)]">Vida Zoé</span>
                     </h2>
                 </div>
                 <a
-                    href="/sermones"
+                    href="/mensajes"
                     className="hidden md:inline-flex items-center text-sm font-bold text-white hover:text-[var(--aviva-dorado)] transition-colors uppercase tracking-widest group"
                 >
-                    Ver Todo
+                    EXPLORAR MI DESTINO
                     <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>

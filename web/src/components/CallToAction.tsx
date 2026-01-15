@@ -14,7 +14,7 @@ export default function CallToAction() {
                 href="/grupos-familiares"
                 className="inline-block bg-[var(--aviva-dorado)] text-[var(--aviva-principal)] font-extrabold text-xl py-4 px-10 rounded-full min-h-[48px] border border-white/20 hover:bg-white hover:text-[var(--aviva-principal)] transition-all transform hover:scale-105 shadow-2xl hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]"
             >
-                CORRE A CASA (Unirse)
+                EXPLORAR MI DESTINO
             </Link>
         </div>
     )

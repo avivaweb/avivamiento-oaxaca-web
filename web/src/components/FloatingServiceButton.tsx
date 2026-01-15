@@ -2,10 +2,11 @@
 
 import { FaWhatsapp } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import { siteConfig } from "@/config/site";
 
 export default function FloatingServiceButton() {
     const [isVisible, setIsVisible] = useState(false);
-    const phoneNumber = "529511234567"; // Número oficial unificado
+    const phoneNumber = siteConfig.whatsapp.number;
     const message = `Hola, Pastores. Deseo conectar con la visión... (Selecciona una opción o escribe tu mensaje):
 
 1. NECESITO ORACIÓN (Urgente)

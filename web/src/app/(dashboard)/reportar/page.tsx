@@ -20,8 +20,13 @@ export default function ReportPage() {
 
     // Listas de Opciones
     const ZONAS = [
-        "Jalpan", "Cuilápam", "Zaachila", "San Nicolás", "Cañada",
-        "Xoxocotlán", "Centro", "Reforma", "Volcanes", "Etla", "Ocotlán", "Tlacolula", "Otro"
+        "Jalpan",
+        "Cuilápam",
+        "Zaachila",
+        "San Nicolás",
+        "Cañada",
+        "Centro / Oaxaca Juárez",
+        "Etla / Valles Centrales"
     ];
 
     const CATEGORIAS_MILAGRO = [

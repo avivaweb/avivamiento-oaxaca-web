@@ -9,6 +9,11 @@ export function middleware(request: NextRequest) {
   const protectedRoutes = ['/dashboard', '/completar-perfil'];
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
 
+  // 0. Redirecciones de Unificación (Legacy -> Canonical)
+  if (pathname.startsWith('/sermones')) {
+    return NextResponse.redirect(new URL('/mensajes', request.url));
+  }
+
   // 1. Verificación de Autenticación Básica
   if (isProtectedRoute && !token) {
     const loginUrl = new URL('/login', request.url);

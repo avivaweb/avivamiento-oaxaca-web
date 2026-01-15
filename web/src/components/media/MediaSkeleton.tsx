@@ -2,6 +2,9 @@
 export default function MediaSkeleton() {
     return (
         <section className="w-full max-w-7xl mx-auto px-4 py-16">
+            <div className="text-center mb-8">
+                <span className="text-[var(--aviva-dorado)] font-bold uppercase tracking-widest text-sm animate-pulse">Cargando Diseños Eternos...</span>
+            </div>
             {/* Header Skeleton */}
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div className="space-y-4 w-full md:w-1/2">

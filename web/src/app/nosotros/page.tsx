@@ -21,11 +21,14 @@ export default function AboutPage() {
             Thissis Kainós
           </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-none text-white mb-6">
-            Nueva <br />
+            11 Años <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F9A825]">
-              Creación
+              Reformando Generaciones
             </span>
           </h1>
+          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            No somos una organización, somos una <strong className="text-white">Nueva Raza (Thissis Kainós)</strong> manifestando el diseño original de Dios en Oaxaca.
+          </p>
         </div>
       </section>
 

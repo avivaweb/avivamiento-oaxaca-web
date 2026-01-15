@@ -13,10 +13,10 @@ export default function MessagesPage() {
       {/* 1. Encabezado de la Página */}
       <div className="text-center mb-12">
         <h1 className="text-3xl md:text-5xl font-extrabold text-[var(--aviva-principal)] mb-4 tracking-tight">
-          Recursos de Formación y Profundidad Doctrinal
+          Alimento para la Nueva Creación
         </h1>
         <p className="text-lg text-gray-700 max-w-2xl mx-auto text-balance">
-          Encuentra alimento sólido para tu espíritu. Del púlpito a tu dispositivo, para que la Palabra corra y seas edificado.
+          No son solo palabras, son diseños del Plano Eterno para activar tu fe y poseer tu herencia.
         </p>
       </div>
 

@@ -25,12 +25,12 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.avivamientooaxaca.com'),
-  keywords: ["Vida Zoé", "Oaxaca", "Nueva Creación", "Iglesia Cristiana", "Avivamiento"],
+  keywords: ["Vida Zoé", "Oaxaca", "Nueva Realidad", "Iglesia Cristiana", "Avivamiento", "Thissis Kainós", "Tetelestai"],
   title: {
     default: "Avivamiento Oaxaca | El Lugar de Su Presencia",
     template: "%s | Avivamiento Oaxaca"
   },
-  description: "Una casa apostólica donde se manifiesta la Vida Zoé. Somos una Nueva Creación levantada para establecer el Reino de Dios en Oaxaca.",
+  description: "Una casa apostólica donde se manifiesta la Vida Zoé. Somos una Nueva Creación (Thissis Kainós) levantada para establecer el Reino de Dios en Oaxaca.",
   icons: {
     icon: "/favicon-aviva.png",
     apple: "/favicon-aviva.png",

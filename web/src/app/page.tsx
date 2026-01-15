@@ -27,16 +27,13 @@ export default function Home() {
           className="mx-auto mb-6 h-auto drop-shadow-lg"
         />
 
-        <h1 className="text-4xl md:text-6xl font-extrabold text-[var(--aviva-blanco)] mb-4 tracking-tight leading-tight">
-          IGLESIA CRISTIANA EN OAXACA | <span className="text-[var(--aviva-dorado)]">CASA DE SU PRESENCIA</span>
+        <h1 className="text-4xl md:text-6xl font-extrabold text-[var(--aviva-blanco)] mb-4 tracking-tight leading-tight uppercase">
+          El tiempo de la <span className="text-[var(--aviva-dorado)]">canción ha llegado</span>
         </h1>
-        <p className="text-xl md:text-2xl mb-8 font-light text-balance">
-          Entra a la dimensión de <strong className="text-[var(--aviva-dorado)] font-medium">Gloria Mayor</strong>.
+        <p className="text-xl md:text-2xl mb-8 font-light text-balance text-gray-300">
+          Descubre tu <strong className="text-[var(--aviva-dorado)] font-medium">Asignación Eterna</strong> y camina en la Vida Zoé. <br />
+          Bienvenido a la Nueva Realidad en Cristo.
         </p>
-        <h2 className="text-xl md:text-2xl font-light text-[var(--aviva-dorado)] mb-8 tracking-widest uppercase text-balance">
-          <span className="block font-bold mb-2">LA VOZ DE LA TÓRTOLA HA HABLADO.</span>
-          El invierno ha pasado. El tiempo de la canción ha llegado.
-        </h2>
 
         <CallToAction />
       </div>
@@ -88,7 +85,7 @@ export default function Home() {
       </section>
 
       <Suspense fallback={<MediaSkeleton />}>
-        <MediaGallery />
+        <MediaGallery limit={3} />
       </Suspense>
 
       <MiraclesSection />
