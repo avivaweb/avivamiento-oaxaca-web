@@ -38,7 +38,7 @@ export default function Header() {
                         </li>
                         <li>
                             <Link href="/mensajes" className="hover:text-[var(--aviva-dorado)] transition-colors">
-                                Media
+                                Mensajes
                             </Link>
                         </li>
                         <li>

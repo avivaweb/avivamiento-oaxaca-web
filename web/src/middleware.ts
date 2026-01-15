@@ -10,7 +10,7 @@ export function middleware(request: NextRequest) {
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
 
   // 0. Redirecciones de Unificación (Legacy -> Canonical)
-  if (pathname.startsWith('/sermones')) {
+  if (pathname.startsWith('/sermones') || pathname.startsWith('/media')) {
     return NextResponse.redirect(new URL('/mensajes', request.url));
   }
 
