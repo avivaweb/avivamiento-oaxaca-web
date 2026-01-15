@@ -16,7 +16,7 @@ export default function YouTubeGalleryClient({ sermons }: YouTubeGalleryClientPr
     if (!sermons || sermons.length === 0) {
         return (
             <div className="text-center py-10 bg-white/5 rounded-xl border border-white/10">
-                <p className="text-gray-400">No hay videos disponibles por el momento.</p>
+                <p className="text-[var(--aviva-dorado)] animate-pulse">Sincronizando diseños del Plano Eterno...</p>
             </div>
         );
     }

@@ -30,7 +30,7 @@ const FALLBACK_SERMONS: Sermon[] = [
         pastor: "Avivamiento Oaxaca",
         topic: "FUNDAMENTO",
         date: new Date().toISOString(),
-        thumbnailUrl: "https://i.ytimg.com/vi/cOMgfZtPbjo/hqdefault.jpg"
+        thumbnailUrl: "https://i.ytimg.com/vi/cOMgfZtPbjo/maxresdefault.jpg"
     },
     {
         id: "S9jG7P_XWk8",
@@ -40,7 +40,7 @@ const FALLBACK_SERMONS: Sermon[] = [
         pastor: "Avivamiento Oaxaca",
         topic: "ASIGNACIÓN",
         date: new Date(Date.now() - 86400000 * 3).toISOString(),
-        thumbnailUrl: "https://i.ytimg.com/vi/S9jG7P_XWk8/hqdefault.jpg"
+        thumbnailUrl: "https://i.ytimg.com/vi/S9jG7P_XWk8/maxresdefault.jpg"
     },
     {
         id: "Thissis_Kainos_ID",
@@ -50,7 +50,7 @@ const FALLBACK_SERMONS: Sermon[] = [
         pastor: "Avivamiento Oaxaca",
         topic: "IDENTIDAD",
         date: new Date(Date.now() - 86400000 * 7).toISOString(),
-        thumbnailUrl: "https://i.ytimg.com/vi/cOMgfZtPbjo/hqdefault.jpg" // Fallback placeholder
+        thumbnailUrl: "https://i.ytimg.com/vi/cOMgfZtPbjo/maxresdefault.jpg" // Fallback placeholder
     }
 ];
 
@@ -77,8 +77,8 @@ async function fetchYouTubeContent(limit: number = 3): Promise<Sermon[]> {
         }
 
         // 1. Fetch latest videos
-        // Request slightly more than limit to account for potential pinning duplicates
-        const searchLimit = limit + 2;
+        // Request 6 videos as requested for "Real Integration"
+        const searchLimit = 6;
         const searchUrl = `https://www.googleapis.com/youtube/v3/search?channelId=${channelId}&part=snippet,id&order=date&maxResults=${searchLimit}&type=video&key=${apiKey}`;
         const res = await fetch(searchUrl, { next: { revalidate: 3600 } });
 
@@ -104,7 +104,7 @@ async function fetchYouTubeContent(limit: number = 3): Promise<Sermon[]> {
             pastor: 'Avivamiento Oaxaca',
             topic: 'Mensaje Reciente',
             date: item.snippet.publishedAt,
-            thumbnailUrl: item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.medium?.url,
+            thumbnailUrl: item.snippet.thumbnails?.maxres?.url || item.snippet.thumbnails?.high?.url || `https://i.ytimg.com/vi/${item.id.videoId}/maxresdefault.jpg`,
         }));
 
         // 2. Pin specific video: "La FE de Dios para Vencer"
@@ -129,7 +129,7 @@ async function fetchYouTubeContent(limit: number = 3): Promise<Sermon[]> {
                             pastor: 'Avivamiento Oaxaca',
                             topic: 'Mensaje Destacado',
                             date: item.snippet.publishedAt,
-                            thumbnailUrl: item.snippet.thumbnails?.high?.url,
+                            thumbnailUrl: item.snippet.thumbnails?.maxres?.url || item.snippet.thumbnails?.high?.url || `https://i.ytimg.com/vi/${item.id.videoId}/maxresdefault.jpg`,
                         };
                     }
                 }

@@ -1,25 +1,16 @@
 "use client";
 
 import { FaWhatsapp } from "react-icons/fa";
-import { useState, useEffect } from "react";
 import { siteConfig } from "@/config/site";
 
 export default function FloatingServiceButton() {
-    const [isVisible, setIsVisible] = useState(false);
+    const isVisible = true;
     const phoneNumber = siteConfig.whatsapp.number;
-    const message = `Hola, Pastores. Deseo conectar con la visión... (Selecciona una opción o escribe tu mensaje):
-
-1. NECESITO ORACIÓN (Urgente)
-2. Quiero UNIRME a una CÉLULA (Consolidación)
-3. HORARIOS y UBICACIÓN (Comunión)
-4. Otras preguntas/Ministerios`;
+    const message = "🌿 Hola, necesito oración/pastoreo. Vengo desde la web.";
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-    useEffect(() => {
-        // Mostrar el botón con una pequeña animación de entrada después de montar
-        setIsVisible(true);
-    }, []);
+    // Effect removed as isVisible is now constant true for immediate display
 
     return (
         <div className={`fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>

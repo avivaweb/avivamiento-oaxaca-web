@@ -10,6 +10,19 @@ export default function Footer() {
                     <li><strong>Domingos:</strong> Reunión General - 11:00 am</li>
                 </ul>
                 <p className="text-sm"><strong>Email:</strong> avivamiento.medios@gmail.com</p>
+                <div className="mt-4 flex flex-wrap justify-center gap-4">
+                    <a href="/dashboard/ejercito-celular" className="text-sm text-[var(--aviva-dorado)] hover:text-white transition-colors underline decoration-dotted underline-offset-4">
+                        Reportar Victoria
+                    </a>
+                    <span className="text-gray-600">•</span>
+                    <a href="/escuela-teologia" className="text-sm text-[var(--aviva-dorado)] hover:text-white transition-colors underline decoration-dotted underline-offset-4">
+                        Escuela de Teología
+                    </a>
+                    <span className="text-gray-600">•</span>
+                    <a href="/generosidad" className="text-sm text-[var(--aviva-dorado)] hover:text-white transition-colors underline decoration-dotted underline-offset-4">
+                        Generosidad
+                    </a>
+                </div>
             </div>
             <div className="mt-8 text-[var(--aviva-blanco)] text-center">
                 <div className="flex justify-center space-x-4 mb-4">
