@@ -1,137 +1,140 @@
 import Link from 'next/link';
-import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp, FaSpotify, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import Image from 'next/image';
+import { FaFacebookF, FaInstagram, FaYoutube, FaTiktok, FaWhatsapp, FaSpotify, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 export default function Footer() {
     return (
-        <footer className="bg-gradient-to-br from-[#990000] to-[#800000] text-[#F5F5DC] border-t-4 border-[#DAA520]">
+        <footer className="bg-black text-white border-t-4 border-[#DAA520]">
             <div className="container mx-auto px-6 py-16">
 
                 {/* 4-COLUMN GRID */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
                     {/* COL 1: IDENTITY */}
                     <div className="space-y-6">
-                        <div className="flex items-center gap-3">
-                            {/* Logo Text / Image - Using text for now based on context */}
-                            <span className="font-serif font-bold text-2xl tracking-tight text-white">
-                                AVIVAMIENTO <br />
-                                <span className="text-[#DAA520] text-lg">O A X A C A</span>
-                            </span>
-                        </div>
-                        <p className="text-sm font-light leading-relaxed text-[#F5F5DC]/90 text-pretty">
-                            <strong className="text-[#DAA520] block mb-2 uppercase tracking-widest text-xs">Pasión 2026</strong>
-                            Una casa apostólica comprometida con avivar, transformar y reformar nuestra generación. Somos la Nueva Raza.
+                        <Link href="/" className="block relative w-48 h-auto">
+                            <Image
+                                src="/Logo_oficial_blanco.png"
+                                alt="Avivamiento Oaxaca Oficial"
+                                width={200}
+                                height={80}
+                                className="object-contain"
+                            />
+                        </Link>
+                        <p className="text-sm font-light leading-relaxed text-gray-300 text-pretty border-l-2 border-[#DAA520] pl-4">
+                            <strong className="text-[#DAA520] block mb-1 uppercase tracking-widest text-xs">Pasión 2026</strong>
+                            Un mover de Dios llamado a avivar, transformar y reformar nuestra generación.
                         </p>
                     </div>
 
-                    {/* COL 2: CANON NAVIGATION */}
+                    {/* COL 2: LOCATION & SCHEDULE */}
                     <div>
-                        <h4 className="font-serif font-bold text-lg mb-6 text-white relative inline-block">
-                            Explora
-                            <span className="block h-1 w-8 bg-[#DAA520] mt-2 rounded-full"></span>
+                        <h4 className="font-serif font-bold text-lg mb-6 text-white uppercase tracking-wider">
+                            Ubicación y Horarios
                         </h4>
-                        <nav className="flex flex-col space-y-3 text-sm">
-                            <Link href="/" className="hover:text-[#DAA520] transition-colors hover:translate-x-1 duration-300 inline-block">Inicio</Link>
-                            <Link href="/nosotros" className="hover:text-[#DAA520] transition-colors hover:translate-x-1 duration-300 inline-block">Nosotros</Link>
-                            <Link href="/grupos-familiares" className="hover:text-[#DAA520] transition-colors hover:translate-x-1 duration-300 inline-block">Grupos Familiares</Link>
-                            <Link href="/ministerios" className="hover:text-[#DAA520] transition-colors hover:translate-x-1 duration-300 inline-block">Ministerios</Link>
-                            <Link href="/mensajes" className="hover:text-[#DAA520] transition-colors hover:translate-x-1 duration-300 inline-block">Mensajes</Link>
-                            <Link href="/blog" className="hover:text-[#DAA520] transition-colors hover:translate-x-1 duration-300 inline-block">Blog y Noticias</Link>
-                            <Link href="/media" className="hover:text-[#DAA520] transition-colors hover:translate-x-1 duration-300 inline-block">Media Center</Link>
-                            <Link href="/eventos" className="hover:text-[#DAA520] transition-colors hover:translate-x-1 duration-300 inline-block text-[#DAA520] font-bold">Calendario Oficial</Link>
+                        <div className="space-y-6 text-sm font-light text-gray-300">
+                            <div className="flex items-start gap-3">
+                                <FaMapMarkerAlt className="text-[#DAA520] mt-1 shrink-0 text-lg" />
+                                <span>
+                                    <strong>Sede Principal</strong><br />
+                                    Carretera Nueva Oaxaca-Zaachila,<br />
+                                    Privada Rehoboth 101, <br />
+                                    San Raymundo Jalpan, Oaxaca.
+                                </span>
+                            </div>
+                            <div className="space-y-2 border-t border-gray-800 pt-4">
+                                <p className="flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-[#DAA520]"></span>
+                                    <span><strong>Martes 6:30 pm</strong> (Oración)</span>
+                                </p>
+                                <p className="flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-[#DAA520]"></span>
+                                    <span><strong>Domingos 11:00 am</strong> (Reunión General)</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* COL 3: STRATEGIC LINKS */}
+                    <div>
+                        <h4 className="font-serif font-bold text-lg mb-6 text-white uppercase tracking-wider">
+                            Enlaces
+                        </h4>
+                        <nav className="flex flex-col space-y-3 text-sm text-gray-300">
+                            <Link href="/" className="hover:text-[#DAA520] transition-colors duration-300 flex items-center gap-2 group">
+                                <span className="w-0 group-hover:w-2 h-[1px] bg-[#DAA520] transition-all"></span> Inicio
+                            </Link>
+                            <Link href="/nosotros" className="hover:text-[#DAA520] transition-colors duration-300 flex items-center gap-2 group">
+                                <span className="w-0 group-hover:w-2 h-[1px] bg-[#DAA520] transition-all"></span> Nosotros
+                            </Link>
+                            <Link href="/ministerios" className="hover:text-[#DAA520] transition-colors duration-300 flex items-center gap-2 group">
+                                <span className="w-0 group-hover:w-2 h-[1px] bg-[#DAA520] transition-all"></span> Ministerios
+                            </Link>
+                            <Link href="/grupos-familiares" className="hover:text-[#DAA520] transition-colors duration-300 flex items-center gap-2 group">
+                                <span className="w-0 group-hover:w-2 h-[1px] bg-[#DAA520] transition-all"></span> Grupos Familiares
+                            </Link>
+                            <Link href="/eventos" className="hover:text-[#DAA520] transition-colors duration-300 flex items-center gap-2 group">
+                                <span className="w-0 group-hover:w-2 h-[1px] bg-[#DAA520] transition-all"></span> Eventos
+                            </Link>
+                            <Link href="/mensajes" className="hover:text-[#DAA520] transition-colors duration-300 flex items-center gap-2 group">
+                                <span className="w-0 group-hover:w-2 h-[1px] bg-[#DAA520] transition-all"></span> Mensajes
+                            </Link>
+                            <Link href="/blog" className="hover:text-[#DAA520] transition-colors duration-300 flex items-center gap-2 group">
+                                <span className="w-0 group-hover:w-2 h-[1px] bg-[#DAA520] transition-all"></span> Blog
+                            </Link>
                         </nav>
                     </div>
 
-                    {/* COL 3: CONTACT */}
+                    {/* COL 4: DIGITAL CONNECTION */}
                     <div>
-                        <h4 className="font-serif font-bold text-lg mb-6 text-white relative inline-block">
-                            Contacto
-                            <span className="block h-1 w-8 bg-[#DAA520] mt-2 rounded-full"></span>
+                        <h4 className="font-serif font-bold text-lg mb-6 text-white uppercase tracking-wider">
+                            Conexión Digital
                         </h4>
-                        <ul className="space-y-4 text-sm font-light">
-                            <li className="flex items-start gap-3">
-                                <FaMapMarkerAlt className="text-[#DAA520] mt-1 shrink-0" />
-                                <span>
-                                    <strong>Auditorio Avivamiento</strong><br />
-                                    Símbolos Patrios 404, <br />
-                                    Col. Reforma Agraria, Oaxaca.
-                                </span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <FaPhoneAlt className="text-[#DAA520] shrink-0" />
-                                <span>+52 (951) 428-3375</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <FaEnvelope className="text-[#DAA520] shrink-0" />
-                                <a href="mailto:avivamiento.medios@gmail.com" className="hover:text-white transition-colors">
-                                    avivamiento.medios@gmail.com
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
 
-                    {/* COL 4: SOCIAL */}
-                    <div>
-                        <h4 className="font-serif font-bold text-lg mb-6 text-white relative inline-block">
-                            Conecta
-                            <span className="block h-1 w-8 bg-[#DAA520] mt-2 rounded-full"></span>
-                        </h4>
-                        <div className="flex flex-wrap gap-4 mb-6">
-                            <a
-                                href="https://whatsapp.com/channel/0029VaQXxVlH5JLuZOYELE2A"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#25D366] hover:text-white transition-all transform hover:-translate-y-1"
-                                aria-label="WhatsApp Channel"
-                            >
-                                <FaWhatsapp size={20} />
+                        {/* Social Icons */}
+                        <div className="flex gap-4 mb-8">
+                            <a href="https://www.facebook.com/AvivamientoElLugarDeSuPresencia/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#DAA520] transition-colors transform hover:scale-110">
+                                <FaFacebookF size={22} />
                             </a>
-                            <a
-                                href="https://www.youtube.com/@AvivamientoOax"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FF0000] hover:text-white transition-all transform hover:-translate-y-1"
-                                aria-label="YouTube Channel"
-                            >
-                                <FaYoutube size={20} />
+                            <a href="https://www.instagram.com/avivamientooaxaca/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#DAA520] transition-colors transform hover:scale-110">
+                                <FaInstagram size={24} />
                             </a>
-                            <a
-                                href="https://www.facebook.com/AvivamientoElLugarDeSuPresencia/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1877F2] hover:text-white transition-all transform hover:-translate-y-1"
-                                aria-label="Facebook Page"
-                            >
-                                <FaFacebookF size={18} />
+                            <a href="https://www.youtube.com/@AvivamientoOaxacaOficial" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#DAA520] transition-colors transform hover:scale-110">
+                                <FaYoutube size={24} />
                             </a>
-                            <a
-                                href="https://www.instagram.com/avivamientooaxaca/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#E4405F] hover:text-white transition-all transform hover:-translate-y-1"
-                                aria-label="Instagram Profile"
-                            >
-                                <FaInstagram size={20} />
-                            </a>
-                            <a
-                                href="https://open.spotify.com/show/4Prj1pzkAPNe0Mvk0LKLEo"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1DB954] hover:text-white transition-all transform hover:-translate-y-1"
-                                aria-label="Spotify Podcast"
-                            >
-                                <FaSpotify size={20} />
+                            <a href="https://www.tiktok.com/@avivamiento_oaxaca" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#DAA520] transition-colors transform hover:scale-110">
+                                <FaTiktok size={22} />
                             </a>
                         </div>
-                        <p className="text-xs text-[#F5F5DC]/60 italic font-light">
-                            "Y esta es la vida eterna: que te conozcan a ti, el único Dios verdadero."
-                        </p>
+
+                        {/* Spotify Special Section */}
+                        <div className="bg-[#191414] rounded-xl p-4 border border-gray-800">
+                            <div className="flex items-center gap-2 mb-3 text-[#1DB954] font-bold text-sm">
+                                <FaSpotify size={20} />
+                                <span>Spotify Channels</span>
+                            </div>
+                            <div className="space-y-2 text-xs">
+                                <a href="https://open.spotify.com/search/AvivaBand" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-white hover:bg-white/5 p-2 rounded transition-all flex justify-between items-center group">
+                                    <span>1. AvivaBand</span>
+                                    <span className="text-[#DAA520] opacity-0 group-hover:opacity-100">↗</span>
+                                </a>
+                                <a href="https://open.spotify.com/show/4Prj1pzkAPNe0Mvk0LKLEo" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-white hover:bg-white/5 p-2 rounded transition-all flex justify-between items-center group">
+                                    <span>2. Mujeres en Victoria</span>
+                                    <span className="text-[#DAA520] opacity-0 group-hover:opacity-100">↗</span>
+                                </a>
+                                <a href="https://open.spotify.com/search/Avivamiento%20Oaxaca%20Sermones" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-white hover:bg-white/5 p-2 rounded transition-all flex justify-between items-center group">
+                                    <span>3. Sermones</span>
+                                    <span className="text-[#DAA520] opacity-0 group-hover:opacity-100">↗</span>
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
 
                 {/* COPYRIGHT */}
-                <div className="mt-16 pt-8 border-t border-[#F5F5DC]/10 flex flex-col md:flex-row justify-between items-center text-xs text-[#F5F5DC]/60 font-light">
+                <div className="mt-16 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
                     <p>© 2026 Avivamiento Oaxaca | Asociación Religiosa. Todos los derechos reservados.</p>
                     <div className="flex gap-6 mt-4 md:mt-0">
                         <a href="#" className="hover:text-white transition-colors">Políticas de Privacidad</a>
@@ -143,4 +146,3 @@ export default function Footer() {
         </footer>
     )
 }
-
