@@ -96,16 +96,26 @@ async function fetchYouTubeContent(limit: number = 3): Promise<Sermon[]> {
         }
 
         // Map to Sermon type
-        let mappedSermons: Sermon[] = items.map((item: any) => ({
-            id: item.id.videoId,
-            title: item.snippet.title,
-            description: item.snippet.description,
-            video_url: `https://www.youtube.com/watch?v=${item.id.videoId}`,
-            pastor: 'Avivamiento Oaxaca',
-            topic: 'Mensaje Reciente',
-            date: item.snippet.publishedAt,
-            thumbnailUrl: item.snippet.thumbnails?.maxres?.url || item.snippet.thumbnails?.high?.url || `https://i.ytimg.com/vi/${item.id.videoId}/maxresdefault.jpg`,
-        }));
+        let mappedSermons: Sermon[] = items.map((item: any) => {
+            const title = item.snippet.title;
+            const desc = item.snippet.description;
+            let topic = 'General';
+
+            if (/fe|creer|certeza/i.test(title + desc)) topic = 'Fe';
+            else if (/identidad|hijo|raza|kainos|somos/i.test(title + desc)) topic = 'Identidad';
+            else if (/propósito|asignación|llamado|destino/i.test(title + desc)) topic = 'Propósito';
+
+            return {
+                id: item.id.videoId,
+                title: title,
+                description: desc,
+                video_url: `https://www.youtube.com/watch?v=${item.id.videoId}`,
+                pastor: 'Avivamiento Oaxaca',
+                topic: topic,
+                date: item.snippet.publishedAt,
+                thumbnailUrl: item.snippet.thumbnails?.maxres?.url || item.snippet.thumbnails?.high?.url || `https://i.ytimg.com/vi/${item.id.videoId}/maxresdefault.jpg`,
+            };
+        });
 
         // 2. Pin specific video: "La FE de Dios para Vencer"
         const pinnedTitlePart = "La FE de Dios para Vencer";

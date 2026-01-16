@@ -18,9 +18,8 @@ export default function Footer() {
                     <a href="/escuela-teologia" className="text-sm text-[var(--aviva-dorado)] hover:text-white transition-colors underline decoration-dotted underline-offset-4">
                         Escuela de Teología
                     </a>
-                    <span className="text-gray-600">•</span>
-                    <a href="/generosidad" className="text-sm text-[var(--aviva-dorado)] hover:text-white transition-colors underline decoration-dotted underline-offset-4">
-                        Generosidad
+                    <a href="/escuela-teologia" className="text-sm text-[var(--aviva-dorado)] hover:text-white transition-colors underline decoration-dotted underline-offset-4">
+                        Escuela de Teología
                     </a>
                 </div>
             </div>

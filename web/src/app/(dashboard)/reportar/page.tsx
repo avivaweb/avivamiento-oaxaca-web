@@ -11,11 +11,12 @@ import {
     PhotoIcon
 } from '@heroicons/react/24/outline';
 import ReportSuccessModal from '@/components/reports/ReportSuccessModal';
-import ImageUpload from '@/components/ui/ImageUpload';
+import ImageUploader from '@/components/ImageUploader';
 
 export default function ReportPage() {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [userId, setUserId] = useState<string>('');
     const [cellData, setCellData] = useState<{ id: string; name: string; supervisor_id: string } | null>(null);
 
     // Listas de Opciones
@@ -42,21 +43,25 @@ export default function ReportPage() {
         lesson_topic: '',
         testimonies: '',
         prayer_requests: '',
-        zona: '', // Nuevo campo
-        milagro_categoria: '' // Nuevo campo
+        zona: '',
+        milagro_categoria: ''
     });
 
-    // Load User's Cell Data
+    const [uploadedPhotos, setUploadedPhotos] = useState<string[]>([]);
+
+    // Load User's Cell Data and ID
     useEffect(() => {
         const fetchCellData = async () => {
             try {
                 const { data: { user } } = await supabase.auth.getUser();
                 if (!user) return;
 
+                setUserId(user.id);
+
                 const { data, error } = await supabase
                     .from('grupos_familiares')
                     .select('id, nombre, supervisor_id')
-                    .eq('user_id', user.id) // Assuming column name based on convention
+                    .eq('user_id', user.id)
                     .single();
 
                 if (data) {
@@ -74,44 +79,6 @@ export default function ReportPage() {
         fetchCellData();
     }, []);
 
-    // Image Upload State
-    const [selectedImages, setSelectedImages] = useState<File[]>([]);
-    const [uploadProgress, setUploadProgress] = useState(0);
-
-    const uploadImages = async (userId: string) => {
-        if (selectedImages.length === 0) return [];
-
-        const uploadedUrls: string[] = [];
-        let processed = 0;
-
-        for (const file of selectedImages) {
-            const fileExt = file.name.split('.').pop();
-            const fileName = `${userId}/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-
-            const { data, error } = await supabase.storage
-                .from('fotos-celulas')
-                .upload(fileName, file);
-
-            if (error) {
-                console.error('Error uploading image:', error);
-                continue;
-            }
-
-            if (data) {
-                const { data: { publicUrl } } = supabase.storage
-                    .from('fotos-celulas')
-                    .getPublicUrl(fileName);
-
-                uploadedUrls.push(publicUrl);
-            }
-
-            processed++;
-            setUploadProgress(Math.round((processed / selectedImages.length) * 100));
-        }
-
-        return uploadedUrls;
-    };
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -127,14 +94,9 @@ export default function ReportPage() {
         }
 
         setLoading(true);
-        setUploadProgress(0);
 
         try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) throw new Error('Usuario no autenticado');
-
-            // 1. Upload Images
-            const fotos_urls = await uploadImages(user.id);
+            if (!userId) throw new Error('Usuario no autenticado');
 
             const response = await fetch('/api/reports/submit', {
                 method: 'POST',
@@ -143,7 +105,7 @@ export default function ReportPage() {
                     ...formData,
                     cell_id: cellData?.id,
                     supervisor_id: cellData?.supervisor_id,
-                    fotos_urls
+                    fotos_urls: uploadedPhotos
                 }),
             });
 
@@ -372,21 +334,14 @@ export default function ReportPage() {
                         <h2 className="text-xl font-bold text-white">Evidencias</h2>
                     </div>
 
-                    <ImageUpload onImagesSelected={setSelectedImages} maxFiles={3} />
-
-                    {loading && uploadProgress > 0 && uploadProgress < 100 && (
-                        <div className="mt-4">
-                            <div className="flex justify-between text-xs text-gray-400 mb-1">
-                                <span>Subiendo fotos...</span>
-                                <span>{uploadProgress}%</span>
-                            </div>
-                            <div className="w-full bg-gray-800 rounded-full h-2">
-                                <div
-                                    className="bg-[#DAA520] h-2 rounded-full transition-all duration-300"
-                                    style={{ width: `${uploadProgress}%` }}
-                                ></div>
-                            </div>
-                        </div>
+                    {userId ? (
+                        <ImageUploader
+                            userId={userId}
+                            onUploadComplete={setUploadedPhotos}
+                            maxFiles={3}
+                        />
+                    ) : (
+                        <p className="text-gray-500">Cargando identidad para subir fotos...</p>
                     )}
                 </div>
 

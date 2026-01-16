@@ -126,6 +126,7 @@ export default function Sidebar() {
       items.push({ name: 'Gráficas de Zona', href: '/dashboard/estadisticas', icon: ChartBarIcon });
       items.push({ name: 'Consolidación', href: '/dashboard/consolidacion', icon: UsersIcon });
       items.push({ name: 'Reportes', href: '/dashboard/reportes', icon: DocumentTextIcon });
+      items.push({ name: 'Curaduría', href: '/dashboard/curaduria', icon: PhotoIcon });
     }
 
     if (role === 'Pastor General' || role === 'admin') {
@@ -138,6 +139,7 @@ export default function Sidebar() {
       items.push({ name: 'Consolidación', href: '/dashboard/consolidacion', icon: UsersIcon });
       items.push({ name: 'Reportes', href: '/dashboard/reportes', icon: DocumentTextIcon });
       items.push({ name: 'Estadísticas', href: '/dashboard/estadisticas', icon: ChartBarIcon });
+      items.push({ name: 'Curaduría', href: '/dashboard/curaduria', icon: PhotoIcon });
       items.push({ name: 'Agenda', href: '/dashboard/agenda', icon: CalendarIcon });
       items.push({ name: 'Configuración', href: '/dashboard/configuracion', icon: Cog6ToothIcon });
     }

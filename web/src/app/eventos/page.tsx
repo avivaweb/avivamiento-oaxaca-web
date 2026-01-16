@@ -1,171 +1,228 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
-import { Event } from '@/types/event';
-import CalendarGrid from '@/components/events/CalendarGrid';
-import AgendaList from '@/components/events/AgendaList';
+import { useState } from 'react';
 import Footer from '@/components/Footer';
-import {
-  Squares2X2Icon,
-  ListBulletIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon
-} from '@heroicons/react/24/outline';
+import { CalendarIcon, MapPinIcon, TicketIcon } from '@heroicons/react/24/outline';
+import { FaGoogle, FaWhatsapp } from 'react-icons/fa';
+
+// Event Type Definition
+interface Event {
+  id: string;
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  description: string;
+  category: 'Congreso' | 'Vigilia' | 'Academia' | 'Evento de Zona';
+  registerLink?: string;
+  mapLink?: string;
+}
+
+// Mock Data (Operational Calendar)
+const EVENTS: Event[] = [
+  {
+    id: '1',
+    title: 'Congreso Pasión 2026',
+    date: '2026-03-20',
+    time: '18:00 hrs',
+    location: 'Auditorio Avivamiento',
+    description: 'Tres días de impartición, adoración y palabra profética para activar el diseño de Dios en tu vida.',
+    category: 'Congreso',
+    registerLink: 'https://wa.me/529514283375?text=Deseo%20registrarme%20al%20Congreso%20Pasi%C3%B3n%202026'
+  },
+  {
+    id: '2',
+    title: 'Vigilia de Rompimiento',
+    date: '2026-02-15',
+    time: '21:00 hrs',
+    location: 'Sede Central',
+    description: 'Una noche para buscar el rostro de Dios y clamar por nuestra ciudad. "El Altar que nunca se apaga".',
+    category: 'Vigilia'
+  },
+  {
+    id: '3',
+    title: 'Inicio de Academia de Reformadores',
+    date: '2026-02-05',
+    time: '19:00 hrs',
+    location: 'Aulas Avivamiento / Online',
+    description: 'Formación teológica y ministerial para líderes. Inscríbete al nuevo ciclo.',
+    category: 'Academia',
+    registerLink: 'https://wa.me/529514283375?text=Informaci%C3%B3n%20Academia%20de%20Reformadores'
+  },
+  {
+    id: '4',
+    title: 'Fiesta de Primicias - Zona Etla',
+    date: '2026-01-30',
+    time: '10:00 hrs',
+    location: 'Auditorio Avivamiento',
+    description: 'Reunión unida de acción de gracias por las primicias del año que comienza.',
+    category: 'Evento de Zona'
+  }
+];
+
+// Helper: Generate Google Calendar Link
+const getGoogleCalendarLink = (event: Event) => {
+  const text = encodeURIComponent(event.title);
+  const details = encodeURIComponent(event.description);
+  const location = encodeURIComponent(event.location);
+  // Simple mock timestamps (real impl needs proper date parsing)
+  const dates = `${event.date.replace(/-/g, '')}T180000/${event.date.replace(/-/g, '')}T210000`;
+
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${dates}&details=${details}&location=${location}`;
+};
+
+// Helper: Get Badge Color
+const getBadgeColor = (category: Event['category']) => {
+  switch (category) {
+    case 'Congreso': return 'bg-[#DAA520] text-white';
+    case 'Vigilia': return 'bg-purple-900 text-white';
+    case 'Academia': return 'bg-blue-900 text-white';
+    case 'Evento de Zona': return 'bg-green-700 text-white';
+    default: return 'bg-gray-800 text-white';
+  }
+};
 
 export default function EventsPage() {
-  const [view, setView] = useState<'grid' | 'list'>('grid');
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  // Month Navigation
-  const nextMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
-  };
-
-  const prevMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
-  };
-
-  const currentMonthName = currentDate.toLocaleDateString('es-MX', { month: 'long', year: 'numeric' });
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      setLoading(true);
-      const year = currentDate.getFullYear();
-      const month = currentDate.getMonth();
-
-      const startOfMonth = new Date(year, month, 1).toISOString();
-      const endOfMonth = new Date(year, month + 1, 0, 23, 59, 59).toISOString();
-
-      try {
-        const { data, error } = await supabase
-          .from('eventos')
-          .select('*')
-          .gte('start_time', startOfMonth)
-          .lte('start_time', endOfMonth);
-
-        if (error) {
-          console.error('Error fetching events:', error);
-        } else {
-          let mappedEvents: Event[] = (data || []).map((e: any) => ({
-            ...e,
-            category: e.category || 'general'
-          }));
-
-          // INJECTED EVENTS (PASIÓN 2026)
-          const manualEvents: Event[] = [
-            {
-              id: 'evt-zocalo-01',
-              title: 'Oración en el Zócalo',
-              description: 'Clamor por Oaxaca. Un tiempo de intercesión profética en el corazón de nuestra ciudad. #Pasión2026',
-              start_time: new Date(year, month, 15, 18, 0).toISOString(), // Example: 15th of current month
-              end_time: new Date(year, month, 15, 20, 0).toISOString(),
-              location: 'Zócalo de la Ciudad, Oaxaca',
-              category: 'special'
-            },
-            {
-              id: 'evt-mujeres-01',
-              title: 'Mujeres en Victoria',
-              description: 'Reunión exclusiva para mujeres. "Levántate y resplandece".',
-              start_time: new Date(year, month, 22, 10, 0).toISOString(), // Example: 22nd of current month
-              end_time: new Date(year, month, 22, 12, 0).toISOString(),
-              location: 'Auditorio Avivamiento',
-              category: 'workshop'
-            }
-          ];
-
-          // Merge and Sort
-          const allEvents = [...mappedEvents, ...manualEvents];
-          allEvents.sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime());
-
-          // GEM Numerology: Show only top 3 upcoming/relevant events for the view
-          // Filter to show only future events from "now" if we were strict, but here we scope by month window.
-          // We will just slice the first 3 of the month for the "Focus" view if needed, 
-          // but the prompt implies "No satures... muestra las 3 más próximos".
-          // So we should probably strictly limit the 'events' state or have a separate 'highlightedEvents'.
-          // For this implementation, we will limit the main list to 3 if in 'list' view, or generally limit.
-          // Let's limit the displayed array to 3 for now as requested.
-
-          setEvents(allEvents.slice(0, 3));
-        }
-      } catch (err) {
-        console.error('Unexpected error:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchEvents();
-  }, [currentDate]);
+  // Filter past events
+  const today = new Date().toISOString().split('T')[0];
+  const upcomingEvents = EVENTS.filter(e => e.date >= today).sort((a, b) => a.date.localeCompare(b.date));
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white flex flex-col">
-      {/* Page Header */}
-      <div className="relative py-16 px-4 bg-gradient-to-b from-neutral-900 to-neutral-950 border-b border-white/5">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519750783826-e2420f4d687f?q=80&w=2788&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
-        <div className="container mx-auto relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight bg-gradient-to-r from-amber-200 via-white to-amber-200 bg-clip-text text-transparent">
-            Calendario Operativo PASIÓN 2026
-          </h1>
-          <p className="text-neutral-400 text-lg font-light tracking-wide uppercase">
-            Agenda Oficial | Avivamiento Oaxaca
-          </p>
-        </div>
+    <div className="min-h-screen bg-[#F5F5DC] text-[#333333] font-sans selection:bg-[#DAA520] selection:text-white flex flex-col">
+
+      {/* HERO */}
+      <div className="pt-24 pb-12 px-6 text-center border-b border-[#DAA520]/20 bg-white">
+        <span className="text-[#DAA520] font-bold tracking-[0.2em] uppercase text-xs animate-fade-in block mb-4">
+          Agenda Oficial
+        </span>
+        <h1 className="text-4xl md:text-6xl font-serif font-bold text-[#333333] mb-4">
+          Calendario Operativo <span className="text-[#DAA520]">2026</span>
+        </h1>
+        <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
+          Mantente conectado con la vida de la iglesia. No te pierdas ningún tiempo de visitación.
+        </p>
       </div>
 
-      <div className="container mx-auto px-4 py-8 flex-1">
-        {/* Controls */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 bg-neutral-900/50 p-4 rounded-2xl border border-white/5 backdrop-blur-sm">
-          {/* Month Nav */}
-          <div className="flex items-center gap-4">
-            <button onClick={prevMonth} className="p-2 hover:bg-white/10 rounded-full transition-colors text-amber-500">
-              <ChevronLeftIcon className="h-6 w-6" />
-            </button>
-            <h2 className="text-2xl font-semibold capitalize min-w-[200px] text-center">
-              {currentMonthName}
+      <main className="flex-grow container mx-auto px-6 py-16">
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 animate-fade-in-up">
+          {upcomingEvents.length > 0 ? (
+            upcomingEvents.map(event => (
+              <div
+                key={event.id}
+                className="bg-white rounded-2xl p-8 border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 relative overflow-hidden"
+              >
+                {/* Top Badge */}
+                <div className={`absolute top-0 right-0 px-4 py-1 text-[10px] font-bold uppercase tracking-wider ${getBadgeColor(event.category)} rounded-bl-xl`}>
+                  {event.category}
+                </div>
+
+                <div className="text-[#DAA520] mb-4">
+                  <CalendarIcon className="w-8 h-8" />
+                </div>
+
+                {/* Date Block */}
+                <div className="mb-4">
+                  <div className="text-3xl font-serif font-bold text-[#333333] leading-none mb-1">
+                    {new Date(event.date + 'T00:00:00').toLocaleDateString('es-MX', { day: 'numeric', month: 'long' })}
+                  </div>
+                  <div className="text-sm font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                    {new Date(event.date + 'T00:00:00').toLocaleDateString('es-MX', { weekday: 'long' })}
+                    <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+                    {event.time}
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold font-serif mb-4 group-hover:text-[#DAA520] transition-colors">
+                  {event.title}
+                </h3>
+
+                <div className="flex items-start gap-2 text-sm text-gray-500 mb-6">
+                  <MapPinIcon className="w-4 h-4 mt-1 shrink-0" />
+                  <span>{event.location}</span>
+                </div>
+
+                <p className="text-gray-600 text-sm leading-relaxed mb-8 border-l-2 border-[#DAA520]/20 pl-4">
+                  {event.description}
+                </p>
+
+                {/* Actions */}
+                <div className="space-y-3 mt-auto">
+                  <a
+                    href={getGoogleCalendarLink(event)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-2 bg-gray-50 text-gray-600 text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <FaGoogle className="text-[#DAA520]" />
+                    Agendar en mi Calendario
+                  </a>
+
+                  {event.registerLink && (
+                    <a
+                      href={event.registerLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full py-3 bg-[#DAA520] text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-[#B8860B] shadow-lg hover:shadow-xl transition-all"
+                    >
+                      <TicketIcon className="w-4 h-4" />
+                      Registro / Preventa
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="col-span-full text-center py-20 bg-white rounded-xl border border-dashed border-gray-300">
+              <p className="text-gray-400 text-lg">No hay eventos próximos programados.</p>
+            </div>
+          )}
+        </div>
+
+        {/* LOCATION MAP */}
+        <section className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-gray-100 flex flex-col md:flex-row gap-8">
+          <div className="flex-1 space-y-6 flex flex-col justify-center p-4">
+            <span className="text-[#DAA520] font-bold tracking-[0.2em] uppercase text-xs">
+              Nuestra Casa
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#333333] leading-tight">
+              Auditorio Avivamiento
             </h2>
-            <button onClick={nextMonth} className="p-2 hover:bg-white/10 rounded-full transition-colors text-amber-500">
-              <ChevronRightIcon className="h-6 w-6" />
-            </button>
+            <p className="text-gray-600 font-light leading-relaxed">
+              El lugar donde el cielo toca la tierra. Te esperamos para vivir juntos un tiempo de adoración y palabra.
+            </p>
+            <div className="space-y-4 pt-4">
+              <div className="flex items-center gap-4 text-sm text-gray-500">
+                <MapPinIcon className="w-5 h-5 text-[#DAA520]" />
+                <span className="font-medium">Símbolos Patrios 404, Reforma Agraria, Oaxaca.</span>
+              </div>
+              <a
+                href="https://maps.app.goo.gl/YourMapLinkHere"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block text-[#DAA520] font-bold underline hover:text-[#B8860B]"
+              >
+                Ver en Google Maps
+              </a>
+            </div>
           </div>
 
-          {/* View Toggle */}
-          <div className="flex bg-neutral-950 rounded-lg p-1 border border-white/10">
-            <button
-              onClick={() => setView('grid')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all ${view === 'grid' ? 'bg-neutral-800 text-amber-400 shadow-lg' : 'text-neutral-500 hover:text-neutral-300'}`}
-            >
-              <Squares2X2Icon className="h-5 w-5" />
-              <span className="hidden sm:inline font-medium">Calendario</span>
-            </button>
-            <button
-              onClick={() => setView('list')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all ${view === 'list' ? 'bg-neutral-800 text-amber-400 shadow-lg' : 'text-neutral-500 hover:text-neutral-300'}`}
-            >
-              <ListBulletIcon className="h-5 w-5" />
-              <span className="hidden sm:inline font-medium">Agenda</span>
-            </button>
+          <div className="flex-1 h-[400px] w-full rounded-2xl overflow-hidden shadow-inner relative bg-gray-200">
+            {/* Google Maps Embed */}
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15264.41724490807!2d-96.726593!3d17.066922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c723f5eb5f3333%3A0x62919a3b2b000000!2sOaxaca%2C%20Oax.!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 grayscale hover:grayscale-0 transition-all duration-700"
+            ></iframe>
           </div>
-        </div>
+        </section>
 
-        {/* Content */}
-        {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-500"></div>
-          </div>
-        ) : (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {view === 'grid' ? (
-              <CalendarGrid currentDate={currentDate} events={events} />
-            ) : (
-              <AgendaList events={events} />
-            )}
-          </div>
-        )}
-      </div>
-
+      </main>
       <Footer />
     </div>
   );

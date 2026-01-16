@@ -1,128 +1,88 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
 import Footer from '@/components/Footer'
+import PastoralGrid from '@/components/PastoralGrid'
 
-// SEO Metadata
 export const metadata: Metadata = {
-  title: 'Nuestra Historia | Avivamiento Oaxaca',
-  description: 'La historia de 11 años de fe radical. Desde una sala en 2014 hasta la conquista de nuestro Auditorio Avivamiento y la visión Pasión 2026.',
+  title: 'Nosotros | Avivamiento Oaxaca',
+  description: 'Somos una Nueva Raza (Thissis Kainós) manifestando la Vida Zoé. Conoce nuestra naturaleza, credo y gobierno apostólico.',
 }
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#000000] text-[#F9FAFB] font-sans overflow-x-hidden selection:bg-[#D4AF37] selection:text-black">
+    <div className="min-h-screen bg-[#F5F5DC] text-[#333333] font-sans selection:bg-[#DAA520] selection:text-white">
 
-      {/* 1. Hero Section - Identity */}
-      <section className="relative w-full min-h-[50vh] flex flex-col items-center justify-center text-center px-6 border-b border-white/5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.15)_0%,transparent_30%)] opacity-40 blur-3xl pointer-events-none"></div>
+      {/* --- HERO / IDENTITY SECTION --- */}
+      <section className="py-24 md:py-32 px-6 text-center border-b border-[#DAA520]/20">
+        <div className="max-w-4xl mx-auto space-y-16">
 
-        <div className="relative z-10 max-w-5xl mx-auto space-y-8 animate-fade-in-up">
-          <span className="text-[#D4AF37] font-bold tracking-[0.3em] uppercase text-sm md:text-base mb-4 block">
-            Thissis Kainós
-          </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-none text-white mb-6">
-            11 Años <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F9A825]">
-              Reformando Generaciones
+          {/* Identity */}
+          <div className="space-y-6">
+            <span className="text-[#DAA520] font-bold tracking-[0.2em] uppercase text-xs animate-fade-in">
+              Identidad 6-9-3
             </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            No somos una organización, somos una <strong className="text-white">Nueva Raza (Thissis Kainós)</strong> manifestando el diseño original de Dios en Oaxaca.
-          </p>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-[#333333]">
+              Nuestra Naturaleza
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-light max-w-3xl mx-auto">
+              Somos una asociación religiosa basada en las grandes verdades bíblicas y el fundamento de los Apóstoles.
+              No somos una organización, somos una <strong className="text-[#DAA520] font-bold">Nueva Raza (Thissis Kainós)</strong> que posee la sustancia misma de Dios.
+            </p>
+          </div>
+
+          <div className="w-24 h-1 bg-[#DAA520] mx-auto opacity-30"></div>
+
+          {/* Credo */}
+          <div className="space-y-6">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#333333]">
+              Nuestro Credo
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-light max-w-3xl mx-auto">
+              Creemos en la inspiración de las Escrituras, en la Salvación por Gracia como un proceso legal y espiritual,
+              y en la victoria absoluta del <em className="serif text-[#333333]">Tetelestai</em>.
+              Poseemos <strong className="text-[#DAA520] font-bold">Vida Zoé</strong>, la misma vida de Dios manifestada en el creyente.
+            </p>
+          </div>
+
         </div>
       </section>
 
-      {/* TIMELINE CONTAINER */}
-      <div className="max-w-5xl mx-auto px-6 py-24 space-y-32 relative">
-        {/* Central Line */}
-        <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#D4AF37]/30 to-transparent transform md:-translate-x-1/2 hidden md:block"></div>
+      {/* --- GOVERNMENT SECTION (Pastoral Grid) --- */}
+      <section className="py-24 bg-white/50 px-6">
+        <div className="text-center mb-16">
+          <span className="text-[#DAA520] font-bold tracking-[0.2em] uppercase text-xs block mb-4">
+            Gobierno Apostólico
+          </span>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#333333] mb-4">
+            7 Zonas de Autoridad
+          </h2>
+          <p className="text-gray-500 max-w-2xl mx-auto font-light">
+            El diseño original de gobierno establecido para cuidar, proteger y expandir el Reino en cada territorio.
+          </p>
+        </div>
 
-        {/* 1. El Génesis: Un Sueño en una Sala (2014) */}
-        <section className="relative flex flex-col md:flex-row items-center gap-10 md:gap-20">
-          <div className="flex-1 text-left md:text-right order-2 md:order-1">
-            <span className="text-[#D4AF37] font-bold text-6xl md:text-8xl opacity-20 block mb-4">2014</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">El Génesis: Un Sueño en una Sala</h2>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Todo comenzó a finales de 2014. En la intimidad de una sala, con unos pocos amigos y una fe inmensa.
-              Desde ese primer día, nuestra prioridad fue clara: edificar una casa donde el Espíritu Santo fuese la Persona más amada.
+        <PastoralGrid />
+      </section>
+
+      {/* --- HISTORY SECTION --- */}
+      <section className="py-24 px-6 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[#DAA520]/5 pointer-events-none"></div>
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#333333] mb-8">
+            11 Años de Fidelidad
+          </h2>
+          <div className="bg-white p-8 md:p-12 shadow-xl border-t-4 border-[#DAA520] space-y-6">
+            <p className="text-lg text-gray-600 leading-relaxed font-light">
+              Todo comenzó en el corazón de Dios y se manifestó en la tierra de Oaxaca.
+              Lo que inició como una pequeña semilla de fe hace más de una década, hoy se levanta como un roble de justicia.
+              A lo largo de estos 11 años, hemos visto la mano de Dios moverse con poder, transformando vidas y reescribiendo historias.
             </p>
-            <p className="text-xl text-gray-300 leading-relaxed mt-4">
-              En nuestros primeros cinco años, vimos el río de Dios desatarse en sanidades y milagros, confirmando un ciclo de aprobación
-              que llamamos nuestro 'Jubileo', preparándonos para una aceleración sobrenatural.
-            </p>
-          </div>
-
-          {/* Dot */}
-          <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-[#D4AF37] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.8)] transform md:-translate-x-1/2 hidden md:block order-1 md:order-2"></div>
-
-          <div className="flex-1 order-3 hidden md:block">
-            {/* Visual spacer or image placeholder could go here */}
-          </div>
-        </section>
-
-        {/* 2. 2020: El Grito de la Fe Radical */}
-        <section className="relative flex flex-col md:flex-row items-center gap-10 md:gap-20">
-          <div className="flex-1 order-3 md:order-1 hidden md:block"></div>
-
-          {/* Dot */}
-          <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-[#D4AF37] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.8)] transform md:-translate-x-1/2 hidden md:block order-1 md:order-2"></div>
-
-          <div className="flex-1 text-left order-2 md:order-3">
-            <span className="text-[#D4AF37] font-bold text-6xl md:text-8xl opacity-20 block mb-4">2020</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">2020: La Obediencia y la Fe Radical</h2>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              En el sexto año, cuando el mundo se detuvo por la pandemia, escuchamos una voz innegable: <span className="text-white italic">"¡No cierres la Iglesia!"</span>.
-            </p>
-            <p className="text-xl text-gray-300 leading-relaxed mt-4">
-              Obedecer fue un acto de fe extrema que rompió la lógica humana. Mientras el temor avanzaba, Avivamiento experimentó una explosión de crecimiento.
-              Dios nos guardó y nos demostró que Su Iglesia no es un edificio que se cierra, sino un cuerpo vivo que prevalece.
+            <p className="text-lg text-gray-600 leading-relaxed font-light">
+              Nuestra misión permanece inalterable: ser luz a las naciones, una ciudad asentada sobre un monte que no se puede esconder.
+              Caminamos hacia <strong className="text-[#DAA520]">Pasión 2026</strong> con la certeza de que la gloria postrera será mayor que la primera.
             </p>
           </div>
-        </section>
-
-        {/* 3. La Conquista de Nuestra Casa */}
-        <section className="relative flex flex-col md:flex-row items-center gap-10 md:gap-20">
-          <div className="flex-1 text-left md:text-right order-2 md:order-1">
-            <span className="text-[#D4AF37] font-bold text-6xl md:text-8xl opacity-20 block mb-4">2022</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">La Conquista de nuestro Auditorio Avivamiento</h2>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Tras consolidarnos, llegó nuestro octavo año: el 'Tiempo de Cumplimiento'.
-              Fue entonces cuando Dios nos entregó nuestra propia tierra. En un movimiento de fe sin precedentes, nos mudamos de nuestro lugar de reunión para levantar nuestro <strong className="text-[#D4AF37]">Auditorio Avivamiento</strong>.
-            </p>
-            <p className="text-xl text-gray-300 leading-relaxed mt-4">
-              Lo que parecía imposible se hizo realidad: ¡el auditorio se levantó en tan solo una semana! Fue el paso definitivo de una iglesia para establecerse en su herencia.
-            </p>
-          </div>
-
-          {/* Dot */}
-          <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-[#D4AF37] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.8)] transform md:-translate-x-1/2 hidden md:block order-1 md:order-2"></div>
-
-          <div className="flex-1 order-3 hidden md:block"></div>
-        </section>
-
-        {/* 4. Clímax: Pasión 2026 */}
-        <section className="relative flex flex-col md:flex-row items-center gap-10 md:gap-20">
-          <div className="flex-1 order-3 md:order-1 hidden md:block"></div>
-
-          {/* Dot main */}
-          <div className="absolute left-0 md:left-1/2 w-6 h-6 bg-[#D4AF37] border-4 border-black rounded-full shadow-[0_0_25px_rgba(212,175,55,1)] transform md:-translate-x-1/2 hidden md:block order-1 md:order-2"></div>
-
-          <div className="flex-1 text-left order-2 md:order-3">
-            <span className="text-[#D4AF37] font-bold text-6xl md:text-8xl opacity-20 block mb-4">2026</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">11 Años: PASIÓN 2026</h2>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Tras diez años de fortalecer nuestro corazón, hoy entendemos nuestra asignación superior.
-              No solo somos una iglesia, somos un movimiento llamado a <strong className="text-white">"Reformar nuestra generación"</strong>.
-            </p>
-            <p className="text-xl text-gray-300 leading-relaxed mt-4">
-              El invierno ha pasado. La voz de la tórtola se oye en nuestra tierra y caminamos hacia una Etapa Mayor en una Gloria Mayor.
-            </p>
-            <p className="text-2xl font-bold text-white mt-8 italic border-l-4 border-[#D4AF37] pl-6 py-2">
-              "¡Bienvenidos a Avivamiento: El Lugar de su Presencia!"
-            </p>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
