@@ -87,11 +87,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         password,
       });
 
-      if (error) throw error;
+      if (error) {
+        // Specific error messages for better UX
+        if (error.message.includes('Invalid login credentials')) {
+          throw new Error('Credenciales incorrectas. Verifica tu correo y contraseña.');
+        }
+        throw new Error(error.message);
+      }
 
-      router.push('/dashboard/home');
+      router.push('/dashboard');
     } catch (error: any) {
       console.error('Error en login:', error);
+
+      // Network errors
+      if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
+        throw new Error('Error de conexión: No se pudo conectar con el servidor. Verifica tu conexión a internet.');
+      }
+
       throw new Error(error.message || 'Error al iniciar sesión');
     }
   };

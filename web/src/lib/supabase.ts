@@ -8,13 +8,23 @@ if (process.env.NODE_ENV === 'development') {
     console.log('[Supabase Debug] Anon Key (First 5 chars):', supabaseAnonKey?.substring(0, 5));
 }
 
-if (!supabaseUrl || !supabaseAnonKey) {
-    console.warn('⚠️ Supabase credentials missing. Utilizing fallback for build environment.');
+// Enhanced Debugging for Production (Runtime)
+if (typeof window !== 'undefined' && (!supabaseUrl || !supabaseAnonKey)) {
+    console.error('🚨 Supabase Error: Credentials missing in runtime environment. Check Vercel Env Vars.');
 }
 
-// Fallback values to prevent build crasing during SSG
+// Fallback values to prevent build crashing during SSG
 const url = supabaseUrl || 'https://placeholder.supabase.co';
 const key = supabaseAnonKey || 'placeholder-key-for-build';
 
-export const supabase = createClient(url, key);
+// Enforce HTTPS
+const secureUrl = url.startsWith('http://') ? url.replace('http://', 'https://') : url;
+
+export const supabase = createClient(secureUrl, key, {
+    auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+    }
+});
 
