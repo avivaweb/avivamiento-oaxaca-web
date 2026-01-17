@@ -39,7 +39,8 @@ export async function POST(request: Request) {
         const {
             adults_attendance,
             children_attendance,
-            new_decisions,
+            new_decisions_adults, // New split field
+            new_decisions_kids,   // New split field
             offering,
             lesson_topic,
             testimonies,
@@ -47,7 +48,6 @@ export async function POST(request: Request) {
             cell_id,
             supervisor_id,
             fotos_urls,
-            // New fields
             zona,
             milagro_categoria
         } = body;
@@ -57,24 +57,29 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Cell ID is required' }, { status: 400 });
         }
 
+        // Calculate Totals
+        const decisionsAdults = parseInt(new_decisions_adults) || 0;
+        const decisionsKids = parseInt(new_decisions_kids) || 0;
+        const totalDecisions = decisionsAdults + decisionsKids;
+
         // Construct the insert object
-        // NOTE: We are adding 'zona' and 'milagro_categoria'. 
-        // Ensure the database table 'celula_reports' has these columns.
         const reportData = {
             user_id: user.id,
             cell_id,
             supervisor_id,
             adults_attendance: parseInt(adults_attendance) || 0,
             children_attendance: parseInt(children_attendance) || 0,
-            new_decisions: parseInt(new_decisions) || 0,
+            new_decisions: totalDecisions, // Main KPI
+            new_decisions_adults: decisionsAdults, // Granular Data
+            new_decisions_kids: decisionsKids,     // Granular Data
             offering: parseFloat(offering) || 0,
             lesson_topic,
             testimonies,
             prayer_requests,
             fotos_urls: fotos_urls || [],
             date: new Date().toISOString(),
-            zona, // New Field
-            milagro_categoria // New Field
+            zona,
+            milagro_categoria
         };
 
         const { error } = await supabase

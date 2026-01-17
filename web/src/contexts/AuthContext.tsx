@@ -2,8 +2,8 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
-import { User, AuthContextType, LoginResponse } from '@/types/auth';
+import { User, AuthContextType } from '@/types/auth';
+import { supabase } from '@/lib/supabase';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -12,76 +12,92 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // Verificar token al cargar
+  // Verificar sesión al cargar
   useEffect(() => {
-    const token = Cookies.get('auth_token');
-    if (token) {
-      // Verificar token con el backend
-      verifyToken(token);
-    } else {
-      setLoading(false);
-    }
+    const checkUser = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.user) {
+          await fetchProfile(session.user.id, session.user.email!);
+        }
+      } catch (error) {
+        console.error('Error checking session:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkUser();
+
+    // Escuchar cambios de auth
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      if (session?.user) {
+        await fetchProfile(session.user.id, session.user.email!);
+      } else {
+        setUser(null);
+        setLoading(false);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
-  const verifyToken = async (token: string) => {
+  const fetchProfile = async (userId: string, email: string) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/verify`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
+      const { data: profile, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single();
 
-      if (response.ok) {
-        const userData = await response.json();
-        setUser(userData);
-      } else {
-        // Token inválido, limpiar
-        Cookies.remove('auth_token');
-        setUser(null);
+      if (error) {
+        console.warn('Error fetching profile:', error.message);
+        // Si no existe perfil, usar datos básicos del usuario auth (fallback)
+        setUser({
+          id: userId,
+          email: email,
+          name: email.split('@')[0], // Fallback name
+          role: 'Lider de Celula', // Fallback role (safe default)
+          zone: 'N/A'
+        } as User);
+        return;
       }
-    } catch (error) {
-      console.error('Error verificando token:', error);
-      Cookies.remove('auth_token');
-      setUser(null);
-    } finally {
-      setLoading(false);
+
+      if (profile) {
+        setUser({
+          id: userId,
+          email: email,
+          name: profile.full_name || email.split('@')[0],
+          role: profile.role || 'Lider de Celula',
+          zone: profile.zone || 'N/A',
+          phone: profile.phone
+        } as User);
+      }
+    } catch (err) {
+      console.error('Unexpected error fetching profile:', err);
     }
   };
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
       });
 
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Error al iniciar sesión');
-      }
+      if (error) throw error;
 
-      const data: LoginResponse = await response.json();
-      
-      // Guardar token en cookie segura (httpOnly en producción)
-      Cookies.set('auth_token', data.access_token, {
-        expires: 7, // 7 días
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
-      });
-
-      setUser(data.user);
       router.push('/dashboard/home');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error en login:', error);
-      throw error;
+      throw new Error(error.message || 'Error al iniciar sesión');
     }
   };
 
-  const logout = () => {
-    Cookies.remove('auth_token');
+  const logout = async () => {
+    await supabase.auth.signOut();
     setUser(null);
     router.push('/login');
   };

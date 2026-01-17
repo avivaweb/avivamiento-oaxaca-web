@@ -1,67 +1,45 @@
 'use client';
 
 import { useAuth } from '@/hooks/useAuth';
-import {
-    UsersIcon,
-    EnvelopeIcon,
-    UserGroupIcon
-} from '@heroicons/react/24/outline';
-import MiracleWall from '../MiracleWall';
-
-const stats = [
-    {
-        name: 'Leads de Consolidación',
-        value: '25 Nuevos Leads',
-        icon: UserGroupIcon,
-        color: 'bg-blue-500'
-    },
-    {
-        name: 'Suscripciones',
-        value: '150 Total Suscriptores',
-        icon: EnvelopeIcon,
-        color: 'bg-yellow-500'
-    },
-    {
-        name: 'Grupos Activos',
-        value: '12 Grupos Familiares',
-        icon: UsersIcon,
-        color: 'bg-green-500'
-    },
-];
+import StatsGrid from '../StatsGrid'; // New Component
+import RecentVictories from '../RecentVictories'; // New Component
+import MiracleWall from '../MiracleWall'; // Existing
 
 export default function GeneralPastorView() {
     return (
-        <div className="space-y-6">
-            {/* Tarjetas de Estadísticas Globales */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {stats.map((stat) => (
-                    <div
-                        key={stat.name}
-                        className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow"
-                    >
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium text-gray-600">{stat.name}</p>
-                                <p className="mt-2 text-xl font-bold text-gray-900">{stat.value}</p>
-                            </div>
-                            <div className={`${stat.color} p-3 rounded-lg`}>
-                                <stat.icon className="w-6 h-6 text-white" />
-                            </div>
+        <div className="space-y-8 animate-in fade-in duration-500">
+            {/* Sección Superior: Control Global */}
+            <div>
+                <StatsGrid />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Columna Principal: Muro de Milagros (Feed Largo) */}
+                <div className="lg:col-span-2 space-y-8">
+                    <div className="bg-gradient-to-r from-[#DAA520]/10 to-transparent p-1 rounded-2xl">
+                        <h2 className="text-white font-serif text-2xl font-bold mb-4 px-2">Muro de Gloria</h2>
+                        <MiracleWall />
+                    </div>
+                </div>
+
+                {/* Columna Lateral: Feed Rápido y Acciones */}
+                <div className="space-y-8">
+                    {/* Victorias Recientes (Compacto) */}
+                    <RecentVictories />
+
+                    {/* Acciones de Gobierno */}
+                    <div className="bg-[#1a1a1a] border border-white/10 rounded-xl p-6 sticky top-6">
+                        <h3 className="text-white font-bold mb-4">Gobierno Apostólico</h3>
+                        <div className="space-y-3">
+                            <button className="w-full py-3 bg-[#DAA520] text-black font-bold rounded-lg hover:bg-[#B8860B] transition-colors shadow-lg shadow-[#DAA520]/10 flex items-center justify-center gap-2">
+                                <span>⚡</span> Aprobar Registros
+                            </button>
+                            <button className="w-full py-3 bg-white/5 text-gray-300 font-medium rounded-lg hover:bg-white/10 transition-colors border border-white/5">
+                                Ver Calendario Global
+                            </button>
                         </div>
                     </div>
-                ))}
-            </div>
-
-            {/* Acciones Rápidas */}
-            <div className="flex gap-4">
-                <button className="px-6 py-3 bg-[#DAA520] text-black font-bold rounded-lg shadow-lg hover:bg-[#B8860B] transition-colors">
-                    Aprobar Nuevos Registros
-                </button>
-            </div>
-
-            {/* Miracle Wall */}
-            <div className="mt-8">
-                <MiracleWall />
+                </div>
             </div>
         </div>
     );
