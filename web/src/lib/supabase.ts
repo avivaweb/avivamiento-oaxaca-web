@@ -9,13 +9,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 if (!supabaseUrl || !supabaseAnonKey) {
-    const errorMsg = '🚨 ERROR CRÍTICO: Configura tu .env.local con las llaves de Supabase (NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY).';
-    console.error(errorMsg);
-    if (typeof window !== 'undefined') {
-        alert(errorMsg);
-    }
-    throw new Error(errorMsg);
+    console.warn('⚠️ Supabase credentials missing. Utilizing fallback for build environment.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Fallback values to prevent build crasing during SSG
+const url = supabaseUrl || 'https://placeholder.supabase.co';
+const key = supabaseAnonKey || 'placeholder-key-for-build';
+
+export const supabase = createClient(url, key);
 
