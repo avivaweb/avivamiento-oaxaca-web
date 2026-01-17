@@ -80,14 +80,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, password: string, retryCount = 0): Promise<void> => {
+    const MAX_RETRIES = 2;
+    const RETRY_DELAY = 1000; // 1 second
+
     try {
+      console.log(`🔐 Intentando login... (intento ${retryCount + 1}/${MAX_RETRIES + 1})`);
+
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (error) {
+        console.error('❌ Error de Supabase:', error);
+
         // Specific error messages for better UX
         if (error.message.includes('Invalid login credentials')) {
           throw new Error('Credenciales incorrectas. Verifica tu correo y contraseña.');
@@ -95,13 +102,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         throw new Error(error.message);
       }
 
+      console.log('✅ Login exitoso, redirigiendo...');
       router.push('/dashboard');
     } catch (error: any) {
-      console.error('Error en login:', error);
+      console.error('❌ Error en login:', error);
 
-      // Network errors
-      if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
-        throw new Error('Error de conexión: No se pudo conectar con el servidor. Verifica tu conexión a internet.');
+      // Network errors - retry logic
+      const isNetworkError =
+        error.message === 'Failed to fetch' ||
+        error.name === 'TypeError' ||
+        error.message.includes('network') ||
+        error.message.includes('fetch');
+
+      if (isNetworkError && retryCount < MAX_RETRIES) {
+        console.warn(`⚠️ Error de red detectado. Reintentando en ${RETRY_DELAY}ms...`);
+        await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+        return login(email, password, retryCount + 1);
+      }
+
+      if (isNetworkError) {
+        throw new Error('Error de conexión: No se pudo conectar con el servidor de autenticación. Por favor verifica:\n1. Tu conexión a internet\n2. Que las variables de entorno estén configuradas en Vercel\n3. La consola del navegador para más detalles');
       }
 
       throw new Error(error.message || 'Error al iniciar sesión');

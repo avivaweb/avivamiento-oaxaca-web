@@ -20,11 +20,25 @@ const key = supabaseAnonKey || 'placeholder-key-for-build';
 // Enforce HTTPS
 const secureUrl = url.startsWith('http://') ? url.replace('http://', 'https://') : url;
 
+// Diagnostic logging (safe - doesn't expose keys)
+if (typeof window !== 'undefined') {
+    console.log('🔗 Conectando a Supabase en:', secureUrl);
+    if (secureUrl.includes('placeholder')) {
+        console.error('⚠️ ADVERTENCIA: Usando URL placeholder. Las variables de entorno NO están configuradas en Vercel.');
+    }
+}
+
 export const supabase = createClient(secureUrl, key, {
     auth: {
         persistSession: true,
         autoRefreshToken: true,
-        detectSessionInUrl: true
+        detectSessionInUrl: true,
+        storage: typeof window !== 'undefined' ? window.localStorage : undefined
+    },
+    global: {
+        headers: {
+            'x-client-info': 'avivamiento-oaxaca-web'
+        }
     }
 });
 
