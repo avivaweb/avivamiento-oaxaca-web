@@ -23,34 +23,34 @@ export interface MediaResponse {
 
 const FALLBACK_SERMONS: Sermon[] = [
     {
-        id: "cOMgfZtPbjo",
-        title: "La FE de Dios para Vencer | Año de la Pasión",
-        description: "Mensaje profético para iniciar el 2026 con la certeza de la victoria en Cristo.",
-        video_url: "https://www.youtube.com/watch?v=cOMgfZtPbjo",
+        id: "Gf6W4_mK2Y0",
+        title: "La Pasión de Cristo: Mensaje Reciente",
+        description: "Mensaje poderoso sobre la pasión y el propósito de Cristo en nuestra generación.",
+        video_url: "https://www.youtube.com/watch?v=Gf6W4_mK2Y0",
         pastor: "Avivamiento Oaxaca",
         topic: "FUNDAMENTO",
         date: new Date().toISOString(),
-        thumbnailUrl: "https://i.ytimg.com/vi/cOMgfZtPbjo/maxresdefault.jpg"
+        thumbnailUrl: "https://img.youtube.com/vi/Gf6W4_mK2Y0/maxresdefault.jpg"
     },
     {
-        id: "S9jG7P_XWk8",
-        title: "Propósito Eterno: El Llamado",
+        id: "p3X_4k9-7Hk",
+        title: "El Llamado del Reino",
         description: "Entiende tu asignación dentro del plan maestro de Dios para esta generación.",
-        video_url: "https://www.youtube.com/watch?v=S9jG7P_XWk8",
+        video_url: "https://www.youtube.com/watch?v=p3X_4k9-7Hk",
         pastor: "Avivamiento Oaxaca",
         topic: "ASIGNACIÓN",
         date: new Date(Date.now() - 86400000 * 3).toISOString(),
-        thumbnailUrl: "https://i.ytimg.com/vi/S9jG7P_XWk8/maxresdefault.jpg"
+        thumbnailUrl: "https://img.youtube.com/vi/p3X_4k9-7Hk/maxresdefault.jpg"
     },
     {
-        id: "Thissis_Kainos_ID",
-        title: "Nueva Raza: Thissis Kainós",
+        id: "w_70_Gdf7Y8",
+        title: "Nueva Raza: Vida Zoé",
         description: "La manifestación de los hijos de Dios en la tierra.",
-        video_url: "https://www.youtube.com/watch?v=Thissis_Kainos_ID",
+        video_url: "https://www.youtube.com/watch?v=w_70_Gdf7Y8",
         pastor: "Avivamiento Oaxaca",
         topic: "IDENTIDAD",
         date: new Date(Date.now() - 86400000 * 7).toISOString(),
-        thumbnailUrl: "https://i.ytimg.com/vi/cOMgfZtPbjo/maxresdefault.jpg" // Fallback placeholder
+        thumbnailUrl: "https://img.youtube.com/vi/w_70_Gdf7Y8/maxresdefault.jpg"
     }
 ];
 
@@ -113,7 +113,7 @@ async function fetchYouTubeContent(limit: number = 3): Promise<Sermon[]> {
                 pastor: 'Avivamiento Oaxaca',
                 topic: topic,
                 date: item.snippet.publishedAt,
-                thumbnailUrl: item.snippet.thumbnails?.maxres?.url || item.snippet.thumbnails?.high?.url || `https://i.ytimg.com/vi/${item.id.videoId}/maxresdefault.jpg`,
+                thumbnailUrl: item.snippet.thumbnails?.maxres?.url || item.snippet.thumbnails?.high?.url || `https://img.youtube.com/vi/${item.id.videoId}/maxresdefault.jpg`,
             };
         });
 
@@ -139,7 +139,7 @@ async function fetchYouTubeContent(limit: number = 3): Promise<Sermon[]> {
                             pastor: 'Avivamiento Oaxaca',
                             topic: 'Mensaje Destacado',
                             date: item.snippet.publishedAt,
-                            thumbnailUrl: item.snippet.thumbnails?.maxres?.url || item.snippet.thumbnails?.high?.url || `https://i.ytimg.com/vi/${item.id.videoId}/maxresdefault.jpg`,
+                            thumbnailUrl: item.snippet.thumbnails?.maxres?.url || item.snippet.thumbnails?.high?.url || `https://img.youtube.com/vi/${item.id.videoId}/maxresdefault.jpg`,
                         };
                     }
                 }

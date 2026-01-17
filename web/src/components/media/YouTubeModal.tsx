@@ -52,7 +52,7 @@ export default function YouTubeModal({ videoId, isOpen, onClose }: YouTubeModalP
                 </button>
 
                 <iframe
-                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1&origin=${typeof window !== 'undefined' ? window.location.origin : 'https://www.avivamientooaxaca.com'}`}
+                    src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1&origin=${typeof window !== 'undefined' ? window.location.origin : 'https://www.avivamientooaxaca.com'}`}
                     title="YouTube Video Player"
                     className="w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
