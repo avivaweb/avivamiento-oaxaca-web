@@ -2,8 +2,10 @@ import Image from 'next/image'
 import { Suspense } from 'react'
 import MediaGallery from '@/components/media/MediaGallery'
 import MediaSkeleton from '@/components/media/MediaSkeleton'
+import { fetchMessagesFromDB } from '@/lib/mediaFetcher'
+import HeroVideo from '@/components/media/HeroVideo'
 
-export const dynamic = 'force-static'
+export const dynamic = 'force-dynamic' // Ensure we get latest from DB
 import SubscriptionForm from '@/components/SubscriptionForm'
 import CallToAction from '@/components/CallToAction'
 import Footer from '@/components/Footer'
@@ -14,10 +16,20 @@ export const metadata = {
   description: "Iglesia Cristiana en Oaxaca comprometida con la sana doctrina y la transformación espiritual. Únete a nuestros grupos familiares y eventos.",
 }
 
-export default function Home() {
+export default async function Home() {
+  const messages = await fetchMessagesFromDB();
+  const latestMessage = messages[0];
+
   return (
-    <div className="min-h-screen bg-[var(--aviva-principal)] flex flex-col items-center pt-10 pb-20">
-      <div className="text-center max-w-2xl w-full px-4 mx-auto flex flex-col justify-center">
+    <div className="min-h-screen bg-[var(--aviva-principal)] flex flex-col items-center">
+      {/* Hero Video Section (Dynamic from DB) */}
+      {latestMessage && (
+        <div className="w-full">
+          <HeroVideo video={latestMessage} />
+        </div>
+      )}
+
+      <div className="text-center max-w-2xl w-full px-4 mx-auto flex flex-col justify-center pt-20">
         <Image
           src="/logo-aviva.png"
           alt="Logo Avivamiento"
@@ -38,7 +50,7 @@ export default function Home() {
         <CallToAction />
       </div>
 
-      <section className="w-full max-w-5xl mx-auto px-4 mb-20">
+      <section className="w-full max-w-5xl mx-auto px-4 mb-20 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-[#0a0a0a] border border-[#DAA520]/20 p-8 rounded-xl shadow-[0_0_30px_rgba(218,165,32,0.1)]">
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-bold text-[var(--aviva-dorado)] mb-2 uppercase tracking-widest">Nuestros Horarios</h3>

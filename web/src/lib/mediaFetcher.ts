@@ -57,10 +57,23 @@ const FALLBACK_SERMONS: Sermon[] = [
 export async function fetchPasionMedia(limit: number = 3): Promise<MediaResponse> {
     console.log(`Fetching Pasión Media (Limit: ${limit})...`);
 
-    const [sermons, podcasts] = await Promise.all([
-        fetchYouTubeContent(limit),
-        fetchSpotifyContent()
-    ]);
+    // 1. Fetch messages from DB (already synchronized from YouTube)
+    const messages = await fetchMessagesFromDB();
+
+    // 2. Map Message[] to Sermon[] for compatibility
+    const sermons: Sermon[] = messages.slice(0, limit).map(msg => ({
+        id: msg.video_id,
+        title: msg.title,
+        description: msg.description || '',
+        video_url: `https://www.youtube.com/watch?v=${msg.video_id}`,
+        pastor: 'Avivamiento Oaxaca',
+        topic: msg.serie_name || 'General',
+        date: msg.published_at,
+        thumbnailUrl: msg.thumbnail_url || `https://img.youtube.com/vi/${msg.video_id}/maxresdefault.jpg`
+    }));
+
+    // 3. Fetch Spotify content
+    const podcasts = await fetchSpotifyContent();
 
     return { sermons, podcasts };
 }
@@ -197,6 +210,60 @@ async function fetchSpotifyContent(): Promise<SpotifyEpisode[]> {
 
     } catch (error) {
         console.error("Error in fetchSpotifyContent:", error);
+        return [];
+    }
+}
+
+// ============================================
+// MESSAGES (YouTube Videos from Supabase)
+// ============================================
+
+export interface Message {
+    id: string;
+    video_id: string;
+    title: string;
+    description: string | null;
+    published_at: string;
+    thumbnail_url: string | null;
+    serie_name: string | null;
+    is_featured: boolean;
+    created_at: string;
+    updated_at: string;
+}
+
+/**
+ * Fetches YouTube messages from Supabase
+ * These are synchronized via the admin dashboard sync button
+ */
+export async function fetchMessagesFromDB(): Promise<Message[]> {
+    try {
+        const { createClient } = await import('@supabase/supabase-js');
+
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseKey) {
+            console.warn('⚠️ Supabase credentials missing for messages fetch');
+            return [];
+        }
+
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        const { data, error } = await supabase
+            .from('messages')
+            .select('*')
+            .order('published_at', { ascending: false });
+
+        if (error) {
+            console.error('Error fetching messages from Supabase:', error);
+            return [];
+        }
+
+        console.log(`✅ Fetched ${data?.length || 0} messages from Supabase`);
+        return data || [];
+
+    } catch (error) {
+        console.error('Exception in fetchMessagesFromDB:', error);
         return [];
     }
 }
