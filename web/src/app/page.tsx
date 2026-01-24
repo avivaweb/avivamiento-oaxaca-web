@@ -32,7 +32,7 @@ export default async function Home() {
           className="object-cover"
         />
         {/* Gradient Overlay for navigation legibility and cinematic feel */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80" />
       </div>
 
       <div className="text-center max-w-2xl w-full px-4 mx-auto flex flex-col justify-center pt-20">
