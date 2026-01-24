@@ -22,12 +22,18 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen bg-[var(--aviva-principal)] flex flex-col items-center">
-      {/* Hero Video Section (Dynamic from DB) */}
-      {latestMessage && (
-        <div className="w-full">
-          <HeroVideo video={latestMessage} />
-        </div>
-      )}
+      {/* Hero Image Section (Strategic Banner) */}
+      <div className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
+        <Image
+          src="/hero_ene.png"
+          alt="Avivamiento Oaxaca - Pasión 2026"
+          fill
+          priority={true}
+          className="object-cover"
+        />
+        {/* Gradient Overlay for navigation legibility and cinematic feel */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
+      </div>
 
       <div className="text-center max-w-2xl w-full px-4 mx-auto flex flex-col justify-center pt-20">
         <Image
@@ -99,6 +105,19 @@ export default async function Home() {
       <Suspense fallback={<MediaSkeleton />}>
         <MediaGallery limit={3} />
       </Suspense>
+
+      {/* Recent Message Section (Relocated from Hero) */}
+      {latestMessage && (
+        <section className="w-full max-w-7xl mx-auto px-4 mb-20">
+          <div className="text-center mb-10">
+            <span className="text-[var(--aviva-dorado)] font-bold tracking-[0.2em] text-sm uppercase mb-2 block">Mensaje Reciente</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">Adoración que <span className="text-[var(--aviva-dorado)]">rompe cadenas</span></h2>
+          </div>
+          <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10 hover:border-[var(--aviva-dorado)]/30 transition-colors">
+            <HeroVideo video={latestMessage} />
+          </div>
+        </section>
+      )}
 
       <MiraclesSection />
 
