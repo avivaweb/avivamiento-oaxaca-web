@@ -3,12 +3,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import FormularioReporte from '@/components/dashboard/FormularioReporte';
 import { FireIcon, BeakerIcon, SparklesIcon, MapIcon } from '@heroicons/react/24/outline';
-import dynamic from 'next/dynamic';
-
-const MapaConquista = dynamic(() => import('@/components/dashboard/MapaConquista'), {
-    ssr: false,
-    loading: () => <div className="h-[400px] w-full bg-aviva-onyx animate-pulse rounded-2xl border border-white/5 flex items-center justify-center text-aviva-gold/40">Cargando Mapa de Gloria...</div>
-});
+import MapaWrapper from '@/components/dashboard/MapaWrapper';
 
 export const metadata = {
     title: 'CENTRO DE GESTIÓN | Impacto Territorial',
@@ -122,7 +117,7 @@ export default async function ReportarPage() {
                     </div>
 
                     <div className="bg-aviva-onyx/20 p-2 rounded-3xl border border-white/5 shadow-inner">
-                        <MapaConquista />
+                        <MapaWrapper />
                     </div>
                 </div>
             </div>
