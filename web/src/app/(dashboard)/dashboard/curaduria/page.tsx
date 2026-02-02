@@ -72,7 +72,7 @@ export default function AdminGalleryPage() {
         return <div className="p-8 text-center text-[#DAA520] animate-pulse">Cargando panel de curaduría...</div>;
     }
 
-    if (!['Pastor de Zona', 'Pastor General', 'admin'].includes(user?.role || '')) {
+    if (!['Pastor de Zona', 'Pastor General', 'admin'].includes(user?.rol || '')) {
         return (
             <div className="p-8 text-center bg-red-900/10 border border-red-500/20 rounded-xl m-4">
                 <h1 className="text-xl font-bold text-red-500 mb-2">Acceso Restringido</h1>
@@ -85,10 +85,10 @@ export default function AdminGalleryPage() {
         <div className="p-6 pb-24 max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                 <div>
-                    <h1 className="text-3xl font-extrabold text-gray-900">
-                        Curaduría <span className="text-[#DAA520]">Pastoral</span>
+                    <h1 className="text-3xl font-extrabold text-aviva-bone">
+                        Curaduría <span className="text-aviva-gold">Pastoral</span>
                     </h1>
-                    <p className="text-gray-600 mt-1">
+                    <p className="text-aviva-bone/60 mt-1">
                         Aprueba las evidencias visuales que aparecerán en la galería pública.
                     </p>
                 </div>
@@ -105,8 +105,8 @@ export default function AdminGalleryPage() {
                     <div
                         key={report.id}
                         className={`
-                            relative bg-white rounded-xl shadow-lg border transition-all duration-300 overflow-hidden
-                            ${report.destacado ? 'border-[#DAA520] shadow-[#DAA520]/20' : 'border-gray-200'}
+                            relative bg-aviva-onyx rounded-xl shadow-lg border transition-all duration-300 overflow-hidden
+                            ${report.destacado ? 'border-aviva-gold shadow-aviva-gold/20' : 'border-aviva-gold/10'}
                         `}
                     >
                         {/* Image Carousel / Grid */}
@@ -136,10 +136,10 @@ export default function AdminGalleryPage() {
                         <div className="p-5">
                             <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <p className="text-xs text-gray-500 uppercase font-bold tracking-wide mb-1">
+                                    <p className="text-xs text-aviva-gold/60 uppercase font-bold tracking-wide mb-1">
                                         Testimonio
                                     </p>
-                                    <p className="text-gray-800 text-sm line-clamp-3 italic">
+                                    <p className="text-aviva-bone/80 text-sm line-clamp-3 italic">
                                         "{report.testimonies || 'Sin testimonio detallado.'}"
                                     </p>
                                 </div>

@@ -1,381 +1,131 @@
-'use client';
+import { createServerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import FormularioReporte from '@/components/dashboard/FormularioReporte';
+import { FireIcon, BeakerIcon, SparklesIcon, MapIcon } from '@heroicons/react/24/outline';
+import dynamic from 'next/dynamic';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
-import {
-    UserGroupIcon,
-    CurrencyDollarIcon,
-    BookOpenIcon,
-    FireIcon,
-    PaperAirplaneIcon,
-    PhotoIcon,
-    CheckCircleIcon
-} from '@heroicons/react/24/outline';
-import confetti from 'canvas-confetti';
-import ImageUploader from '@/components/ImageUploader';
-import { useAuth } from '@/contexts/AuthContext';
+const MapaConquista = dynamic(() => import('@/components/dashboard/MapaConquista'), {
+    ssr: false,
+    loading: () => <div className="h-[400px] w-full bg-aviva-onyx animate-pulse rounded-2xl border border-white/5 flex items-center justify-center text-aviva-gold/40">Cargando Mapa de Gloria...</div>
+});
 
-export default function ReportPage() {
-    const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [cellData, setCellData] = useState<{ id: string; name: string; supervisor_id: string } | null>(null);
-    const { user } = useAuth();
-    const router = useRouter();
+export const metadata = {
+    title: 'CENTRO DE GESTIÓN | Impacto Territorial',
+    description: 'Plataforma de gestión de impacto para líderes territoriales de Avivamiento.',
+};
 
-    const CATEGORIAS_MILAGRO = [
-        "Sanidad", "Finanzas", "Restauración Familiar", "Liberación", "Provisión", "Protección", "Otro"
-    ];
-
-    // Form State
-    const [formData, setFormData] = useState({
-        adults_attendance: '',
-        children_attendance: '',
-        new_decisions_adults: '',
-        new_decisions_kids: '',
-        offering: '',
-        lesson_topic: '',
-        testimonies: '',
-        prayer_requests: '',
-        milagro_categoria: ''
-    });
-
-    const [uploadedPhotos, setUploadedPhotos] = useState<string[]>([]);
-
-    // Load User's Cell Data
-    useEffect(() => {
-        const fetchCellData = async () => {
-            if (!user) return;
-            try {
-                const { data, error } = await supabase
-                    .from('grupos_familiares')
-                    .select('id, nombre, supervisor_id')
-                    .eq('user_id', user.id)
-                    .single();
-
-                if (data) {
-                    setCellData({
-                        id: data.id,
-                        name: data.nombre,
-                        supervisor_id: data.supervisor_id
-                    });
-                }
-            } catch (err) {
-                console.error('Error loading cell data:', err);
-            }
-        };
-
-        fetchCellData();
-    }, [user]);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    };
-
-    const triggerConfetti = () => {
-        const duration = 3000;
-        const animationEnd = Date.now() + duration;
-        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-        const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
-
-        const interval: any = setInterval(function () {
-            const timeLeft = animationEnd - Date.now();
-
-            if (timeLeft <= 0) {
-                return clearInterval(interval);
-            }
-
-            const particleCount = 50 * (timeLeft / duration);
-            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#DAA520', '#FFD700', '#FFFFFF'] });
-            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#DAA520', '#FFD700', '#FFFFFF'] });
-        }, 250);
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (formData.testimonies.length > 0 && formData.testimonies.length < 50) {
-            alert('Por favor detalla un poco más el testimonio (mínimo 50 caracteres).');
-            return;
+export default async function ReportarPage() {
+    const cookieStore = await cookies();
+    const supabase = createServerClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        {
+            cookies: {
+                get(name: string) {
+                    return cookieStore.get(name)?.value
+                },
+            },
         }
+    );
+    const { data: { session } } = await supabase.auth.getSession();
 
-        setLoading(true);
-
-        try {
-            if (!user) throw new Error('Usuario no autenticado');
-
-            const response = await fetch('/api/reports/submit', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    ...formData,
-                    cell_id: cellData?.id,
-                    supervisor_id: cellData?.supervisor_id,
-                    fotos_urls: uploadedPhotos,
-                    zona: user.zone || 'N/A' // Send zone from profile
-                }),
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || 'Error al enviar reporte');
-            }
-
-            setSuccess(true);
-            triggerConfetti();
-
-            // Redirect after 3 seconds
-            setTimeout(() => {
-                router.push('/dashboard/home'); // Or history page
-            }, 3000);
-
-        } catch (error: any) {
-            console.error(error);
-            alert(`Error: ${error.message}`);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const formatCurrency = (value: string) => {
-        if (!value) return '';
-        const number = parseFloat(value);
-        if (isNaN(number)) return '';
-        return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(number);
-    };
-
-    if (success) {
-        return (
-            <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 animate-in fade-in duration-700">
-                <CheckCircleIcon className="w-24 h-24 text-[#DAA520] mb-6 animate-bounce" />
-                <h1 className="text-4xl font-serif font-bold text-white mb-2">¡Victoria Registrada!</h1>
-                <p className="text-gray-300 text-lg">El Reino se expande en <span className="text-[#DAA520] font-bold">{user?.zone || 'tu Zona'}</span>.</p>
-                <p className="text-sm text-gray-500 mt-8">Redirigiendo...</p>
-            </div>
-        );
+    if (!session) {
+        redirect('/login?redirect=/reportar');
     }
 
     return (
-        <div className="max-w-2xl mx-auto px-4 py-8 pb-24 animate-in slide-in-from-bottom-4 duration-500">
-            <div className="mb-8 border-l-4 border-[#DAA520] pl-6">
-                <h1 className="text-3xl font-serif font-bold text-white tracking-tight">
-                    Reporte de Victoria
-                </h1>
-                <p className="text-[#DAA520] text-sm tracking-widest uppercase mt-1 font-bold">
-                    PASIÓN 2026
-                </p>
-                <p className="text-gray-400 mt-2 text-sm italic">
-                    {cellData ? `Célula: ${cellData.name}` : 'Cargando asignación...'}
-                </p>
-            </div>
+        <div className="min-h-screen bg-black text-[#ECE7DE] font-sans selection:bg-aviva-gold selection:text-black">
+            {/* Overlay de gradiente sutil para profundidad */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(218,165,32,0.05)_0%,transparent_100%)] pointer-events-none" />
 
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="relative max-w-7xl mx-auto px-4 py-12 lg:py-20">
+                <header className="mb-16 text-center lg:text-left">
+                    <p className="text-aviva-gold font-bold tracking-[0.4em] uppercase text-[10px] mb-4 animate-pulse">
+                        Gestión Estratégica
+                    </p>
+                    <h1 className="text-5xl lg:text-8xl font-black tracking-tighter uppercase leading-none italic">
+                        CENTRO DE <br />
+                        <span className="text-aviva-gold">GESTIÓN</span>
+                    </h1>
+                </header>
 
-                {/* ZONA (Read Only) */}
-                <div className="bg-[#111111] border border-[#DAA520]/20 rounded-xl p-6 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-[#DAA520]/5 rounded-bl-full pointer-events-none"></div>
-                    <label className="block text-xs font-bold text-[#DAA520] uppercase tracking-wider mb-2">Zona de Impacto</label>
-                    <div className="text-white text-xl font-serif">
-                        {user?.zone || 'Cargando...'}
-                    </div>
-                </div>
-
-                {/* SECCIÓN: COSECHA */}
-                <div className="bg-[#111111] border border-[#DAA520]/20 rounded-xl p-6 shadow-lg shadow-[#DAA520]/5 group hover:border-[#DAA520]/40 transition-all">
-                    <div className="flex items-center mb-6 border-b border-white/10 pb-4">
-                        <UserGroupIcon className="w-6 h-6 text-[#DAA520] mr-3" />
-                        <h2 className="text-xl font-bold text-white font-serif">Cosecha de Almas</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+                    {/* Columna Izquierda: Instrucciones Estratégicas */}
+                    <div className="space-y-12 bg-aviva-onyx/20 border border-white/5 p-8 lg:p-12 rounded-3xl backdrop-blur-xl shadow-2xl">
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-2">Asistencia Total</label>
-                            <input
-                                type="number"
-                                name="adults_attendance" // Using this field for Total per UI requirement implication or just stick to schema? Request said "Asistencia Total". I'll use adults_attendance for Total for now if schema expects it, or just let users input adults/kids attendance separately.
-                                // RE-READING REQUEST: "Un input numérico: 'Asistencia Total'".
-                                // But DB has adults_attendance and children_attendance.
-                                // I will use adults_attendance as TOTAL for simplicity if that's what the user implies, OR keep separate if I want precision.
-                                // Logic: I will keep the separate fields for DATA QUALITY but label them clearly.
-                                // Wait, user explicitly asked for "Asistencia Total" input. 
-                                // I'll infer: adults_attendance = Total - Kids? No, too complex for user.
-                                // I will keep the separate inputs for attendance (Adults & Kids) as per existing schema to avoid breaking data, BUT visually emphasize them?
-                                // User request: "Dos inputs numéricos: 'Nuevas Decisiones Adultos' y 'Nuevas Decisiones Niños'. Un input numérico: 'Asistencia Total'."
-                                // Okay, if I only have 'Asistencia Total' input, I need to map it. I will map it to `adults_attendance` and set `children_attendance` to 0, or split it?
-                                // I will stick to the existing `adults_attendance` and `children_attendance` inputs to match the database schema and be precise, unless the user strictly insists on 1 input.
-                                // I will combine them visually if needed, but separate inputs are better for "Adultos" vs "Niños" if the DB supports it.
-                                // I'll stick to 2 inputs for Attendance (Adults/Kids) + 2 inputs for Decisions (Adults/Kids) for maximum clarity and data integrity.
-                                required
-                                min="0"
-                                value={formData.adults_attendance}
-                                onChange={handleChange}
-                                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-[#DAA520] focus:border-transparent transition-all outline-none"
-                                placeholder="0"
-                            />
-                            <p className="text-xs text-gray-500 mt-1">Adultos + Jóvenes</p>
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-2">Asistencia Niños</label>
-                            <input
-                                type="number"
-                                name="children_attendance"
-                                required
-                                min="0"
-                                value={formData.children_attendance}
-                                onChange={handleChange}
-                                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-[#DAA520] focus:border-transparent transition-all outline-none"
-                                placeholder="0"
-                            />
-                        </div>
-
-                        <div className="md:col-span-2 border-t border-dashed border-gray-700 pt-6 mt-2">
-                            <label className="block text-sm font-bold text-[#DAA520] mb-4 uppercase tracking-wider">
-                                ⚡ Nuevas Decisiones (Salvación)
-                            </label>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-xs font-medium text-gray-400 mb-1">Adultos</label>
-                                    <input
-                                        type="number"
-                                        name="new_decisions_adults"
-                                        required
-                                        min="0"
-                                        value={formData.new_decisions_adults}
-                                        onChange={handleChange}
-                                        className="w-full bg-[#DAA520]/10 border border-[#DAA520]/30 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-[#DAA520] focus:border-transparent transition-all outline-none text-center font-bold"
-                                        placeholder="0"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-xs font-medium text-gray-400 mb-1">Niños</label>
-                                    <input
-                                        type="number"
-                                        name="new_decisions_kids"
-                                        required
-                                        min="0"
-                                        value={formData.new_decisions_kids}
-                                        onChange={handleChange}
-                                        className="w-full bg-[#DAA520]/10 border border-[#DAA520]/30 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-[#DAA520] focus:border-transparent transition-all outline-none text-center font-bold"
-                                        placeholder="0"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* SECCIÓN: MAYORDOMÍA */}
-                <div className="bg-[#111111] border border-[#DAA520]/20 rounded-xl p-6 shadow-lg shadow-[#DAA520]/5 group hover:border-[#DAA520]/40 transition-all">
-                    <div className="flex items-center mb-6 border-b border-white/10 pb-4">
-                        <CurrencyDollarIcon className="w-6 h-6 text-[#DAA520] mr-3" />
-                        <h2 className="text-xl font-bold text-white font-serif">Mayordomía</h2>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">Ofrenda Semanal</label>
-                        <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <span className="text-[#DAA520] font-bold text-lg">$</span>
-                            </div>
-                            <input
-                                type="number"
-                                name="offering"
-                                step="0.01"
-                                required
-                                min="0"
-                                value={formData.offering}
-                                onChange={handleChange}
-                                className="w-full pl-8 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-lg font-bold focus:ring-2 focus:ring-[#DAA520] focus:border-transparent transition-all outline-none"
-                                placeholder="0.00"
-                            />
-                        </div>
-                        {formData.offering && (
-                            <p className="text-sm text-[#DAA520] mt-2 text-right font-mono font-bold">
-                                {formatCurrency(formData.offering)} MXN
+                            <h2 className="text-3xl font-black text-white mb-6 flex items-center uppercase tracking-tighter italic">
+                                <FireIcon className="w-8 h-8 text-aviva-gold mr-4" />
+                                Directrices de Impacto
+                            </h2>
+                            <p className="text-gray-400 text-lg leading-relaxed mb-6 font-light">
+                                Estamos operando bajo el diseño de <span className="text-white font-bold">Vida Zoé</span>.
+                                Cada registro es una métrica de la expansión de nuestra influencia en el territorio.
                             </p>
-                        )}
-                    </div>
-                </div>
-
-                {/* SECCIÓN: PODER Y EVIDENCIA */}
-                <div className="bg-[#111111] border border-[#DAA520]/20 rounded-xl p-6 shadow-lg shadow-[#DAA520]/5 group hover:border-[#DAA520]/40 transition-all">
-                    <div className="flex items-center mb-6 border-b border-white/10 pb-4">
-                        <FireIcon className="w-6 h-6 text-[#DAA520] mr-3" />
-                        <h2 className="text-xl font-bold text-white font-serif">Poder y Evidencia</h2>
-                    </div>
-
-                    <div className="space-y-6">
-                        {/* Categoria Milagro */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-2">Tipo de Milagro (Principal)</label>
-                            <select
-                                name="milagro_categoria"
-                                value={formData.milagro_categoria}
-                                onChange={handleChange}
-                                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-[#DAA520] focus:border-transparent transition-all outline-none appearance-none"
-                            >
-                                <option value="" className="bg-gray-900 text-gray-500">Selecciona si hubo milagros...</option>
-                                {CATEGORIAS_MILAGRO.map(opt => (
-                                    <option key={opt} value={opt} className="bg-gray-900">{opt}</option>
-                                ))}
-                            </select>
                         </div>
 
-                        {/* Testimonio */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-2">Testimonio de lo que Dios hizo</label>
-                            <textarea
-                                name="testimonies"
-                                rows={4}
-                                value={formData.testimonies}
-                                onChange={handleChange}
-                                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-[#DAA520] focus:border-transparent transition-all outline-none resize-none"
-                                placeholder="Describe brevemente el mover de Dios en la reunión..."
-                            />
+                        <div className="space-y-10">
+                            <div className="flex gap-6">
+                                <div className="flex-shrink-0 w-14 h-14 bg-white/5 border border-white/5 rounded-2xl flex items-center justify-center">
+                                    <SparklesIcon className="w-7 h-7 text-aviva-gold" />
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-aviva-gold uppercase tracking-tighter mb-2 italic">Diseño de Legado</h3>
+                                    <p className="text-gray-500 font-light leading-relaxed">
+                                        Tu Altar es la unidad básica de transformación. Cada reporte documenta cómo el diseño corporativo está reformando el tejido social de Oaxaca.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-6">
+                                <div className="flex-shrink-0 w-14 h-14 bg-white/5 border border-white/5 rounded-2xl flex items-center justify-center">
+                                    <BeakerIcon className="w-7 h-7 text-aviva-gold" />
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-aviva-gold uppercase tracking-tighter mb-2 italic">Evidencia y Potencial</h3>
+                                    <p className="text-gray-500 font-light leading-relaxed">
+                                        El reporte de resultados es la base de nuestra inteligencia organizacional. Describe con precisión los hitos alcanzados en tu zona de influencia.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
 
-                        {/* Fotos */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center justify-between">
-                                <span>Fotos de la Victoria</span>
-                                <span className="text-xs text-[#DAA520] bg-[#DAA520]/10 px-2 py-1 rounded">Max 3</span>
-                            </label>
-                            {user ? (
-                                <ImageUploader
-                                    userId={user.id}
-                                    onUploadComplete={setUploadedPhotos}
-                                    maxFiles={3}
-                                />
-                            ) : (
-                                <div className="h-20 bg-gray-900 rounded animate-pulse"></div>
-                            )}
+                        <div className="pt-10 border-t border-white/5">
+                            <blockquote className="italic text-gray-400 border-l-2 border-aviva-gold pl-6 py-2 font-light">
+                                "La eficiencia en la gestión es lo que permite que el legado se vuelva permanente."
+                                <footer className="text-aviva-gold font-bold mt-4 not-italic text-xs uppercase tracking-[0.2em]">Visión Pasión 2026</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    {/* Columna Derecha: Formulario */}
+                    <div className="relative group">
+                        {/* Brillo decorativo detrás del formulario */}
+                        <div className="absolute -inset-1 bg-gradient-to-r from-aviva-gold/20 to-transparent rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200" />
+                        <div className="relative">
+                            <FormularioReporte user_id={session.user.id} />
                         </div>
                     </div>
                 </div>
 
-                {/* BOTÓN ENVIAR */}
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-gradient-to-r from-[#DAA520] to-[#B8860B] hover:from-[#FFD700] hover:to-[#DAA520] text-black font-extrabold py-5 px-6 rounded-xl shadow-[0_0_20px_rgba(218,165,32,0.3)] hover:shadow-[0_0_30px_rgba(218,165,32,0.5)] transition-all flex items-center justify-center transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group"
-                >
-                    {loading ? (
-                        <span className="flex items-center">
-                            <span className="animate-spin h-5 w-5 border-2 border-black border-t-transparent rounded-full mr-3"></span>
-                            REGISTRANDO...
-                        </span>
-                    ) : (
-                        <span className="flex items-center text-lg tracking-widest">
-                            <PaperAirplaneIcon className="w-6 h-6 mr-3 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
-                            CONFIRMAR VICTORIA
-                        </span>
-                    )}
-                </button>
+                {/* Sección del Mapa Territorial */}
+                <div className="mt-24 lg:mt-40 space-y-12">
+                    <div className="flex flex-col items-center text-center max-w-3xl mx-auto space-y-6">
+                        <div className="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center border border-white/5 shadow-2xl">
+                            <MapIcon className="w-10 h-10 text-aviva-gold" />
+                        </div>
+                        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter italic text-white">Geografía de la <span className="text-aviva-gold">Transformación</span></h2>
+                        <p className="text-gray-400 text-xl font-light leading-relaxed">
+                            Visualización en tiempo real del impacto territorial de nuestra red de liderazgo.
+                            Cada punto representa una unidad de transformación establecida en el diseño original.
+                        </p>
+                    </div>
 
-            </form>
+                    <div className="bg-aviva-onyx/20 p-2 rounded-3xl border border-white/5 shadow-inner">
+                        <MapaConquista />
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
-

@@ -87,44 +87,44 @@ export default function LeaderView() {
                     Bienvenido, Guerrero de la <span className="text-[#DAA520]">{zoneName}</span>
                 </h2>
                 <p className="text-gray-400">
-                    {user?.name || 'Líder'} • {profile?.role || 'Líder de Célula'}
+                    {user?.name || 'Líder'} • {profile?.rol || 'Líder de Célula'}
                 </p>
             </div>
 
             {/* Metrics Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Total Almas Ganadas Card */}
-                <div className="bg-white border-2 border-[#DAA520] rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-aviva-onyx border border-aviva-gold/30 rounded-xl p-6 shadow-lg hover:shadow-aviva-gold/10 transition-all duration-300">
                     <div className="flex items-center justify-between mb-4">
-                        <div className="p-3 bg-[#DAA520]/10 rounded-lg">
-                            <SparklesIcon className="w-8 h-8 text-[#DAA520]" />
+                        <div className="p-3 bg-aviva-gold/10 rounded-lg">
+                            <SparklesIcon className="w-8 h-8 text-aviva-gold" />
                         </div>
                         {loading && (
-                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#DAA520]"></div>
+                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-aviva-gold"></div>
                         )}
                     </div>
-                    <h3 className="text-sm font-medium text-gray-600 uppercase tracking-wide mb-1">
+                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">
                         Total de Almas Ganadas
                     </h3>
-                    <p className="text-4xl font-bold text-[#DAA520] mb-2">
+                    <p className="text-4xl font-bold text-aviva-gold mb-2">
                         {metrics.totalSoulsWon}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-aviva-bone/60">
                         Por tu célula • {metrics.totalReports} reportes
                     </p>
                 </div>
 
                 {/* Last Report Card */}
-                <div className="bg-white border-2 border-[#DAA520] rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-aviva-onyx border border-aviva-gold/30 rounded-xl p-6 shadow-lg hover:shadow-aviva-gold/10 transition-all duration-300">
                     <div className="flex items-center justify-between mb-4">
-                        <div className="p-3 bg-[#DAA520]/10 rounded-lg">
-                            <FireIcon className="w-8 h-8 text-[#DAA520]" />
+                        <div className="p-3 bg-aviva-gold/10 rounded-lg">
+                            <FireIcon className="w-8 h-8 text-aviva-gold" />
                         </div>
                     </div>
-                    <h3 className="text-sm font-medium text-gray-600 uppercase tracking-wide mb-1">
+                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">
                         Último Reporte
                     </h3>
-                    <p className="text-2xl font-bold text-gray-900 mb-2">
+                    <p className="text-2xl font-bold text-aviva-bone mb-2">
                         {metrics.lastReportDate
                             ? new Date(metrics.lastReportDate).toLocaleDateString('es-MX', {
                                 day: 'numeric',
@@ -133,7 +133,7 @@ export default function LeaderView() {
                             })
                             : 'Sin reportes'}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-aviva-bone/60">
                         {profile?.zone ? `Zona: ${profile.zone}` : 'Zona no asignada'}
                     </p>
                 </div>
@@ -163,16 +163,16 @@ export default function LeaderView() {
 
                 <Link
                     href="/dashboard/mis-celulas"
-                    className="group relative overflow-hidden bg-white rounded-2xl p-8 shadow-lg border border-gray-100 transition-all hover:shadow-xl hover:border-[#DAA520]/50"
+                    className="group relative overflow-hidden bg-aviva-onyx rounded-2xl p-8 shadow-lg border border-aviva-gold/20 transition-all hover:shadow-aviva-gold/10 hover:border-aviva-gold/50"
                 >
-                    <div className="absolute right-0 top-0 h-32 w-32 translate-x-12 translate-y-[-2rem] rounded-full bg-gray-100 opacity-50 blur-2xl group-hover:bg-[#DAA520]/10"></div>
+                    <div className="absolute right-0 top-0 h-32 w-32 translate-x-12 translate-y-[-2rem] rounded-full bg-aviva-gold/5 opacity-50 blur-2xl group-hover:bg-aviva-gold/10"></div>
 
                     <div className="relative z-10">
-                        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 group-hover:bg-[#DAA520]/20 transition-colors">
-                            <UserGroupIcon className="h-6 w-6 text-gray-600 group-hover:text-[#DAA520]" />
+                        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-aviva-gold/10 group-hover:bg-aviva-gold/20 transition-colors">
+                            <UserGroupIcon className="h-6 w-6 text-aviva-gold/80 group-hover:text-aviva-gold" />
                         </div>
-                        <h3 className="mb-2 text-2xl font-bold text-gray-900">Ver mi Célula</h3>
-                        <p className="text-gray-500">
+                        <h3 className="mb-2 text-2xl font-bold text-aviva-bone">Ver mi Célula</h3>
+                        <p className="text-aviva-bone/60">
                             Administra los miembros de tu grupo, ver historial y seguimiento.
                         </p>
                     </div>

@@ -22,11 +22,11 @@ export default function MiraclesSection() {
         <section className="w-full py-16 px-4 bg-gradient-to-b from-black/20 to-transparent">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--aviva-dorado)] mb-4 uppercase tracking-tight">
-                        ¡Lo que Dios está haciendo hoy!
+                    <h2 className="text-3xl md:text-5xl font-extrabold text-aviva-gold mb-4 uppercase tracking-tighter">
+                        Muro de Milagros
                     </h2>
-                    <p className="text-lg md:text-xl text-[var(--aviva-blanco)] font-light max-w-2xl mx-auto">
-                        Testimonios de Sanidad y Libertad que alimentarán tu Fe.
+                    <p className="text-lg md:text-xl text-[var(--aviva-blanco)] font-light max-w-2xl mx-auto italic">
+                        La manifestación del Reino de Dios en Oaxaca: Testimonios de Sanidad y Libertad que alimentarán tu fe.
                     </p>
                 </div>
 
@@ -38,8 +38,8 @@ export default function MiraclesSection() {
                         >
                             <iframe
                                 className="absolute inset-0 w-full h-full"
-                                src={`https://www.youtube.com/embed/${video.id}`}
-                                title={video.title}
+                                src={`https://www.youtube-nocookie.com/embed/${video.id}`}
+                                title={`${video.title} - Avivamiento Oaxaca`}
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowFullScreen
                                 loading="lazy"
@@ -51,9 +51,9 @@ export default function MiraclesSection() {
                 <div className="text-center">
                     <Link
                         href="/mensajes"
-                        className="inline-block bg-[var(--aviva-dorado)] text-[var(--aviva-principal)] font-bold py-4 px-8 rounded-full text-lg uppercase tracking-wider hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg"
+                        className="inline-block bg-[var(--aviva-dorado)] text-[var(--aviva-principal)] font-black py-4 px-10 rounded-full text-lg uppercase tracking-widest hover:bg-white hover:scale-105 transition-all duration-500 shadow-2xl"
                     >
-                        Ver más testimonios y adoración
+                        Acceder al Altar Media
                     </Link>
                 </div>
             </div>

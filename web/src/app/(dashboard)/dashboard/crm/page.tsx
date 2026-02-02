@@ -110,8 +110,8 @@ export default function CRMPage() {
         <div className="space-y-6">
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">CRM de Seguimiento</h1>
-                    <p className="text-gray-500">Semáforo espiritual de discípulos</p>
+                    <h1 className="text-2xl font-bold text-aviva-bone">CRM de Seguimiento</h1>
+                    <p className="text-aviva-bone/60">Semáforo espiritual de discípulos</p>
                 </div>
             </div>
 
@@ -157,8 +157,8 @@ export default function CRMPage() {
                 {/* Sync Result Message */}
                 {syncResult && (
                     <div className={`mt-4 p-4 rounded-lg ${syncResult.success
-                            ? 'bg-green-900/30 border border-green-500/50'
-                            : 'bg-red-900/30 border border-red-500/50'
+                        ? 'bg-green-900/30 border border-green-500/50'
+                        : 'bg-red-900/30 border border-red-500/50'
                         }`}>
                         <div className="flex items-start gap-3">
                             <div className="flex-shrink-0">
@@ -197,15 +197,15 @@ export default function CRMPage() {
             {/* Lista estilo Ficha */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {disciples.map((disciple) => (
-                    <div key={disciple.id} className={`p-4 rounded-xl border ${getStatusColor(disciple.last_attendance_date)} bg-white/50 backdrop-blur-sm shadow-sm transition-all hover:shadow-md`}>
+                    <div key={disciple.id} className={`p-4 rounded-xl border ${getStatusColor(disciple.last_attendance_date)} bg-aviva-onyx/40 backdrop-blur-sm shadow-sm transition-all hover:shadow-md`}>
                         <div className="flex justify-between items-start mb-3">
                             <div className="flex items-center space-x-3">
-                                <div className="bg-white p-2 rounded-full shadow-sm">
-                                    <UserIcon className="w-6 h-6 text-gray-400" />
+                                <div className="bg-black/40 p-2 rounded-full shadow-sm">
+                                    <UserIcon className="w-6 h-6 text-aviva-gold/60" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-gray-900">{disciple.full_name}</h3>
-                                    <p className="text-xs opacity-75">{new Date(disciple.conversion_date).toLocaleDateString()}</p>
+                                    <h3 className="font-bold text-aviva-bone">{disciple.full_name}</h3>
+                                    <p className="text-xs text-aviva-bone/40">{new Date(disciple.conversion_date).toLocaleDateString()}</p>
                                 </div>
                             </div>
                             {getStatusIcon(disciple.last_attendance_date)}
@@ -226,7 +226,7 @@ export default function CRMPage() {
                         </div>
 
                         {/* Botón de Acción Rápida */}
-                        {user?.role === 'CMAvivamiento' && (
+                        {user?.rol === 'CMAvivamiento' && (
                             <a
                                 href={`https://wa.me/${disciple.phone}`}
                                 target="_blank"

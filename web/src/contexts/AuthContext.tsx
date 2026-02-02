@@ -59,7 +59,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           id: userId,
           email: email,
           name: email.split('@')[0], // Fallback name
-          role: 'Lider de Celula', // Fallback role (safe default)
+          rol: 'Lider de Celula', // Fallback role (safe default)
           zone: 'N/A'
         } as User);
         return;
@@ -70,7 +70,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           id: userId,
           email: email,
           name: profile.full_name || email.split('@')[0],
-          role: profile.role || 'Lider de Celula',
+          rol: profile.rol || 'Lider de Celula',
           zone: profile.zone || 'N/A',
           phone: profile.phone
         } as User);

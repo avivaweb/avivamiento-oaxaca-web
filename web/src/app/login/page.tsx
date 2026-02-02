@@ -15,7 +15,7 @@ export default function LoginPage() {
 
   // Redirigir si ya está autenticado
   if (isAuthenticated) {
-    router.push('/dashboard/home');
+    router.push('/reportar');
     return null;
   }
 
@@ -28,7 +28,7 @@ export default function LoginPage() {
       await login(email, password);
       // Obtener URL de redirección si existe
       const searchParams = new URLSearchParams(window.location.search);
-      const redirectUrl = searchParams.get('redirect') || '/dashboard/home';
+      const redirectUrl = searchParams.get('redirect') || '/reportar';
       router.push(redirectUrl);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al iniciar sesión');

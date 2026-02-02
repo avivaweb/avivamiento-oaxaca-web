@@ -25,21 +25,21 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.avivamientooaxaca.com'),
-  keywords: ["Vida Zoé", "Oaxaca", "Pasión 2026", "Iglesia Cristiana", "Avivamiento", "Thissis Kainós", "Nueva Raza", "Reforma"],
+  keywords: ["Vida Zoé", "Oaxaca", "Pasión 2026", "Identidad", "Potencial Humano", "Transformación Territorial", "Legado", "Diseño Original"],
   title: {
-    default: "Avivamiento Oaxaca | Pasión 2026: Nueva Raza",
-    template: "%s | Avivamiento Oaxaca"
+    default: "Avivamiento | Transformación Territorial y Legado",
+    template: "%s | Avivamiento"
   },
-  description: "Una casa apostólica donde se manifiesta la Vida Zoé. Somos una Nueva Creación (Thissis Kainós) levantada para establecer el gobierno de Dios a través de la Comunión, Autoridad y Hogar.",
+  description: "Una organización de alto impacto dedicada a la restauración de la identidad humana y el desarrollo del potencial original. Transformando territorios a través del legado y la activación de propósito.",
   icons: {
     icon: "/favicon-aviva.png",
     apple: "/favicon-aviva.png",
   },
   openGraph: {
-    title: "Avivamiento Oaxaca | El Lugar de Su Presencia",
-    description: "El tiempo de la canción ha llegado. Una atmósfera de adoración y milagros donde el Cielo toca la Tierra.",
+    title: "Avivamiento | Restaurando el Diseño Original",
+    description: "Descubre tu potencial y únete a un movimiento de transformación territorial. El tiempo de activar tu legado ha llegado.",
     url: 'https://www.avivamientooaxaca.com',
-    siteName: 'Avivamiento Oaxaca',
+    siteName: 'Avivamiento',
     locale: 'es_MX',
     type: 'website',
     images: [
@@ -47,14 +47,8 @@ export const metadata: Metadata = {
         url: 'https://www.avivamientooaxaca.com/logo-aviva.png',
         width: 1200,
         height: 630,
-        alt: 'Avivamiento Oaxaca - Pasión 2026',
+        alt: 'Avivamiento - Legado y Transformación',
       },
-      {
-        url: 'https://www.avivamientooaxaca.com/images/og-social.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Comunidad de Fe en Oaxaca',
-      }
     ],
   },
 };
@@ -92,12 +86,12 @@ export default function RootLayout({
             dangerouslySetInnerHTML={{
               __html: JSON.stringify({
                 "@context": "https://schema.org",
-                "@type": "ReligiousOrganization",
-                "name": "Avivamiento Oaxaca",
-                "alternateName": "Centro Cristiano Avivamiento",
+                "@type": "Organization",
+                "name": "Avivamiento",
+                "alternateName": "Centro de Transformación Avivamiento",
                 "url": "https://www.avivamientooaxaca.com",
                 "logo": "https://www.avivamientooaxaca.com/logo-aviva.png",
-                "description": "Una casa apostólica donde se manifiesta la Vida Zoé. Somos una Nueva Creación levantada para establecer el gobierno de Dios en Oaxaca.",
+                "description": "Una organización de alto impacto dedicada a la restauración de la identidad humana y el establecimiento de un legado generacional en Oaxaca.",
                 "foundingDate": "2015",
                 "address": {
                   "@type": "PostalAddress",
@@ -115,7 +109,7 @@ export default function RootLayout({
                 "contactPoint": {
                   "@type": "ContactPoint",
                   "telephone": "+52-951-428-3375",
-                  "contactType": "pastoral care",
+                  "contactType": "leadership office",
                   "areaServed": "MX",
                   "availableLanguage": "Spanish"
                 },
@@ -127,28 +121,12 @@ export default function RootLayout({
                 "event": [
                   {
                     "@type": "Event",
-                    "name": "Servicio de Adoración y Milagros",
+                    "name": "Punto de Activación Semanal",
                     "eventSchedule": {
                       "@type": "Schedule",
                       "byDay": "https://schema.org/Sunday",
                       "startTime": "11:00",
                       "endTime": "13:30",
-                      "repeatFrequency": "Weekly"
-                    },
-                    "location": {
-                      "@type": "Place",
-                      "name": "Auditorio Avivamiento",
-                      "address": "Símbolos Patrios 404, Oaxaca"
-                    }
-                  },
-                  {
-                    "@type": "Event",
-                    "name": "Martes de Fuego",
-                    "eventSchedule": {
-                      "@type": "Schedule",
-                      "byDay": "https://schema.org/Tuesday",
-                      "startTime": "19:00",
-                      "endTime": "20:30",
                       "repeatFrequency": "Weekly"
                     },
                     "location": {

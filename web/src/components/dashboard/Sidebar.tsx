@@ -18,76 +18,6 @@ import {
   ChatBubbleBottomCenterTextIcon
 } from '@heroicons/react/24/outline';
 
-interface NavItem {
-  name: string;
-  href: string;
-  icon: React.ElementType;
-  roles?: string[]; // Roles permitidos, si undefined es público para todos los authed
-}
-
-const allNavigation: NavItem[] = [
-  {
-    name: 'Inicio',
-    href: '/dashboard',
-    icon: HomeIcon,
-    roles: ['Lider de Celula', 'Supervisor', 'Pastor de Zona', 'Pastor General', 'admin']
-  },
-  {
-    name: 'Discipulado',
-    href: '/dashboard/discipulado',
-    icon: AcademicCapIcon,
-    roles: ['Lider de Celula', 'Supervisor', 'Pastor de Zona', 'Pastor General', 'admin']
-  },
-  {
-    name: 'Mis Células',
-    href: '/dashboard/mis-celulas',
-    icon: UsersIcon,
-    roles: ['Supervisor', 'Pastor de Zona', 'Pastor General', 'admin'] // Lider solo ve reportar
-  },
-  {
-    name: 'Reporte de Célula',
-    href: '/dashboard/mis-celulas/reportar',
-    icon: HandRaisedIcon,
-    roles: ['Lider de Celula', 'admin'] // Solo lider reporta directamente (o admin debug)
-  },
-  {
-    name: 'Mi Sector',
-    href: '/dashboard/mis-celulas', // Reusamos la ruta pero con otro nombre visual para Supervisor? Ojo con colisiones.
-    icon: UsersIcon,
-    roles: [] // Lo manejamos con lógica custom abajo mejor
-  },
-  {
-    name: 'Consolidación',
-    href: '/dashboard/consolidacion',
-    icon: UsersIcon,
-    roles: ['Pastor de Zona', 'Pastor General', 'admin']
-  },
-  {
-    name: 'Reportes',
-    href: '/dashboard/reportes',
-    icon: DocumentTextIcon,
-    roles: ['Supervisor', 'Pastor de Zona', 'Pastor General', 'admin']
-  },
-  {
-    name: 'Estadísticas',
-    href: '/dashboard/estadisticas',
-    icon: ChartBarIcon,
-    roles: ['Pastor de Zona', 'Pastor General', 'admin']
-  },
-  {
-    name: 'Agenda',
-    href: '/dashboard/agenda',
-    icon: CalendarIcon,
-    roles: ['Pastor General', 'admin']
-  },
-  {
-    name: 'Configuración',
-    href: '/dashboard/configuracion',
-    icon: Cog6ToothIcon,
-    roles: ['Pastor General', 'admin']
-  },
-];
-
 export default function Sidebar() {
   const pathname = usePathname();
   const { user } = useAuth();
@@ -95,32 +25,31 @@ export default function Sidebar() {
   const getFilteredNavigation = () => {
     if (!user) return [];
 
-    const role = user.role;
+    const rol = user.rol;
 
-    // Base items available to everyone with specific logic overrides
     let items = [
       { name: 'Inicio', href: '/dashboard', icon: HomeIcon },
     ];
 
-    if (role === 'CMAvivamiento') {
+    if (rol === 'CMAvivamiento') {
       items.push({ name: 'Sermones', href: '/dashboard/sermones', icon: BookOpenIcon });
       items.push({ name: 'Blog', href: '/dashboard/blog', icon: PencilSquareIcon });
       items.push({ name: 'Galería', href: '/dashboard/galeria', icon: PhotoIcon });
       items.push({ name: 'CRM Seguimiento', href: '/dashboard/crm', icon: HeartIcon });
     }
 
-    if (role === 'Lider de Celula') {
+    if (rol === 'Lider de Celula') {
       items.push({ name: 'Discipulado', href: '/dashboard/discipulado', icon: AcademicCapIcon });
       items.push({ name: 'Reportar Asistencia', href: '/dashboard/mis-celulas/reportar', icon: HandRaisedIcon });
     }
 
-    if (role === 'Supervisor') {
+    if (rol === 'Supervisor') {
       items.push({ name: 'Discipulado', href: '/dashboard/discipulado', icon: AcademicCapIcon });
       items.push({ name: 'Mi Sector', href: '/dashboard/mis-celulas', icon: UsersIcon });
       items.push({ name: 'Estado de Reportes', href: '/dashboard/reportes', icon: DocumentTextIcon });
     }
 
-    if (role === 'Pastor de Zona') {
+    if (rol === 'Pastor de Zona') {
       items.push({ name: 'Discipulado', href: '/dashboard/discipulado', icon: AcademicCapIcon });
       items.push({ name: 'Mapa de Células', href: '/dashboard/mis-celulas', icon: UsersIcon });
       items.push({ name: 'Gráficas de Zona', href: '/dashboard/estadisticas', icon: ChartBarIcon });
@@ -129,8 +58,7 @@ export default function Sidebar() {
       items.push({ name: 'Curaduría', href: '/dashboard/curaduria', icon: PhotoIcon });
     }
 
-    if (role === 'Pastor General' || role === 'admin') {
-      // Focus on Ministerial Leadership
+    if (rol === 'Pastor General' || rol === 'admin') {
       items.push({ name: 'Discipulado', href: '/dashboard/discipulado', icon: AcademicCapIcon });
       items.push({ name: 'Ejército Celular', href: '/dashboard/ejercito-celular', icon: UsersIcon });
       items.push({ name: 'Muro de Milagros', href: '/dashboard/muro-milagros', icon: SparklesIcon });
@@ -150,26 +78,26 @@ export default function Sidebar() {
   const navigation = getFilteredNavigation();
 
   return (
-    <div className="flex flex-col w-64 bg-[#A5002F] min-h-screen">
+    <div className="flex flex-col w-64 bg-aviva-onyx min-h-screen border-r border-aviva-gold/20">
       {/* Logo */}
-      <div className="flex items-center justify-center h-16 bg-[#8A0026]">
-        <h1 className="text-white text-xl font-bold">AVIVA Dashboard</h1>
+      <div className="flex items-center justify-center h-16 bg-black/40 border-b border-aviva-gold/10">
+        <h1 className="text-aviva-gold text-xl font-bold tracking-widest">AVIVA</h1>
       </div>
 
       {/* Navegación */}
-      <nav className="flex-1 px-4 py-6 space-y-2">
+      <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
         {navigation.map((item) => {
           const isActive = pathname === item.href;
           return (
             <Link
               key={item.name}
               href={item.href}
-              className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${isActive
-                ? 'bg-white text-[#A5002F]'
-                : 'text-white hover:bg-[#8A0026]'
+              className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive
+                ? 'bg-aviva-gold/10 text-aviva-gold border border-aviva-gold/30'
+                : 'text-aviva-bone hover:bg-aviva-gold/5 hover:text-white'
                 }`}
             >
-              <item.icon className="w-5 h-5 mr-3" />
+              <item.icon className={`w-5 h-5 mr-3 transition-colors ${isActive ? 'text-aviva-gold' : 'text-aviva-gold/60'}`} />
               {item.name}
             </Link>
           );
@@ -177,16 +105,17 @@ export default function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-[#8A0026]">
+      <div className="p-4 border-t border-aviva-gold/10 bg-black/20">
         <div className="mb-4 px-2">
-          <div className="text-xs text-white/60 uppercase font-semibold tracking-wider mb-1">Tu Rol</div>
-          <div className="text-sm text-white font-medium">{user?.role || 'Cargando...'}</div>
+          <div className="text-[10px] text-aviva-gold/60 uppercase font-bold tracking-widest mb-1">Ministerio</div>
+          <div className="text-sm text-aviva-bone font-medium truncate">{user?.name}</div>
+          <div className="text-[11px] text-aviva-gold/80 italic">{user?.rol}</div>
         </div>
-        <p className="text-xs text-white text-center italic mb-2">
-          "Nuestra tarea principal: La evangelización del mundo"
+        <p className="text-[10px] text-aviva-bone/40 text-center italic mb-2 px-2">
+          "Evangelizando el mundo con la Vida Zoé"
         </p>
-        <p className="text-xs text-white text-center opacity-75">
-          © 2026 Ecosistema Operativo
+        <p className="text-[9px] text-aviva-gold/30 text-center uppercase tracking-tighter">
+          © 2026 Pasión
         </p>
       </div>
     </div>

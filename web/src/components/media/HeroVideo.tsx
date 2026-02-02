@@ -57,18 +57,18 @@ export default function HeroVideo({ video }: Props) {
                 <div className="relative h-full flex flex-col justify-end p-6 md:p-16 max-w-7xl mx-auto">
                     {/* Badges */}
                     <div className="mb-6 flex flex-wrap items-center gap-3">
-                        <span className="px-5 py-2 bg-gradient-to-r from-[#DAA520] to-[#B8860B] text-black text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">
+                        <span className="px-5 py-2 bg-gradient-to-r from-aviva-gold to-[#B8860B] text-black text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">
                             ✨ Mensaje Destacado
                         </span>
                         {video.serie_name && (
-                            <span className="px-5 py-2 border-2 border-[#DAA520] text-[#DAA520] text-xs font-bold uppercase tracking-wider rounded-full backdrop-blur-sm bg-black/30">
+                            <span className="px-5 py-2 border-2 border-aviva-gold text-aviva-gold text-xs font-bold uppercase tracking-wider rounded-full backdrop-blur-sm bg-black/30">
                                 📖 {video.serie_name}
                             </span>
                         )}
                     </div>
 
                     {/* Title */}
-                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 max-w-4xl leading-tight">
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-aviva-bone mb-4 max-w-4xl leading-tight">
                         {video.title}
                     </h1>
 
@@ -81,7 +81,7 @@ export default function HeroVideo({ video }: Props) {
 
                     {/* CTA Button */}
                     <button
-                        className="self-start px-8 py-4 bg-gradient-to-r from-[#DAA520] to-[#B8860B] text-black font-bold rounded-full hover:shadow-2xl hover:shadow-[#DAA520]/50 transition-all flex items-center gap-3 group/btn transform hover:scale-105"
+                        className="self-start px-8 py-4 bg-gradient-to-r from-aviva-gold to-[#B8860B] text-black font-bold rounded-full hover:shadow-2xl hover:shadow-aviva-gold/50 transition-all flex items-center gap-3 group/btn transform hover:scale-105"
                         onClick={(e) => {
                             e.stopPropagation();
                             setModalOpen(true);
@@ -100,8 +100,8 @@ export default function HeroVideo({ video }: Props) {
 
                 {/* Play Button Overlay (Center) */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-[#DAA520]/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#DAA520] to-[#B8860B] flex items-center justify-center shadow-2xl">
+                    <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-aviva-gold/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-aviva-gold to-[#B8860B] flex items-center justify-center shadow-2xl">
                             <svg
                                 className="w-10 h-10 md:w-12 md:h-12 text-black ml-1"
                                 fill="currentColor"
@@ -115,7 +115,7 @@ export default function HeroVideo({ video }: Props) {
 
                 {/* Pulse Effect on Hover */}
                 <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute inset-0 bg-[#DAA520]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-aviva-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
             </section>
 

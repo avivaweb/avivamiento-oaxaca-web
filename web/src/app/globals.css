@@ -1,18 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --aviva-principal: #A5002F;
-  --aviva-fondo-acogedor: #F5F5DC;
-  --aviva-dorado: #DAA520;
-  --aviva-texto: #333333;
-  --aviva-blanco: #FAFAFA;
+  --color-aviva-red: #A5002F;
+  --color-aviva-wine: #4A0119;
+  --color-aviva-gold: #DAA520;
+  --color-aviva-gold-dark: #B8860B;
+  --color-aviva-bone: #ECE7DE;
+  --color-aviva-onyx: #1A1A1A;
+
+  --background: #000000;
+  --foreground: var(--color-aviva-bone);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
+  --color-aviva-red: var(--color-aviva-red);
+  --color-aviva-wine: var(--color-aviva-wine);
+  --color-aviva-gold: var(--color-aviva-gold);
+  --color-aviva-gold-dark: var(--color-aviva-gold-dark);
+  --color-aviva-bone: var(--color-aviva-bone);
+  --color-aviva-onyx: var(--color-aviva-onyx);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -33,7 +40,7 @@ body {
   h1 {
     @apply text-3xl font-bold text-[var(--aviva-principal)];
   }
-  
+
   @media (min-width: 768px) {
     h1 {
       @apply text-5xl;

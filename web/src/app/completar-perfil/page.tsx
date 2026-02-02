@@ -9,7 +9,7 @@ export default function CompleteProfilePage() {
     const [fullName, setFullName] = useState('');
     const [phone, setPhone] = useState('');
     const [zone, setZone] = useState('');
-    const [role, setRole] = useState('');
+    const [rol, setRol] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const router = useRouter();
@@ -43,7 +43,7 @@ export default function CompleteProfilePage() {
                     full_name: fullName,
                     phone: phone,
                     zone: zone,
-                    role: role,
+                    rol: rol,
                     updated_at: new Date().toISOString(),
                 });
 
@@ -54,7 +54,7 @@ export default function CompleteProfilePage() {
                 data: {
                     profile_completed: true,
                     full_name: fullName,
-                    role: role,
+                    rol: rol,
                 }
             });
 
@@ -142,14 +142,14 @@ export default function CompleteProfilePage() {
                         </div>
 
                         <div className="col-span-1 md:col-span-2">
-                            <label className="block text-sm font-medium text-[#DAA520] mb-2">
+                            <label className="block text-sm font-medium text-aviva-gold mb-2">
                                 Rol Ministerial
                             </label>
                             <select
                                 required
-                                value={role}
-                                onChange={(e) => setRole(e.target.value)}
-                                className="w-full bg-black border border-[#DAA520]/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#DAA520] focus:border-transparent transition-all appearance-none cursor-pointer"
+                                value={rol}
+                                onChange={(e) => setRol(e.target.value)}
+                                className="w-full bg-black border border-aviva-gold/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-aviva-gold focus:border-transparent transition-all appearance-none cursor-pointer"
                             >
                                 <option value="" disabled>Selecciona tu rol...</option>
                                 <option value="Lider de Celula">Líder de Célula</option>

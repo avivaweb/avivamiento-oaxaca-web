@@ -5,8 +5,8 @@ import SeriesCarousel from '@/components/media/SeriesCarousel';
 import MasonryGallery from '@/components/MasonryGallery';
 
 export const metadata: Metadata = {
-    title: 'Altar Media | Avivamiento Oaxaca',
-    description: 'Mensajes poderosos, series espirituales y momentos que marcan nuestra historia en el mover de Dios.',
+    title: 'REPOSITORIO | Instrucción y Diseño Original',
+    description: 'Archivo estratégico de instrucción y revelación para la activación del potencial humano y establecimiento de legado.',
 };
 
 export const revalidate = 3600; // Revalidate every hour
@@ -35,23 +35,23 @@ export default async function MediaPage() {
     });
 
     return (
-        <div className="min-h-screen bg-black">
+        <div className="min-h-screen bg-black text-[#ECE7DE] font-sans selection:bg-aviva-gold selection:text-black">
             {/* Hero Video Section */}
             {heroVideo && <HeroVideo video={heroVideo} />}
 
             {/* Series Section */}
             {(seriesMap.size > 0 || standaloneVideos.length > 0) && (
-                <div className="max-w-7xl mx-auto px-6 py-20">
+                <div className="max-w-7xl mx-auto px-6 py-24">
                     {/* Section Header */}
-                    <div className="mb-16 text-center">
-                        <span className="text-[#DAA520] font-bold tracking-[0.3em] uppercase text-sm block mb-3">
-                            📚 Biblioteca Espiritual
+                    <div className="mb-20 text-center lg:text-left">
+                        <span className="text-[#DAA520] font-bold tracking-[0.4em] uppercase text-[10px] block mb-4 opacity-70">
+                            Protocolos de Entrenamiento
                         </span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">
-                            Series de Mensajes
-                        </h2>
-                        <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-                            Enseñanzas profundas organizadas por temas. Cada serie es un camino hacia la transformación.
+                        <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter italic leading-none">
+                            ARCHIVO DE <br /><span className="text-aviva-gold">REVELACIÓN</span>
+                        </h1>
+                        <p className="text-gray-400 mt-6 max-w-3xl text-xl font-light leading-relaxed">
+                            Repositorio estratégico de instrucción diseñada para reformar la mentalidad y establecer un legado generacional a través de principios de alto impacto.
                         </p>
                     </div>
 
@@ -62,30 +62,27 @@ export default async function MediaPage() {
 
                     {/* Standalone Videos */}
                     {standaloneVideos.length > 0 && (
-                        <SeriesCarousel serieName="Mensajes Individuales" videos={standaloneVideos} />
+                        <SeriesCarousel serieName="Instrucción Individual" videos={standaloneVideos} />
                     )}
                 </div>
             )}
 
             {/* Empty State */}
             {messages.length === 0 && (
-                <div className="max-w-4xl mx-auto px-6 py-32 text-center">
+                <div className="max-w-4xl mx-auto px-6 py-40 text-center border border-white/5 rounded-3xl bg-aviva-onyx/20 mb-40">
                     <div className="mb-8">
-                        <svg className="w-24 h-24 text-gray-700 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        <svg className="w-20 h-20 text-gray-700 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                         </svg>
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">
-                        No hay mensajes sincronizados
+                    <h3 className="text-3xl font-black text-white mb-6 uppercase tracking-tighter italic">
+                        Repositorio en Sincronización
                     </h3>
-                    <p className="text-gray-400 text-lg mb-8">
-                        Los administradores pueden sincronizar contenido usando el botón de sincronización en el dashboard.
+                    <p className="text-gray-400 text-lg mb-8 font-light italic">
+                        El archivo de revelación se encuentra en proceso de indexación estratégica.
                     </p>
-                    <div className="inline-flex items-center gap-2 px-6 py-3 bg-gray-800 rounded-full text-gray-300 text-sm">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Accede al Dashboard → CRM → Sincronizar Altar Media
+                    <div className="inline-flex items-center gap-3 px-8 py-4 bg-white/5 rounded-2xl text-aviva-gold text-[10px] font-bold uppercase tracking-[0.3em]">
+                        Protocolo: Acceder al Centro de Gestión para actualizar contenidos
                     </div>
                 </div>
             )}
@@ -93,22 +90,22 @@ export default async function MediaPage() {
             {/* Divider */}
             {messages.length > 0 && (
                 <div className="max-w-7xl mx-auto px-6">
-                    <div className="border-t border-gray-800 my-16" />
+                    <div className="border-t border-white/5 my-24" />
                 </div>
             )}
 
             {/* Photo Gallery Section (Preserved from original) */}
-            <div className="bg-gradient-to-b from-black via-gray-900 to-black py-16">
+            <div className="bg-gradient-to-b from-black via-aviva-onyx/40 to-black py-24">
                 <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center mb-12">
-                        <span className="text-[#DAA520] font-bold tracking-[0.3em] uppercase text-sm block mb-3">
-                            📸 Momentos Destacados
+                    <div className="text-center mb-16">
+                        <span className="text-[#DAA520] font-bold tracking-[0.4em] uppercase text-[10px] block mb-4 opacity-70">
+                            Evidencia Territorial
                         </span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">
-                            Nuestra <span className="text-[#DAA520]">Galería</span>
+                        <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter italic">
+                            REGISTROS DE <span className="text-aviva-gold">CAMBIO</span>
                         </h2>
-                        <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-                            Un vistazo a lo que Dios está haciendo en medio de nosotros.
+                        <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-lg font-light italic">
+                            Un registro visual de la transformación y restauración de identidad en el territorio.
                         </p>
                     </div>
 

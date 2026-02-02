@@ -1,86 +1,64 @@
 // api/prisma/schema.prisma
 
-// Define el conector de base de datos que estamos usando (PostgreSQL)
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-// Define el cliente que genera las consultas (el motor de Prisma)
 generator client {
   provider = "prisma-client-js"
-  // Colocaremos los archivos del cliente en el nodo_módulos
 }
 
-// -----------------------------------------------------------
-// Modelos Mínimos del Core System (ya definidos en nuestro plan)
-// -----------------------------------------------------------
+enum Rol {
+  ADMIN
+  LIDER
+  SUPERVISOR
+}
 
-// 1. Entidad de Usuario/Autenticación
 model User {
-  id      String   @id @default(uuid())
-  email   String   @unique
-  password String
-  roles   String[] // Almacena los roles de liderazgo (Pastor Principal, Supervisor, etc.)
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  rol       Rol      @default(LIDER)
+  zona_id   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
-  // Relaciones (para evitar errores de esquema vacío)
-  Zone      Zone?      @relation(fields: [zoneId], references: [id])
-  zoneId    String?
-  
-  Supervisor Supervisor? @relation(fields: [supervisorId], references: [id])
-  supervisorId String?
-}
-
-// 2. Entidad Zonas (Nivel superior)
-model Zone {
-  id          String    @id @default(uuid())
-  name        String    @unique
-  pastorId    String   // ID del pastor de zona (relacion con User)
-  
-  // Relaciones
-  Supervisors Supervisor[]
-  User        User[]
-}
-
-// 3. Entidad Supervisores
-model Supervisor {
-  id          String    @id @default(uuid())
-  name        String
-  zoneId      String    @map("zone_id") // Enlace a la jerarquía superior
-  
-  // Relaciones
-  Zone        Zone      @relation(fields: [zoneId], references: [id])
-  Cells       Cell[]
-  User        User[]
-}
-
-// 4. Entidad Células
-model Cell {
-  id          String    @id @default(uuid())
-  name        String
-  supervisorId String    @map("supervisor_id") // Enlace a la jerarquía superior
-  
-  // Relaciones
-  Supervisor  Supervisor @relation(fields: [supervisorId], references: [id])
-  Reports     Report[]
-}
-
-// 5. Entidad Reportes
-model Report {
-  id              String    @id @default(uuid())
-  cellId          String    @map("cell_id")
-  attendanceCount Int
-  newConvertsCount Int
-  prayerRequests  String?
-  createdAt       DateTime  @default(now())
 
   // Relaciones
-  Cell            Cell      @relation(fields: [cellId], references: [id])
+  celulas   Celula[] @relation("LiderDeCelula")
 }
 
-// 6. Entidad Suscriptores
+model Celula {
+  id                   String           @id @default(uuid())
+  nombre               String
+  lider_id             String
+  dia_reunion          String
+  hora                 String
+  ubicacion_geografica String?
+  zona                 String
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  // Relaciones
+  lider                User             @relation("LiderDeCelula", fields: [lider_id], references: [id])
+  reportes             ReporteSemanal[]
+}
+
+model ReporteSemanal {
+  id                 String   @id @default(uuid())
+  celula_id          String
+  fecha              DateTime
+  asistencia_adultos Int      @default(0)
+  asistencia_ninos   Int      @default(0)
+  nuevos_invitados   Int      @default(0)
+  peticiones_oracion String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  // Relaciones
+  celula             Celula   @relation(fields: [celula_id], references: [id])
+}
+
 model Subscriber {
   id        String   @id @default(uuid())
   email     String   @unique
@@ -88,5 +66,5 @@ model Subscriber {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("subscriber") // <--- ¡CLAVE! Esto fuerza el nombre en la DB a minúsculas
+  @@map("subscriber")
 }

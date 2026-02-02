@@ -10,12 +10,12 @@ import GeneralPastorView from '@/components/dashboard/views/GeneralPastorView';
 export default function DashboardHomePage() {
     const { user } = useAuth();
 
-    const role = user?.role;
+    const rol = user?.rol;
 
     const renderView = () => {
-        if (!role) return null;
+        if (!rol) return null;
 
-        switch (role) {
+        switch (rol) {
             case 'CMAvivamiento':
                 return <ContentManagerView />;
             case 'Lider de Celula':
@@ -41,7 +41,7 @@ export default function DashboardHomePage() {
                     Visión General
                 </h1>
                 <p className="mt-2 text-gray-600">
-                    Bienvenido, {user?.name || 'Usuario'} <span className="text-[#DAA520] font-semibold">- {role || 'Cargando...'}</span>
+                    Bienvenido, {user?.name || 'Usuario'} <span className="text-[#DAA520] font-semibold">- {rol || 'Cargando...'}</span>
                 </p>
             </div>
 
