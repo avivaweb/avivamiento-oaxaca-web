@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { HiUsers, HiFire, HiMap, HiSparkles } from 'react-icons/hi2'
+import { useAuth } from '@/hooks/useAuth'
+import ContadorCosecha from './ContadorCosecha'
 
 interface MetricsData {
     cosechaTotal: number
@@ -10,20 +12,26 @@ interface MetricsData {
     zonaConquista: string
     evidenciasPoder: number
 }
-
 export default function MetricasDeReino() {
+    const { user } = useAuth()
     const [metrics, setMetrics] = useState<MetricsData | null>(null)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchMetrics = async () => {
+            if (!user) return
             try {
-                // 1. Fetch all reports to perform better aggregation
-                // In a production app with millions of records, we would use an edge function or a stored procedure.
-                // For "Pasion 2026" scale, direct query is fine for now.
-                const { data, error } = await supabase
+                const rol = user.rol
+                let query = supabase
                     .from('reportes_altar')
                     .select('nuevos_convertidos, zona, testimonio_destacado')
+
+                // Multi-role logic: If leader, filter by their ID
+                if (rol === 'Lider de Celula') {
+                    query = query.eq('lider_id', user.id)
+                }
+
+                const { data, error } = await query
 
                 if (error) throw error
 
@@ -76,7 +84,7 @@ export default function MetricasDeReino() {
         return () => {
             supabase.removeChannel(channel)
         }
-    }, [])
+    }, [user])
 
     const MetricCard = ({ title, value, icon: Icon, colorClass, progress }: {
         title: string,
@@ -127,35 +135,41 @@ export default function MetricasDeReino() {
     )
 
     return (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-            <MetricCard
-                title="Cosecha Total"
-                value={metrics?.cosechaTotal || 0}
-                icon={HiUsers}
-                colorClass="text-aviva-gold"
-                progress={metrics ? Math.min((metrics.cosechaTotal / 1000) * 100, 100) : 0} // Target 1000 for visual progress
-            />
-            <MetricCard
-                title="Altares Activos"
-                value={metrics?.altaresActivos || 0}
-                icon={HiFire}
-                colorClass="text-orange-500"
-                progress={metrics ? Math.min((metrics.altaresActivos / 100) * 100, 100) : 0} // Target 100 for visual progress
-            />
-            <MetricCard
-                title="Zona de Conquista"
-                value={metrics?.zonaConquista || '---'}
-                icon={HiMap}
-                colorClass="text-blue-500"
-                progress={85} // Dynamic enough? Let's keep it steady for vision
-            />
-            <MetricCard
-                title="Evidencias de Poder"
-                value={metrics?.evidenciasPoder || 0}
-                icon={HiSparkles}
-                colorClass="text-purple-500"
-                progress={metrics ? Math.min((metrics.evidenciasPoder / metrics.altaresActivos) * 100, 100) || 0 : 0}
-            />
+        <div className="space-y-8 w-full">
+            {/* Contador Global Hero Section */}
+            <ContadorCosecha />
+
+            {/* Grid de Sub-Métricas */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                <MetricCard
+                    title="Cosecha Total"
+                    value={metrics?.cosechaTotal || 0}
+                    icon={HiUsers}
+                    colorClass="text-aviva-gold"
+                    progress={metrics ? Math.min((metrics.cosechaTotal / 1000) * 100, 100) : 0} // Target 1000 for visual progress
+                />
+                <MetricCard
+                    title="Altares Activos"
+                    value={metrics?.altaresActivos || 0}
+                    icon={HiFire}
+                    colorClass="text-orange-500"
+                    progress={metrics ? Math.min((metrics.altaresActivos / 100) * 100, 100) : 0} // Target 100 for visual progress
+                />
+                <MetricCard
+                    title="Zona de Conquista"
+                    value={metrics?.zonaConquista || '---'}
+                    icon={HiMap}
+                    colorClass="text-blue-500"
+                    progress={85} // Dynamic enough? Let's keep it steady for vision
+                />
+                <MetricCard
+                    title="Evidencias de Poder"
+                    value={metrics?.evidenciasPoder || 0}
+                    icon={HiSparkles}
+                    colorClass="text-purple-500"
+                    progress={metrics ? Math.min((metrics.evidenciasPoder / metrics.altaresActivos) * 100, 100) || 0 : 0}
+                />
+            </div>
         </div>
     )
 }

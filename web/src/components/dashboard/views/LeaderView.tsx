@@ -50,21 +50,21 @@ export default function LeaderView() {
                     setProfile(profileData);
                 }
 
-                // Fetch metrics from celula_reports
+                // Fetch metrics from reportes_altar
                 const { data: reportsData, error: reportsError } = await supabase
-                    .from('celula_reports')
-                    .select('new_decisions, created_at')
-                    .eq('user_id', user.id)
-                    .order('created_at', { ascending: false });
+                    .from('reportes_altar')
+                    .select('nuevos_convertidos, creado_at')
+                    .eq('lider_id', user.id)
+                    .order('creado_at', { ascending: false });
 
                 if (reportsError) {
                     console.error('Error fetching reports:', reportsError);
                 } else if (reportsData) {
-                    const totalSouls = reportsData.reduce((sum, report) => sum + (report.new_decisions || 0), 0);
+                    const totalSouls = reportsData.reduce((sum, report) => sum + (report.nuevos_convertidos || 0), 0);
                     setMetrics({
                         totalSoulsWon: totalSouls,
                         totalReports: reportsData.length,
-                        lastReportDate: reportsData[0]?.created_at || null
+                        lastReportDate: reportsData[0]?.creado_at || null
                     });
                 }
             } catch (error) {

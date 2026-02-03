@@ -23,7 +23,7 @@ export default function Footer() {
                         </Link>
                         <p className="text-sm font-light leading-relaxed text-gray-300 text-pretty border-l-2 border-aviva-gold pl-4 italic">
                             <strong className="text-aviva-gold block mb-1 uppercase tracking-widest text-xs font-black">Nuestra Iglesia</strong>
-                            Un Altar para la Ciudad. Restaurando el diseño original a través de la Vida Zoé.
+                            Una familia de fe en Oaxaca dedicada a restaurar vidas y fortalecer la comunidad a través de la Vida Zoé.
                         </p>
                     </div>
 
@@ -61,17 +61,20 @@ export default function Footer() {
                             Enlaces
                         </h4>
                         <nav className="flex flex-col space-y-3 text-sm text-gray-300">
-                            <Link href="/" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group italic font-bold">
+                            <Link href="/" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group font-bold text-xs uppercase tracking-widest">
                                 <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Inicio
                             </Link>
-                            <Link href="/nosotros" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group italic font-bold">
+                            <Link href="/nosotros" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group font-bold text-xs uppercase tracking-widest">
                                 <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Iglesia
                             </Link>
-                            <Link href="/grupos-familiares" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group italic font-bold">
+                            <Link href="/grupos-familiares" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group font-bold text-xs uppercase tracking-widest">
                                 <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Grupos Familiares
                             </Link>
-                            <Link href="/media" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group italic font-bold">
+                            <Link href="/media" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group font-bold text-xs uppercase tracking-widest">
                                 <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Media
+                            </Link>
+                            <Link href="/donar" className="text-aviva-gold hover:text-white transition-colors duration-300 flex items-center gap-2 group font-black text-xs uppercase tracking-widest">
+                                <span className="w-0 group-hover:w-2 h-[1px] bg-white transition-all"></span> DONAR
                             </Link>
                         </nav>
                     </div>

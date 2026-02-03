@@ -22,41 +22,57 @@ export default function Header() {
                 <nav className="hidden lg:block">
                     <ul className="flex items-center space-x-8 text-sm font-medium tracking-wide">
                         <li>
-                            <Link href="/" className="hover:text-aviva-gold transition-colors duration-300 uppercase italic font-bold">
+                            <Link href="/" className="p-2 hover:text-aviva-gold transition-colors duration-300 uppercase font-bold text-xs tracking-widest text-white">
                                 Inicio
                             </Link>
                         </li>
                         <li>
-                            <Link href="/nosotros" className="hover:text-aviva-gold transition-colors duration-300 uppercase italic font-bold">
+                            <Link href="/nosotros" className="p-2 hover:text-aviva-gold transition-colors duration-300 uppercase font-bold text-xs tracking-widest">
                                 Iglesia
                             </Link>
                         </li>
                         <li>
-                            <Link href="/grupos-familiares" className="hover:text-aviva-gold transition-colors duration-300 uppercase italic font-bold">
+                            <Link href="/grupos-familiares" className="p-2 hover:text-aviva-gold transition-colors duration-300 uppercase font-bold text-xs tracking-widest">
                                 Grupos Familiares
                             </Link>
                         </li>
                         <li>
-                            <Link href="/media" className="hover:text-aviva-gold transition-colors duration-300 uppercase italic font-bold">
+                            <Link href="/media" className="p-2 hover:text-aviva-gold transition-colors duration-300 uppercase font-bold text-xs tracking-widest italic">
                                 Media
                             </Link>
                         </li>
 
+                        {/* GENEROSIDAD: Donar Button */}
+                        <li className="ml-4">
+                            <Link
+                                href="/donar"
+                                className="bg-aviva-gold text-black px-6 py-2 rounded-full font-black text-xs hover:bg-white transition-all shadow-[0_4px_15px_rgba(218,165,32,0.4)] uppercase tracking-widest block"
+                            >
+                                DONAR
+                            </Link>
+                        </li>
+
                         {/* ACCESS: Leadership CTA */}
-                        <li>
+                        <li className="ml-6 border-l border-white/10 pl-6">
                             <Link
                                 href="/dashboard"
-                                className="bg-transparent text-aviva-gold px-6 py-2 rounded-full font-black text-xs hover:bg-aviva-gold hover:text-black transition-all border-2 border-aviva-gold uppercase tracking-widest ml-4 shadow-[0_0_15px_rgba(218,165,32,0.2)] italic"
+                                className="text-aviva-bone/60 hover:text-aviva-gold transition-all text-[10px] font-bold uppercase tracking-[0.3em]"
                             >
-                                Ejército Celular
+                                Acceso Líderes
                             </Link>
                         </li>
                     </ul>
                 </nav>
 
-                {/* Mobile Menu Toggle (Simplified placeholder for ensuring structure) */}
-                <div className="lg:hidden">
-                    <button className="text-[#DAA520]">
+                {/* Mobile Menu Toggle */}
+                <div className="lg:hidden flex items-center gap-4">
+                    <Link
+                        href="/donar"
+                        className="bg-aviva-gold text-black px-4 py-2 rounded-full font-black text-[10px] uppercase tracking-widest shadow-lg"
+                    >
+                        DONAR
+                    </Link>
+                    <button className="text-aviva-gold p-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                         </svg>

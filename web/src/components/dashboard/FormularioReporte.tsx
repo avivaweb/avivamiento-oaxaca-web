@@ -10,7 +10,7 @@ import { HiCamera, HiCloudArrowUp, HiCheckCircle, HiXMark, HiArrowPath } from 'r
 // Esquema de validación alineado a la base de datos
 const reportSchema = z.object({
     nombre_altar: z.string().min(3, "El nombre es muy corto"),
-    zona: z.enum(["Jalpan", "Cuilápam", "Zaachila", "San Nicolás", "Cañada", "Centro", "Norte"]),
+    zona: z.enum(["Santa Cruz Xoxocotlán", "Centro Histórico", "San Felipe del Agua", "Jalpan", "Cuilápam", "Zaachila", "San Nicolás", "Cañada", "Norte"]),
     asistencia_total: z.number().min(1, "Debe haber al menos 1 asistente"),
     nuevos_convertidos: z.number().min(0),
     peticiones_oracion: z.number().min(0),
@@ -133,12 +133,14 @@ export default function FormularioReporte({ user_id }: { user_id: string }) {
                         {...register("zona")}
                         className="w-full bg-aviva-onyx border border-white/10 p-3 rounded-lg text-white focus:border-aviva-gold outline-none"
                     >
+                        <option value="Santa Cruz Xoxocotlán">Santa Cruz Xoxocotlán</option>
+                        <option value="Centro Histórico">Centro Histórico</option>
+                        <option value="San Felipe del Agua">San Felipe del Agua</option>
                         <option value="Jalpan">Jalpan</option>
                         <option value="Cuilápam">Cuilápam</option>
                         <option value="Zaachila">Zaachila</option>
                         <option value="San Nicolás">San Nicolás</option>
                         <option value="Cañada">Cañada</option>
-                        <option value="Centro">Centro</option>
                         <option value="Norte">Norte</option>
                     </select>
                 </div>
@@ -147,11 +149,23 @@ export default function FormularioReporte({ user_id }: { user_id: string }) {
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <label className="block text-xs text-gray-400 mb-1">Asistencia</label>
-                        <input type="number" {...register("asistencia_total", { valueAsNumber: true })} className="w-full bg-aviva-onyx border border-white/10 p-3 rounded-lg text-white" />
+                        <input
+                            type="number"
+                            inputMode="numeric"
+                            {...register("asistencia_total", { valueAsNumber: true })}
+                            className="w-full bg-aviva-onyx border border-white/10 p-3 rounded-lg text-white"
+                        />
+                        {errors.asistencia_total && <span className="text-red-500 text-[10px]">{errors.asistencia_total.message}</span>}
                     </div>
                     <div>
                         <label className="block text-xs text-aviva-gold mb-1">Nuevos (Cosecha)</label>
-                        <input type="number" {...register("nuevos_convertidos", { valueAsNumber: true })} className="w-full bg-aviva-onyx border border-white/10 p-3 rounded-lg text-white font-bold" />
+                        <input
+                            type="number"
+                            inputMode="numeric"
+                            {...register("nuevos_convertidos", { valueAsNumber: true })}
+                            className="w-full bg-aviva-onyx border border-white/10 p-4 rounded-lg text-white font-black text-xl text-center focus:border-aviva-gold outline-none ring-1 ring-aviva-gold/10"
+                        />
+                        {errors.nuevos_convertidos && <span className="text-red-500 text-[10px]">{errors.nuevos_convertidos.message}</span>}
                     </div>
                 </div>
 
@@ -222,25 +236,30 @@ export default function FormularioReporte({ user_id }: { user_id: string }) {
 
                 <button
                     disabled={loading}
-                    className="w-full bg-aviva-gold hover:bg-yellow-600 text-black font-black py-4 rounded-xl transition-all uppercase tracking-widest disabled:opacity-50 flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(218,165,32,0.2)]"
+                    className="w-full bg-aviva-gold hover:bg-yellow-600 text-black font-black py-4 rounded-xl transition-all uppercase tracking-widest disabled:opacity-50 flex flex-col items-center justify-center gap-1 group shadow-[0_0_20px_rgba(218,165,32,0.2)]"
                 >
                     {loading ? (
                         <>
-                            <HiArrowPath className="animate-spin" size={20} />
-                            <span>Sincronizando Gloria...</span>
+                            <HiArrowPath className="animate-spin text-black" size={24} />
+                            <span className="text-[10px] animate-pulse">Cargando Visión...</span>
                         </>
                     ) : (
                         <>
-                            <HiCloudArrowUp className="group-hover:translate-y-[-2px] transition-transform" size={20} />
-                            <span>Enviar Reporte de Altar</span>
+                            <div className="flex items-center gap-2">
+                                <HiCloudArrowUp className="group-hover:translate-y-[-2px] transition-transform" size={20} />
+                                <span>Enviar Reporte de Altar</span>
+                            </div>
                         </>
                     )}
                 </button>
 
                 {success && (
-                    <div className="mt-4 p-4 bg-green-900/20 border border-green-500/50 text-green-400 text-center rounded-xl text-xs flex items-center justify-center gap-2 animate-in fade-in slide-in-from-bottom-2">
-                        <HiCheckCircle size={16} />
-                        <span className="font-bold uppercase tracking-wider">¡Reporte Sincronizado en la Nube!</span>
+                    <div className="mt-4 p-5 bg-aviva-gold/10 border border-aviva-gold/50 text-aviva-gold text-center rounded-xl flex flex-col items-center justify-center gap-2 animate-in fade-in slide-in-from-bottom-2 shadow-[0_0_15px_rgba(218,165,32,0.1)]">
+                        <HiCheckCircle size={28} className="animate-bounce" />
+                        <div className="space-y-1">
+                            <p className="font-black uppercase tracking-tighter text-sm">¡Victoria registrada!</p>
+                            <p className="text-[10px] opacity-80 uppercase tracking-widest leading-tight">Tu reporte ha sido integrado al Mapa de Conquista.</p>
+                        </div>
                     </div>
                 )}
             </form>

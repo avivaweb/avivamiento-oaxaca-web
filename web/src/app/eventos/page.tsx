@@ -48,15 +48,6 @@ const EVENTS: Event[] = [
     description: 'Formación teológica y ministerial para líderes. Inscríbete al nuevo ciclo.',
     category: 'Academia',
     registerLink: 'https://wa.me/529514283375?text=Informaci%C3%B3n%20Academia%20de%20Reformadores'
-  },
-  {
-    id: '4',
-    title: 'Fiesta de Primicias - Zona Etla',
-    date: '2026-01-30',
-    time: '10:00 hrs',
-    location: 'Auditorio Avivamiento',
-    description: 'Reunión unida de acción de gracias por las primicias del año que comienza.',
-    category: 'Evento de Zona'
   }
 ];
 

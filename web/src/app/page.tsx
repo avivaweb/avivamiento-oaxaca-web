@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import { Suspense } from 'react'
 import MediaGallery from '@/components/media/MediaGallery'
@@ -45,16 +46,35 @@ export default async function Home() {
           className="mx-auto mb-8 h-auto drop-shadow-2xl"
         />
 
-        <h1 className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-none uppercase italic">
-          NUESTRA <span className="text-aviva-gold">IGLESIA</span>
+        <h1 className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-none uppercase italic text-pretty">
+          BIENVENIDOS <br /><span className="text-aviva-gold">A CASA</span>
         </h1>
-        <p className="text-xl md:text-3xl mb-10 font-bold text-balance text-aviva-gold drop-shadow-md leading-relaxed uppercase tracking-widest italic">
-          Un Altar para la <span className="text-white">Ciudad</span>
+        <p className="text-xl md:text-3xl mb-12 font-bold text-balance text-aviva-gold drop-shadow-md leading-relaxed uppercase tracking-widest italic">
+          Iglesia Avivamiento <span className="text-white">Oaxaca</span>
         </p>
-        <p className="text-lg md:text-xl mb-10 font-light text-balance text-aviva-bone/90 drop-shadow-md leading-relaxed">
-          Restaurando la identidad para establecer un <strong className="text-aviva-gold font-bold">Legado Generacional</strong>. <br />
-          Bienvenido a la activación de tu diseño a través de la Reforma Territorial.
-        </p>
+
+        {/* SOY NUEVO SECTION: Invitado UX */}
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 md:p-12 rounded-[2rem] mb-16 text-center max-w-3xl mx-auto shadow-2xl group hover:border-aviva-gold/30 transition-all duration-500">
+          <span className="text-aviva-gold font-bold tracking-[0.3em] text-[10px] uppercase mb-4 block">¿Es tu primera vez?</span>
+          <h2 className="text-2xl md:text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Queremos <span className="text-aviva-gold">Conocerte</span></h2>
+          <p className="text-aviva-bone/70 text-base md:text-lg mb-8 font-light leading-relaxed">
+            Eres más que un visitante, eres nuestro invitado de honor. Descubre cómo ser parte de nuestra familia y encontrar propósito en Dios.
+          </p>
+          <div className="flex flex-col md:flex-row justify-center gap-4">
+            <Link
+              href="/nosotros"
+              className="px-10 py-4 bg-white text-black font-black text-xs uppercase tracking-widest rounded-full hover:bg-aviva-gold transition-all shadow-lg"
+            >
+              Soy Nuevo
+            </Link>
+            <Link
+              href="/grupos-familiares"
+              className="px-10 py-4 border border-aviva-gold text-aviva-gold font-black text-xs uppercase tracking-widest rounded-full hover:bg-aviva-gold/10 transition-all"
+            >
+              Grupos Familiares
+            </Link>
+          </div>
+        </div>
 
         <CallToAction />
       </div>

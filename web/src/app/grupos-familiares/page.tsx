@@ -107,7 +107,7 @@ export default function AltaresDeGloriaPage() {
             GRUPOS <br /><span className="text-aviva-gold">FAMILIARES</span>
           </h1>
           <p className="text-xl md:text-3xl text-aviva-bone/80 max-w-4xl mx-auto leading-relaxed font-light italic">
-            "Nuestras <strong className="text-aviva-gold font-bold">Estaciones de Poder</strong>: El núcleo del Ejército Celular estableciendo modelos de transformación en cada familia de Oaxaca."
+            "Hogares donde experimentamos la <strong className="text-aviva-gold font-bold">Vida Zoé</strong>: Compartiendo en familia, creciendo en la Palabra y estableciendo el Reino de Dios en Oaxaca."
           </p>
           <div className="mt-16 flex justify-center gap-6">
             <button
@@ -196,8 +196,8 @@ export default function AltaresDeGloriaPage() {
                   <ChartBarIcon className="w-8 h-8 text-aviva-gold" />
                 </div>
                 <div>
-                  <h4 className="text-2xl font-black uppercase tracking-tighter italic mb-2">Desarrollo de Potencial</h4>
-                  <p className="text-gray-500 leading-relaxed">Nuestras estaciones de poder son incubadoras de liderazgo diseñadas para maximizar el impacto de cada individuo en su área de influencia.</p>
+                  <h4 className="text-2xl font-black uppercase tracking-tighter italic mb-2">Comunidad de Fe</h4>
+                  <p className="text-gray-500 leading-relaxed">Nuestros Grupos Familiares son espacios diseñados para fortalecer tu vida espiritual y encontrar una familia que camine contigo.</p>
                 </div>
               </div>
             </div>
