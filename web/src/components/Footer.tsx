@@ -21,9 +21,9 @@ export default function Footer() {
                                 className="object-contain"
                             />
                         </Link>
-                        <p className="text-sm font-light leading-relaxed text-gray-300 text-pretty border-l-2 border-aviva-gold pl-4">
-                            <strong className="text-aviva-gold block mb-1 uppercase tracking-widest text-xs">Pasión 2026</strong>
-                            Un mover de Dios llamado a avivar, transformar y reformar nuestra generación.
+                        <p className="text-sm font-light leading-relaxed text-gray-300 text-pretty border-l-2 border-aviva-gold pl-4 italic">
+                            <strong className="text-aviva-gold block mb-1 uppercase tracking-widest text-xs font-black">Nuestra Iglesia</strong>
+                            Un Altar para la Ciudad. Restaurando el diseño original a través de la Vida Zoé.
                         </p>
                     </div>
 
@@ -61,26 +61,17 @@ export default function Footer() {
                             Enlaces
                         </h4>
                         <nav className="flex flex-col space-y-3 text-sm text-gray-300">
-                            <Link href="/" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group">
+                            <Link href="/" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group italic font-bold">
                                 <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Inicio
                             </Link>
-                            <Link href="/nosotros" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group">
-                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Nosotros
+                            <Link href="/nosotros" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group italic font-bold">
+                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Iglesia
                             </Link>
-                            <Link href="/ministerios" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group">
-                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Ministerios
+                            <Link href="/grupos-familiares" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group italic font-bold">
+                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Grupos Familiares
                             </Link>
-                            <Link href="/grupos-familiares" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group">
-                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Altares Familiares
-                            </Link>
-                            <Link href="/eventos" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group">
-                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Eventos
-                            </Link>
-                            <Link href="/mensajes" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group">
-                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Mensajes
-                            </Link>
-                            <Link href="/blog" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group">
-                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Blog
+                            <Link href="/media" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group italic font-bold">
+                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Media
                             </Link>
                         </nav>
                     </div>

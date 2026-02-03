@@ -46,11 +46,14 @@ export default async function Home() {
         />
 
         <h1 className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-none uppercase italic">
-          POTENCIAL <span className="text-aviva-gold">ORIGINAL</span>
+          NUESTRA <span className="text-aviva-gold">IGLESIA</span>
         </h1>
-        <p className="text-xl md:text-3xl mb-10 font-light text-balance text-aviva-bone/90 drop-shadow-md leading-relaxed">
+        <p className="text-xl md:text-3xl mb-10 font-bold text-balance text-aviva-gold drop-shadow-md leading-relaxed uppercase tracking-widest italic">
+          Un Altar para la <span className="text-white">Ciudad</span>
+        </p>
+        <p className="text-lg md:text-xl mb-10 font-light text-balance text-aviva-bone/90 drop-shadow-md leading-relaxed">
           Restaurando la identidad para establecer un <strong className="text-aviva-gold font-bold">Legado Generacional</strong>. <br />
-          Bienvenido a la activación de tu diseño a través de Puntos de Conexión Territorial.
+          Bienvenido a la activación de tu diseño a través de la Reforma Territorial.
         </p>
 
         <CallToAction />
@@ -76,13 +79,13 @@ export default async function Home() {
       </section>
 
       <section className="text-center max-w-7xl w-full px-4 mx-auto mb-32">
-        <span className="text-aviva-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block opacity-70">Modelado Institucional</span>
-        <h2 className="text-4xl md:text-7xl font-black text-white mb-16 tracking-tighter uppercase italic">Cuatro Ejes de <span className="text-aviva-gold">Transformación</span></h2>
+        <span className="text-aviva-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block opacity-70 italic">Modelado Institucional</span>
+        <h2 className="text-4xl md:text-7xl font-black text-white mb-16 tracking-tighter uppercase italic">Grupos <span className="text-aviva-gold">Familiares</span></h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             { title: "Identidad", text: "Restauramos el diseño original del individuo para que opere en su máximo potencial." },
-            { title: "Legado", text: "Establecemos sistemas de vida (Altares) que trascienden generaciones y reforman familias." },
+            { title: "Legado", text: "Establecemos sistemas de vida (Altares Familiares) que trascienden generaciones y reforman familias." },
             { title: "Formación", text: "Entrenamiento de alto nivel en principios de gobierno, autoridad y desarrollo personal." },
             { title: "Expansión", text: "Despliegue territorial para establecer modelos de justicia y bienestar en cada zona." }
           ].map((item, index) => (

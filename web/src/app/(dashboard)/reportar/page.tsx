@@ -6,8 +6,8 @@ import { FireIcon, BeakerIcon, SparklesIcon, MapIcon } from '@heroicons/react/24
 import MapaWrapper from '@/components/dashboard/MapaWrapper';
 
 export const metadata = {
-    title: 'CENTRO DE GESTIÓN | Impacto Territorial',
-    description: 'Plataforma de gestión de impacto para líderes territoriales de Avivamiento.',
+    title: 'COSECHA Y DISCIPULADO | Centro de Mando',
+    description: 'Reporte de victorias, cosecha y testimonios del Ejército Celular.',
 };
 
 export default async function ReportarPage() {
@@ -36,12 +36,12 @@ export default async function ReportarPage() {
 
             <div className="relative max-w-7xl mx-auto px-4 py-12 lg:py-20">
                 <header className="mb-16 text-center lg:text-left">
-                    <p className="text-aviva-gold font-bold tracking-[0.4em] uppercase text-[10px] mb-4 animate-pulse">
-                        Gestión Estratégica
+                    <p className="text-aviva-gold font-bold tracking-[0.4em] uppercase text-[10px] mb-4 animate-pulse italic">
+                        Ejército Celular • Pasión 2026
                     </p>
                     <h1 className="text-5xl lg:text-8xl font-black tracking-tighter uppercase leading-none italic">
-                        CENTRO DE <br />
-                        <span className="text-aviva-gold">GESTIÓN</span>
+                        COSECHA Y <br />
+                        <span className="text-aviva-gold">DISCIPULADO</span>
                     </h1>
                 </header>
 
@@ -51,11 +51,11 @@ export default async function ReportarPage() {
                         <div>
                             <h2 className="text-3xl font-black text-white mb-6 flex items-center uppercase tracking-tighter italic">
                                 <FireIcon className="w-8 h-8 text-aviva-gold mr-4" />
-                                Directrices de Impacto
+                                Reporte de Victoria
                             </h2>
-                            <p className="text-gray-400 text-lg leading-relaxed mb-6 font-light">
-                                Estamos operando bajo el diseño de <span className="text-white font-bold">Vida Zoé</span>.
-                                Cada registro es una métrica de la expansión de nuestra influencia en el territorio.
+                            <p className="text-gray-400 text-lg leading-relaxed mb-6 font-light italic">
+                                Registra la <span className="text-white font-bold">Cosecha</span>, la <span className="text-white font-bold">Asistencia</span> y los <span className="text-white font-bold">Testimonios</span> de poder.
+                                Cada reporte es un avance territorial de nuestra Iglesia en Oaxaca.
                             </p>
                         </div>
 

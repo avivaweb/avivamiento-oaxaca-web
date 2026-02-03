@@ -104,10 +104,10 @@ export default function AltaresDeGloriaPage() {
             Estrategia de Territorio 2026
           </span>
           <h1 className="text-6xl md:text-9xl font-black mb-8 leading-none tracking-tighter uppercase italic">
-            DISEÑO Y <br /><span className="text-aviva-gold">LEGADO</span>
+            GRUPOS <br /><span className="text-aviva-gold">FAMILIARES</span>
           </h1>
           <p className="text-xl md:text-3xl text-aviva-bone/80 max-w-4xl mx-auto leading-relaxed font-light italic">
-            "No somos un evento, somos una <strong className="text-aviva-gold font-bold">Cultura Institucional</strong> estableciendo modelos de transformación en cada familia de Oaxaca."
+            "Nuestras <strong className="text-aviva-gold font-bold">Estaciones de Poder</strong>: El núcleo del Ejército Celular estableciendo modelos de transformación en cada familia de Oaxaca."
           </p>
           <div className="mt-16 flex justify-center gap-6">
             <button
@@ -142,7 +142,7 @@ export default function AltaresDeGloriaPage() {
                   onClick={() => scrollToForm(zone)}
                   className="inline-flex items-center text-xs font-bold tracking-[0.2em] uppercase text-aviva-gold group-hover:gap-4 transition-all"
                 >
-                  Identificar Territorio <span className="text-2xl ml-2">→</span>
+                  Unirse al Grupo <span className="text-2xl ml-2">→</span>
                 </button>
               </div>
             ))}
@@ -216,7 +216,7 @@ export default function AltaresDeGloriaPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">
-                  <h3 className="text-2xl font-black mb-12 text-center uppercase tracking-[0.4em] text-white italic">Protocolo de Registro</h3>
+                  <h3 className="text-2xl font-black mb-12 text-center uppercase tracking-[0.4em] text-white italic">Solicitud de Conexión</h3>
 
                   <div className="space-y-4">
                     <label className="block text-[10px] uppercase tracking-[0.4em] text-aviva-gold font-bold">Identidad del Liderazgo</label>

@@ -20,53 +20,33 @@ export default function Header() {
 
                 {/* NAVIGATION: Canon Order */}
                 <nav className="hidden lg:block">
-                    <ul className="flex items-center space-x-6 text-sm font-light tracking-wide">
+                    <ul className="flex items-center space-x-8 text-sm font-medium tracking-wide">
                         <li>
-                            <Link href="/" className="hover:text-[#DAA520] transition-colors duration-300 uppercase">
+                            <Link href="/" className="hover:text-aviva-gold transition-colors duration-300 uppercase italic font-bold">
                                 Inicio
                             </Link>
                         </li>
                         <li>
-                            <Link href="/nosotros" className="hover:text-[#DAA520] transition-colors duration-300 uppercase">
-                                Nosotros
+                            <Link href="/nosotros" className="hover:text-aviva-gold transition-colors duration-300 uppercase italic font-bold">
+                                Iglesia
                             </Link>
                         </li>
                         <li>
-                            <Link href="/grupos-familiares" className="hover:text-[#DAA520] transition-colors duration-300 uppercase">
-                                Altares Familiares
+                            <Link href="/grupos-familiares" className="hover:text-aviva-gold transition-colors duration-300 uppercase italic font-bold">
+                                Grupos Familiares
                             </Link>
                         </li>
                         <li>
-                            <Link href="/mensajes" className="hover:text-[#DAA520] transition-colors duration-300 uppercase">
-                                Mensajes
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/blog" className="hover:text-[#DAA520] transition-colors duration-300 uppercase">
-                                Blog
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/media" className="hover:text-[#DAA520] transition-colors duration-300 uppercase">
+                            <Link href="/media" className="hover:text-aviva-gold transition-colors duration-300 uppercase italic font-bold">
                                 Media
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/ministerios" className="hover:text-[#DAA520] transition-colors duration-300 uppercase">
-                                Ministerios
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/eventos" className="hover:text-[#DAA520] transition-colors duration-300 uppercase">
-                                Eventos
                             </Link>
                         </li>
 
                         {/* ACCESS: Leadership CTA */}
                         <li>
                             <Link
-                                href="/dashboard/ejercito-celular"
-                                className="bg-aviva-red text-aviva-bone px-5 py-2 rounded-full font-bold text-xs hover:bg-aviva-wine transition-all shadow-[0_0_15px_rgba(140,3,3,0.3)] hover:shadow-[0_0_20px_rgba(140,3,3,0.5)] uppercase tracking-wider ml-4 border-2 border-aviva-gold"
+                                href="/dashboard"
+                                className="bg-transparent text-aviva-gold px-6 py-2 rounded-full font-black text-xs hover:bg-aviva-gold hover:text-black transition-all border-2 border-aviva-gold uppercase tracking-widest ml-4 shadow-[0_0_15px_rgba(218,165,32,0.2)] italic"
                             >
                                 Ejército Celular
                             </Link>

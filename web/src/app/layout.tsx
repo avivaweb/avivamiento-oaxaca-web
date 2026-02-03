@@ -27,10 +27,10 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.avivamientooaxaca.com'),
   keywords: ["Vida Zoé", "Oaxaca", "Pasión 2026", "Identidad", "Potencial Humano", "Transformación Territorial", "Legado", "Diseño Original"],
   title: {
-    default: "Avivamiento | Transformación Territorial y Legado",
+    default: "Avivamiento | Un Altar para la Ciudad",
     template: "%s | Avivamiento"
   },
-  description: "Una organización de alto impacto dedicada a la restauración de la identidad humana y el desarrollo del potencial original. Transformando territorios a través del legado y la activación de propósito.",
+  description: "Nuestra Iglesia: Un Altar para la Ciudad. Una comunidad dedicada a la restauración de la identidad humana y el establecimiento de un legado generacional a través de Vida Zoé.",
   icons: {
     icon: "/favicon-aviva.png",
     apple: "/favicon-aviva.png",

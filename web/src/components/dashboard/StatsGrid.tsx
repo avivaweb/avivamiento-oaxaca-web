@@ -119,8 +119,8 @@ export default function StatsGrid() {
         <div className="space-y-6">
             {/* Filter Header */}
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 bg-[#1a1a1a] p-4 rounded-xl border border-white/5">
-                <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                    <span className="text-[#DAA520]">✦</span> Tablero de Control {selectedZone !== 'Todas' ? `(${selectedZone})` : 'Global'}
+                <h2 className="text-xl font-bold text-white flex items-center gap-2 italic uppercase tracking-tighter">
+                    <span className="text-aviva-gold">✦</span> Cosecha y Discipulado {selectedZone !== 'Todas' ? `(${selectedZone})` : 'Global'}
                 </h2>
                 <div className="flex items-center gap-3">
                     <FunnelIcon className="w-5 h-5 text-gray-400" />
@@ -139,7 +139,7 @@ export default function StatsGrid() {
             {/* Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard
-                    title="Total Almas"
+                    title="Cosecha Total"
                     value={stats.totalSouls}
                     icon={HeartIcon}
                     colorClass="text-[#DAA520]"

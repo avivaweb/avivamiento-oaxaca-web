@@ -66,7 +66,7 @@ export default function Sidebar() {
       items.push({ name: 'Paternidad', href: '/dashboard/paternidad', icon: ChatBubbleBottomCenterTextIcon });
       items.push({ name: 'Consolidación', href: '/dashboard/consolidacion', icon: UsersIcon });
       items.push({ name: 'Reportes', href: '/dashboard/reportes', icon: DocumentTextIcon });
-      items.push({ name: 'Estadísticas', href: '/dashboard/estadisticas', icon: ChartBarIcon });
+      items.push({ name: 'Cosecha y Discipulado', href: '/dashboard/estadisticas', icon: ChartBarIcon });
       items.push({ name: 'Curaduría', href: '/dashboard/curaduria', icon: PhotoIcon });
       items.push({ name: 'Agenda', href: '/dashboard/agenda', icon: CalendarIcon });
       items.push({ name: 'Configuración', href: '/dashboard/configuracion', icon: Cog6ToothIcon });
