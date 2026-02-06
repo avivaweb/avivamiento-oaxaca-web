@@ -40,8 +40,8 @@ export default async function ReportarPage() {
                         Ejército Celular • Pasión 2026
                     </p>
                     <h1 className="text-5xl lg:text-8xl font-black tracking-tighter uppercase leading-none italic">
-                        COSECHA Y <br />
-                        <span className="text-aviva-gold">DISCIPULADO</span>
+                        CRÓNICA DE <br />
+                        <span className="text-aviva-gold">AVANCE</span>
                     </h1>
                 </header>
 
@@ -54,8 +54,7 @@ export default async function ReportarPage() {
                                 Reporte de Victoria
                             </h2>
                             <p className="text-gray-400 text-lg leading-relaxed mb-6 font-light italic">
-                                Registra la <span className="text-white font-bold">Cosecha</span>, la <span className="text-white font-bold">Asistencia</span> y los <span className="text-white font-bold">Testimonios</span> de poder.
-                                Cada reporte es un avance territorial de nuestra Iglesia en Oaxaca.
+                                Donde registramos el crecimiento de la familia. Cada reporte es una evidencia de vida.
                             </p>
                         </div>
 

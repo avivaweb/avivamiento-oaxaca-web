@@ -51,7 +51,7 @@ export default async function MediaPage() {
                             ARCHIVO DE <br /><span className="text-aviva-gold">REVELACIÓN</span>
                         </h1>
                         <p className="text-gray-400 mt-6 max-w-3xl text-xl font-light leading-relaxed">
-                            Repositorio estratégico de instrucción diseñada para reformar la mentalidad y establecer un legado generacional a través de principios de alto impacto.
+                            Alimento para tu propósito. No son solo videos, es revelación para tu día a día.
                         </p>
                     </div>
 

@@ -107,7 +107,7 @@ export default function AltaresDeGloriaPage() {
             GRUPOS <br /><span className="text-aviva-gold">FAMILIARES</span>
           </h1>
           <p className="text-xl md:text-3xl text-aviva-bone/80 max-w-4xl mx-auto leading-relaxed font-light italic">
-            "Hogares donde experimentamos la <strong className="text-aviva-gold font-bold">Vida Zoé</strong>: Compartiendo en familia, creciendo en la Palabra y estableciendo el Reino de Dios en Oaxaca."
+            "Nuestra <strong className="text-aviva-gold font-bold">base de comunidad</strong>. Hogares donde experimentamos la Vida Zoé; no es una reunión, es familia compartiendo el propósito."
           </p>
           <div className="mt-16 flex justify-center gap-6">
             <button

@@ -50,7 +50,7 @@ export default async function Home() {
           BIENVENIDOS <br /><span className="text-aviva-gold">A CASA</span>
         </h1>
         <p className="text-xl md:text-3xl mb-12 font-bold text-balance text-aviva-gold drop-shadow-md leading-relaxed uppercase tracking-widest italic">
-          Iglesia Avivamiento <span className="text-white">Oaxaca</span>
+          Una familia, un diseño, <span className="text-white">una conquista</span>
         </p>
 
         {/* SOY NUEVO SECTION: Invitado UX */}
@@ -82,16 +82,16 @@ export default async function Home() {
       <section className="w-full max-w-5xl mx-auto px-4 mb-24 mt-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-aviva-onyx/40 border border-white/5 backdrop-blur-md p-10 rounded-2xl shadow-2xl">
           <div className="text-center md:text-left">
-            <h3 className="text-2xl font-black text-aviva-gold mb-2 uppercase tracking-tighter italic">Puntos de Activación</h3>
+            <h3 className="text-2xl font-black text-aviva-gold mb-2 uppercase tracking-tighter italic">Días de Reunión</h3>
             <p className="text-gray-400 mb-1">Encuentra tu lugar en el diseño estratégico.</p>
           </div>
           <div className="flex flex-col gap-6 text-center md:text-right">
             <div>
-              <p className="text-[10px] text-aviva-gold uppercase tracking-[0.3em] font-bold">Convocatoria General</p>
+              <p className="text-[10px] text-aviva-gold uppercase tracking-[0.3em] font-bold">Reunión General</p>
               <p className="text-2xl md:text-4xl font-black text-white tracking-tighter">DOMINGO 11:00 AM</p>
             </div>
             <div>
-              <p className="text-[10px] text-aviva-gold uppercase tracking-[0.3em] font-bold">Instrucción Estratégica</p>
+              <p className="text-[10px] text-aviva-gold uppercase tracking-[0.3em] font-bold">Reunión de Oración</p>
               <p className="text-2xl md:text-4xl font-black text-white tracking-tighter">MARTES 6:30 PM</p>
             </div>
           </div>
