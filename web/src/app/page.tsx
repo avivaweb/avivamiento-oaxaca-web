@@ -62,7 +62,7 @@ export default async function Home() {
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-4">
             <Link
-              href="/nosotros"
+              href="/iglesia"
               className="px-10 py-4 bg-white text-black font-black text-xs uppercase tracking-widest rounded-full hover:bg-aviva-gold transition-all shadow-lg"
             >
               Soy Nuevo
