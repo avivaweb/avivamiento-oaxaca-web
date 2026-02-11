@@ -24,16 +24,16 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center text-[#ECE7DE]">
       {/* Hero Image Section (Strategic Banner) */}
-      <div className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
+      <div className="relative w-full h-[80vh] md:h-[60vh] lg:h-[820px] overflow-hidden">
         <Image
           src="/hero_ene.png"
           alt="Avivamiento - Legado y Transformación"
           fill
           priority={true}
-          className="object-cover"
+          className="object-cover object-center"
         />
         {/* Gradient Overlay for navigation legibility and cinematic feel */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90" />
       </div>
 
       <div className="text-center max-w-4xl w-full px-4 mx-auto flex flex-col justify-center pt-10 relative z-10 -mt-20">

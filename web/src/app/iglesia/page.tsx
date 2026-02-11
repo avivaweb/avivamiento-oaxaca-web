@@ -13,17 +13,17 @@ export default function IglesiaPage() {
         <div className="min-h-screen bg-black text-[#ECE7DE] font-sans selection:bg-aviva-gold selection:text-black">
 
             {/* 1. HERO DE IDENTIDAD */}
-            <section className="relative w-full h-[85vh] overflow-hidden flex items-center justify-center">
+            <section className="relative w-full h-[80vh] md:h-[60vh] lg:h-[820px] overflow-hidden flex items-center justify-center">
                 {/* Background Image */}
                 <div className="absolute inset-0">
                     <Image
                         src="/hero_ene.png" // Placeholder, user to replace with specific worship image
                         alt="Congregación en adoración - Avivamiento Oaxaca"
                         fill
-                        className="object-cover opacity-60"
+                        className="object-cover object-center opacity-60"
                         priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90" />
                 </div>
 
                 <div className="relative z-10 text-center max-w-5xl px-4 mt-20">
