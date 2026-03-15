@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 export default function SubscriptionForm() {
     const [email, setEmail] = useState('')
@@ -45,22 +46,24 @@ export default function SubscriptionForm() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Tu email"
                     required
-                    className="w-full px-4 py-2 border border-aviva-bone/20 bg-aviva-onyx text-aviva-bone rounded-lg focus:outline-none focus:ring-2 focus:ring-aviva-gold"
+                    className="w-full px-4 py-3 bg-[#111111] border border-[#DAA520]/30 text-white placeholder:text-gray-500 rounded-lg focus:outline-none focus:border-[#DAA520] focus:ring-1 focus:ring-[#DAA520] transition-colors"
                 />
                 <input
                     type="tel"
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(e.target.value)}
                     placeholder="Número de WhatsApp (opcional)"
-                    className="w-full px-4 py-2 border border-aviva-bone/20 bg-aviva-onyx text-aviva-bone rounded-lg focus:outline-none focus:ring-2 focus:ring-aviva-gold"
+                    className="w-full px-4 py-3 bg-[#111111] border border-[#DAA520]/30 text-white placeholder:text-gray-500 rounded-lg focus:outline-none focus:border-[#DAA520] focus:ring-1 focus:ring-[#DAA520] transition-colors"
                 />
-                <button
+                <motion.button
+                    whileHover={{ scale: 1.02, backgroundColor: '#ffffff' }}
+                    whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={loading}
-                    className="bg-aviva-gold hover:bg-white text-black px-8 py-3 rounded-full transition-all shadow-xl hover:shadow-aviva-gold/20 font-black text-lg min-h-[48px] border border-aviva-bone/10 w-full md:w-auto transform hover:-translate-y-1"
+                    className="w-full md:w-auto px-8 py-3 bg-[#DAA520] text-black font-bold uppercase tracking-wider rounded-lg border border-[#DAA520] shadow-[0_0_15px_rgba(218,165,32,0.3)] min-h-[48px] transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                     {loading ? 'Procesando...' : 'Recibir Visión 2026'}
-                </button>
+                </motion.button>
             </form>
             {message && (
                 <p className="mt-4 text-sm text-[var(--aviva-blanco)]">

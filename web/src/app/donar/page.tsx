@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import { HeartIcon, ShieldCheckIcon, GlobeAltIcon, BanknotesIcon } from '@heroicons/react/24/outline';
+import { siteConfig } from '@/config/site';
 
 export default function DonatePage() {
     return (
@@ -87,7 +88,7 @@ export default function DonatePage() {
                                     Toda aportación es procesada de forma segura. Si requieres un recibo de deducibilidad o tienes dudas sobre tu donación, por favor contáctanos vía WhatsApp.
                                 </p>
                                 <Link
-                                    href="https://wa.me/529514283375"
+                                    href={`https://wa.me/${siteConfig.whatsapp.number}`}
                                     className="inline-block mt-6 text-aviva-gold font-bold text-xs uppercase tracking-widest hover:underline"
                                 >
                                     Contactar Administración →

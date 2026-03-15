@@ -35,7 +35,7 @@ export default function SermonFilters({
                     </div>
                     <input
                         type="text"
-                        className="block w-full pl-10 pr-3 py-2.5 border border-white/10 rounded-lg leading-5 bg-black/40 text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[var(--aviva-dorado)] focus:border-[var(--aviva-dorado)] sm:text-sm transition-all duration-200"
+                        className="block w-full pl-10 pr-3 py-3 border border-[#DAA520]/30 rounded-lg leading-5 bg-[#111111] text-white placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-[#DAA520] focus:border-[#DAA520] sm:text-sm transition-all duration-200"
                         placeholder="Buscar por título o palabra clave..."
                         value={searchTerm}
                         onChange={(e) => onSearchChange(e.target.value)}
@@ -50,7 +50,7 @@ export default function SermonFilters({
                     <select
                         value={selectedPastor}
                         onChange={(e) => onPastorChange(e.target.value)}
-                        className="block w-full pl-10 pr-10 py-2.5 text-base border-white/10 bg-black/40 text-white focus:outline-none focus:ring-[var(--aviva-dorado)] focus:border-[var(--aviva-dorado)] sm:text-sm rounded-lg appearance-none cursor-pointer hover:bg-black/60 transition-colors"
+                        className="block w-full pl-10 pr-10 py-3 text-base border border-[#DAA520]/30 bg-[#111111] text-white focus:outline-none focus:ring-1 focus:ring-[#DAA520] focus:border-[#DAA520] sm:text-sm rounded-lg appearance-none cursor-pointer hover:bg-[#1a1a1a] transition-colors"
                     >
                         <option value="">Filtrar por Pastor (Todos)</option>
                         {pastors.map((pastor) => (

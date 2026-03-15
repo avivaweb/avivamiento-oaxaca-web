@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Footer from '@/components/Footer';
 import { CalendarIcon, MapPinIcon, TicketIcon } from '@heroicons/react/24/outline';
 import { FaGoogle, FaWhatsapp } from 'react-icons/fa';
+import { siteConfig } from '@/config/site';
 
 // Event Type Definition
 interface Event {
@@ -28,7 +29,7 @@ const EVENTS: Event[] = [
     location: 'Auditorio Avivamiento',
     description: 'Tres días de impartición, adoración y palabra profética para activar el diseño de Dios en tu vida.',
     category: 'Congreso',
-    registerLink: 'https://wa.me/529514283375?text=Deseo%20registrarme%20al%20Congreso%20Pasi%C3%B3n%202026'
+    registerLink: `https://wa.me/${siteConfig.whatsapp.number}?text=Deseo%20registrarme%20al%20Congreso%20Pasi%C3%B3n%202026`
   },
   {
     id: '2',
@@ -47,7 +48,7 @@ const EVENTS: Event[] = [
     location: 'Aulas Avivamiento / Online',
     description: 'Formación teológica y ministerial para líderes. Inscríbete al nuevo ciclo.',
     category: 'Academia',
-    registerLink: 'https://wa.me/529514283375?text=Informaci%C3%B3n%20Academia%20de%20Reformadores'
+    registerLink: `https://wa.me/${siteConfig.whatsapp.number}?text=Informaci%C3%B3n%20Academia%20de%20Reformadores`
   }
 ];
 

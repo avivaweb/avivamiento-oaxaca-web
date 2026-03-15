@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import { FaWhatsapp, FaArrowRight, FaNewspaper, FaHandHoldingHeart, FaFileAlt } from 'react-icons/fa'
+import { siteConfig } from '@/config/site'
 
 export const metadata: Metadata = {
   title: 'Blog | Avivamiento Oaxaca',
@@ -123,7 +124,7 @@ export default function BlogPage() {
                   Recibe los comunicados oficiales y alertas importantes directamente en tu WhatsApp.
                 </p>
                 <a
-                  href="https://wa.me/529514283375?text=Hola%2C%20deseo%20suscribirme%20a%20las%20noticias%20de%20Avivamiento."
+                  href={`https://wa.me/${siteConfig.whatsapp.number}?text=Hola%2C%20deseo%20suscribirme%20a%20las%20noticias%20de%20Avivamiento.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block w-full text-center bg-white text-[#128C7E] font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors shadow-sm"

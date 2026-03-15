@@ -1,0 +1,152 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"status\":\"success\",\"count\":13,\"owned_count\":13,\"shared_count\":0,\"shared_by_me_count\":1,\"notebooks\":[{\"id\":\"488522e5-da35-4423-a62d-f2efcdfa1f7d\",\"title\":\"Visi\u00f3n, Misi\u00f3n y Valores del Avivamiento\",\"source_count\":11,\"url\":\"https://notebooklm.google.com/notebook/488522e5-da35-4423-a62d-f2efcdfa1f7d\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2025-11-17T21:31:33Z\",\"modified_at\":\"2026-02-01T03:56:35Z\"},{\"id\":\"bda46ca0-fc39-454e-8044-96f8b077736e\",\"title\":\"Notebook 1: Fundamentos y Doctrina (El Coraz\u00f3n)\",\"source_count\":6,\"url\":\"https://notebooklm.google.com/notebook/bda46ca0-fc39-454e-8044-96f8b077736e\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2026-01-10T15:37:50Z\",\"modified_at\":\"2026-02-01T03:56:35Z\"},{\"id\":\"a36dda2d-3ecf-4518-aef1-31bcb99a77c0\",\"title\":\"Identidad Visual y Doctrinal\",\"source_count\":3,\"url\":\"https://notebooklm.google.com/notebook/a36dda2d-3ecf-4518-aef1-31bcb99a77c0\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2026-02-01T02:09:24Z\",\"modified_at\":\"2026-02-01T03:19:10Z\"},{\"id\":\"e39a0125-161b-4e2c-b972-33be9acc23cb\",\"title\":\"Estrategia y Operaci\u00f3n \\\"Pasi\u00f3n 2026\\\"\",\"source_count\":5,\"url\":\"https://notebooklm.google.com/notebook/e39a0125-161b-4e2c-b972-33be9acc23cb\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2026-02-01T02:05:47Z\",\"modified_at\":\"2026-02-01T03:18:54Z\"},{\"id\":\"c0f9a1c0-1031-4471-bc75-0374b9e8dcc2\",\"title\":\"Notebook 3: Liderazgo y C\u00e9lulas (La Expansi\u00f3n)\",\"source_count\":6,\"url\":\"https://notebooklm.google.com/notebook/c0f9a1c0-1031-4471-bc75-0374b9e8dcc2\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2026-02-01T02:02:16Z\",\"modified_at\":\"2026-02-01T03:18:20Z\"},{\"id\":\"02c86b33-9c9e-4cdb-9862-15232c81d039\",\"title\":\"Notebook 2: Guerra Espiritual y Sanidad (El Escudo)\",\"source_count\":4,\"url\":\"https://notebooklm.google.com/notebook/02c86b33-9c9e-4cdb-9862-15232c81d039\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2026-02-01T02:00:45Z\",\"modified_at\":\"2026-02-01T03:18:06Z\"},{\"id\":\"e33fdac7-596d-40fe-8bd3-b444b45cf497\",\"title\":\"Notebook 4: Formaci\u00f3n Acad\u00e9mica y Familia (Crecimiento)\",\"source_count\":5,\"url\":\"https://notebooklm.google.com/notebook/e33fdac7-596d-40fe-8bd3-b444b45cf497\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2026-02-01T02:03:12Z\",\"modified_at\":\"2026-02-01T02:03:12Z\"},{\"id\":\"145185d6-8222-4906-8776-7e6b990b3b0f\",\"title\":\"SERMONES 2026\",\"source_count\":6,\"url\":\"https://notebooklm.google.com/notebook/145185d6-8222-4906-8776-7e6b990b3b0f\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2026-01-07T22:32:02Z\",\"modified_at\":\"2026-01-20T21:24:31Z\"},{\"id\":\"92b2e86d-4c04-40d1-b8c1-9d7a83fd65c7\",\"title\":\"METRICAS 2025 AVIVAMIENTO\",\"source_count\":5,\"url\":\"https://notebooklm.google.com/notebook/92b2e86d-4c04-40d1-b8c1-9d7a83fd65c7\",\"ownership\":\"owned\",\"is_shared\":true,\"created_at\":\"2026-01-10T14:55:22Z\",\"modified_at\":\"2026-01-10T15:54:59Z\"},{\"id\":\"49d18e5e-02ed-4159-bac0-f34affec8d77\",\"title\":\"SERMONES 2025\",\"source_count\":25,\"url\":\"https://notebooklm.google.com/notebook/49d18e5e-02ed-4159-bac0-f34affec8d77\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2026-01-04T04:42:50Z\",\"modified_at\":\"2026-01-10T15:52:50Z\"},{\"id\":\"b2d86857-b324-439d-a90a-68ae3aec5b55\",\"title\":\"Maestr\u00eda de Prompts y Agentes de IA Personalizados\",\"source_count\":10,\"url\":\"https://notebooklm.google.com/notebook/b2d86857-b324-439d-a90a-68ae3aec5b55\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2025-12-01T15:49:30Z\",\"modified_at\":\"2025-12-01T15:51:40Z\"},{\"id\":\"95d2deb1-87cf-40d2-851e-6c821020dd95\",\"title\":\"Manual para L\u00edderes de Grupos Celulares y Avance Pastoral\",\"source_count\":1,\"url\":\"https://notebooklm.google.com/notebook/95d2deb1-87cf-40d2-851e-6c821020dd95\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2025-09-18T23:55:50Z\",\"modified_at\":\"2025-09-18T23:55:51Z\"},{\"id\":\"e09443b4-b7b3-4ab6-8936-fc04e6d06ce4\",\"title\":\"10 Prompts para Im\u00e1genes con ChatGPT\",\"source_count\":1,\"url\":\"https://notebooklm.google.com/notebook/e09443b4-b7b3-4ab6-8936-fc04e6d06ce4\",\"ownership\":\"owned\",\"is_shared\":false,\"created_at\":\"2025-04-29T19:50:28Z\",\"modified_at\":\"2025-04-29T19:50:31Z\"}]}"
+      }
+    ],
+    "structuredContent": {
+      "status": "success",
+      "count": 13,
+      "owned_count": 13,
+      "shared_count": 0,
+      "shared_by_me_count": 1,
+      "notebooks": [
+        {
+          "id": "488522e5-da35-4423-a62d-f2efcdfa1f7d",
+          "title": "Visi\u00f3n, Misi\u00f3n y Valores del Avivamiento",
+          "source_count": 11,
+          "url": "https://notebooklm.google.com/notebook/488522e5-da35-4423-a62d-f2efcdfa1f7d",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2025-11-17T21:31:33Z",
+          "modified_at": "2026-02-01T03:56:35Z"
+        },
+        {
+          "id": "bda46ca0-fc39-454e-8044-96f8b077736e",
+          "title": "Notebook 1: Fundamentos y Doctrina (El Coraz\u00f3n)",
+          "source_count": 6,
+          "url": "https://notebooklm.google.com/notebook/bda46ca0-fc39-454e-8044-96f8b077736e",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2026-01-10T15:37:50Z",
+          "modified_at": "2026-02-01T03:56:35Z"
+        },
+        {
+          "id": "a36dda2d-3ecf-4518-aef1-31bcb99a77c0",
+          "title": "Identidad Visual y Doctrinal",
+          "source_count": 3,
+          "url": "https://notebooklm.google.com/notebook/a36dda2d-3ecf-4518-aef1-31bcb99a77c0",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2026-02-01T02:09:24Z",
+          "modified_at": "2026-02-01T03:19:10Z"
+        },
+        {
+          "id": "e39a0125-161b-4e2c-b972-33be9acc23cb",
+          "title": "Estrategia y Operaci\u00f3n \"Pasi\u00f3n 2026\"",
+          "source_count": 5,
+          "url": "https://notebooklm.google.com/notebook/e39a0125-161b-4e2c-b972-33be9acc23cb",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2026-02-01T02:05:47Z",
+          "modified_at": "2026-02-01T03:18:54Z"
+        },
+        {
+          "id": "c0f9a1c0-1031-4471-bc75-0374b9e8dcc2",
+          "title": "Notebook 3: Liderazgo y C\u00e9lulas (La Expansi\u00f3n)",
+          "source_count": 6,
+          "url": "https://notebooklm.google.com/notebook/c0f9a1c0-1031-4471-bc75-0374b9e8dcc2",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2026-02-01T02:02:16Z",
+          "modified_at": "2026-02-01T03:18:20Z"
+        },
+        {
+          "id": "02c86b33-9c9e-4cdb-9862-15232c81d039",
+          "title": "Notebook 2: Guerra Espiritual y Sanidad (El Escudo)",
+          "source_count": 4,
+          "url": "https://notebooklm.google.com/notebook/02c86b33-9c9e-4cdb-9862-15232c81d039",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2026-02-01T02:00:45Z",
+          "modified_at": "2026-02-01T03:18:06Z"
+        },
+        {
+          "id": "e33fdac7-596d-40fe-8bd3-b444b45cf497",
+          "title": "Notebook 4: Formaci\u00f3n Acad\u00e9mica y Familia (Crecimiento)",
+          "source_count": 5,
+          "url": "https://notebooklm.google.com/notebook/e33fdac7-596d-40fe-8bd3-b444b45cf497",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2026-02-01T02:03:12Z",
+          "modified_at": "2026-02-01T02:03:12Z"
+        },
+        {
+          "id": "145185d6-8222-4906-8776-7e6b990b3b0f",
+          "title": "SERMONES 2026",
+          "source_count": 6,
+          "url": "https://notebooklm.google.com/notebook/145185d6-8222-4906-8776-7e6b990b3b0f",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2026-01-07T22:32:02Z",
+          "modified_at": "2026-01-20T21:24:31Z"
+        },
+        {
+          "id": "92b2e86d-4c04-40d1-b8c1-9d7a83fd65c7",
+          "title": "METRICAS 2025 AVIVAMIENTO",
+          "source_count": 5,
+          "url": "https://notebooklm.google.com/notebook/92b2e86d-4c04-40d1-b8c1-9d7a83fd65c7",
+          "ownership": "owned",
+          "is_shared": true,
+          "created_at": "2026-01-10T14:55:22Z",
+          "modified_at": "2026-01-10T15:54:59Z"
+        },
+        {
+          "id": "49d18e5e-02ed-4159-bac0-f34affec8d77",
+          "title": "SERMONES 2025",
+          "source_count": 25,
+          "url": "https://notebooklm.google.com/notebook/49d18e5e-02ed-4159-bac0-f34affec8d77",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2026-01-04T04:42:50Z",
+          "modified_at": "2026-01-10T15:52:50Z"
+        },
+        {
+          "id": "b2d86857-b324-439d-a90a-68ae3aec5b55",
+          "title": "Maestr\u00eda de Prompts y Agentes de IA Personalizados",
+          "source_count": 10,
+          "url": "https://notebooklm.google.com/notebook/b2d86857-b324-439d-a90a-68ae3aec5b55",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2025-12-01T15:49:30Z",
+          "modified_at": "2025-12-01T15:51:40Z"
+        },
+        {
+          "id": "95d2deb1-87cf-40d2-851e-6c821020dd95",
+          "title": "Manual para L\u00edderes de Grupos Celulares y Avance Pastoral",
+          "source_count": 1,
+          "url": "https://notebooklm.google.com/notebook/95d2deb1-87cf-40d2-851e-6c821020dd95",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2025-09-18T23:55:50Z",
+          "modified_at": "2025-09-18T23:55:51Z"
+        },
+        {
+          "id": "e09443b4-b7b3-4ab6-8936-fc04e6d06ce4",
+          "title": "10 Prompts para Im\u00e1genes con ChatGPT",
+          "source_count": 1,
+          "url": "https://notebooklm.google.com/notebook/e09443b4-b7b3-4ab6-8936-fc04e6d06ce4",
+          "ownership": "owned",
+          "is_shared": false,
+          "created_at": "2025-04-29T19:50:28Z",
+          "modified_at": "2025-04-29T19:50:31Z"
+        }
+      ]
+    },
+    "isError": false
+  }
+}

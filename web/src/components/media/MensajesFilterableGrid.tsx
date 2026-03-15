@@ -6,6 +6,28 @@ import Image from 'next/image';
 import YouTubeModal from './YouTubeModal';
 import { PlayIcon } from '@heroicons/react/24/solid';
 
+const VideoThumbnail = ({ src, alt }: { src: string; alt: string }) => {
+    const [error, setError] = useState(false);
+
+    if (error || !src || src.includes('placeholder-')) {
+        return (
+            <div className="absolute inset-0 bg-gradient-to-br from-[#111] to-black flex items-center justify-center border border-white/5">
+                <Image src="/logo-aviva.png" alt="Avivamiento Logo" width={80} height={80} className="opacity-20 grayscale" />
+            </div>
+        );
+    }
+
+    return (
+        <Image
+            src={src}
+            alt={alt}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            onError={() => setError(true)}
+        />
+    );
+};
+
 interface MensajesFilterableGridProps {
     sermons: Sermon[];
 }
@@ -57,12 +79,7 @@ export default function MensajesFilterableGrid({ sermons }: MensajesFilterableGr
                                 className="relative aspect-video cursor-pointer overflow-hidden"
                                 onClick={() => setSelectedVideo(String(sermon.id))}
                             >
-                                <Image
-                                    src={sermon.thumbnailUrl || '/placeholder-video.jpg'}
-                                    alt={sermon.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
+                                <VideoThumbnail src={sermon.thumbnailUrl || ''} alt={sermon.title} />
                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
                                     <div className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                         <PlayIcon className="w-6 h-6 text-[#DAA520] ml-1" />

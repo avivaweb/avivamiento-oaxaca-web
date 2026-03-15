@@ -1,0 +1,25 @@
+# REPORTE DE LISTEZA DE PRODUCCIÓN (Pasión 2026) -> AVIVAMIENTO OAXACA
+Generado: Automáticamente tras Refactorización Integral
+Plataforma: Next.js 14+ App Router
+
+## ESTADO DEL BUILD PIPELINE
+[ ✓ ] Éxito del Build: La compilación se ejecutó sin errores `TypeScript` relacionados a los refactores de `siteConfig`. 
+[ ✓ ] Verificación de Sitemap Dinámico:  Se ha implementado a través de MetadataRoute `sitemap.ts` (`/sitemap.xml`) e indexado el Robot Tracking (`/robots.txt`) de acuerdo a las últimas guías de SEO moderno.
+[ ✓ ] Carga de Metadatos (OpenGraph & Twitter): Se ha vinculado dinámicamente con las etiquetas correspondientes con la tarjeta premium `og-image.jpg` referenciada por URL Absolutas.
+[ ✓ ] Carga de Estilos (Tailwind v4 & Framer Motion): Formularios, campos de entrada, paneles y galerías gozan ahora de los utilitarios de la paleta "Onyx & Gold", junto atributos interactivos de la UI en la sección de Subscripciones y Formularios.
+
+## ANALÍTICA PROTEGIDA (ENTORNOS SEGUROS)
+* Google Analytics (GA4): El rastreo a través del Tag `G-1R8W0K0X0T` ha sido abstraído al contenedor `process.env`.
+  - [ ✓ ] Comprobado: Sólo cuando se cuenta con `NEXT_PUBLIC_GA_ID` activo el DOM inyecta las etiquetas nativas.
+
+## COMPONENTES ESTANDARIZADOS ("Muerte de Código" eliminada)
+* `PastoralGrid.tsx`: Fallback Inteligente (Cruz Dorado Animada).
+* `YouTubeGalleryClient.tsx` y `MensajesFilterableGrid.tsx`: Componente `VideoThumbnail` nativo sin imágenes muertas/estáticas para casos de error.
+* `SupervisorView.tsx`: Map de Tablas Reales activadas sin comentarios duros.
+* Componentes de WhatsApp refactorizados exitosamente vía `siteConfig`.
+
+## SIGUIENTES PASOS PARA VERCEL DEPLOYMENT:
+1. Registrar la variable `NEXT_PUBLIC_GA_ID=G-1R8W0K0X0T` en los Settings de Producción.
+2. Hacer push a la rama _main_.
+
+Estado Final: READY FOR DEPLOYMENT.

@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import { FaWhatsapp, FaChild, FaFemale, FaMale, FaMusic, FaBookOpen, FaPray, FaFire } from 'react-icons/fa';
 import { GiMicrophone, GiDramaMasks } from 'react-icons/gi';
+import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
     title: 'Ministerios | Avivamiento Oaxaca',
@@ -77,7 +78,7 @@ const MINISTRIES = {
 const WhatsAppButton = ({ ministryName }: { ministryName: string }) => {
     // Replace with actual general WhatsApp number or specific ministry leads if available later.
     // Using the main number format for now.
-    const phoneNumber = "529514283375";
+    const phoneNumber = siteConfig.whatsapp.number;
     const message = encodeURIComponent(`Hola, deseo recibir información y conectarme con el ministerio de ${ministryName}.`);
     const link = `https://wa.me/${phoneNumber}?text=${message}`;
 

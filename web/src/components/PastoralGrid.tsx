@@ -1,4 +1,31 @@
+'use client';
+
 import Image from 'next/image';
+import { useState } from 'react';
+
+const FallbackAvatar = ({ src, alt }: { src: string; alt: string }) => {
+    const [error, setError] = useState(false);
+    const isPlaceholder = src.includes('placeholder-');
+
+    if (error || isPlaceholder || !src) {
+        return (
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1F2937] to-black flex items-center justify-center animate-pulse border border-[#DAA520]/20">
+                <span className="text-4xl text-[#DAA520] opacity-50 drop-shadow-md">✝</span>
+            </div>
+        );
+    }
+
+    return (
+        <Image
+            src={src}
+            alt={alt}
+            fill
+            className="object-cover"
+            onError={() => setError(true)}
+        />
+    );
+};
+
 
 const ZONES = [
     {
@@ -60,18 +87,7 @@ export default function PastoralGrid() {
                     {/* Dealer/Avatar Container */}
                     <div className="relative w-48 h-48 mb-6 rounded-full p-1 border-2 border-[#DAA520]/30 group-hover:border-[#DAA520] transition-colors duration-500">
                         <div className="w-full h-full rounded-full overflow-hidden relative bg-gray-200">
-                            {/* In a real scenario, use next/image. For now using a div fallback if image fails or placeholder */}
-                            <div className="absolute inset-0 bg-gray-300 flex items-center justify-center text-gray-500">
-                                <span className="text-4xl">✝</span>
-                            </div>
-                            {/* Un-comment when images are real
-                            <Image
-                                src={zone.image}
-                                alt={`Pastores ${zone.name}`}
-                                fill
-                                className="object-cover"
-                            />
-                            */}
+                            <FallbackAvatar src={zone.image} alt={`Pastores ${zone.name}`} />
                         </div>
                         {/* Authority Badge */}
                         <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#DAA520] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg whitespace-nowrap z-10">

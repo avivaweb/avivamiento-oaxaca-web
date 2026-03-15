@@ -6,6 +6,29 @@ import { Sermon } from '@/types/sermon';
 import Image from 'next/image';
 import YouTubeModal from './YouTubeModal';
 
+const VideoThumbnail = ({ src, alt }: { src: string; alt: string }) => {
+    const [error, setError] = useState(false);
+
+    if (error || !src || src.includes('placeholder-')) {
+        return (
+            <div className="absolute inset-0 bg-gradient-to-br from-[#111] to-black flex items-center justify-center border border-white/5">
+                <Image src="/logo-aviva.png" alt="Avivamiento Logo" width={80} height={80} className="opacity-20 grayscale" />
+            </div>
+        );
+    }
+
+    return (
+        <Image
+            src={src}
+            alt={alt}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            onError={() => setError(true)}
+        />
+    );
+};
+
 interface YouTubeGalleryClientProps {
     sermons: Sermon[];
 }
@@ -41,13 +64,7 @@ export default function YouTubeGalleryClient({ sermons }: YouTubeGalleryClientPr
                                 onClick={() => setSelectedVideo(String(sermon.id))}
                             >
                                 {/* Thumbnail */}
-                                <Image
-                                    src={sermon.thumbnailUrl || '/placeholder-video.jpg'} // Fallback should be handled
-                                    alt={sermon.title}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                />
+                                <VideoThumbnail src={sermon.thumbnailUrl || ''} alt={sermon.title} />
 
                                 {/* Play Button Overlay */}
                                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">

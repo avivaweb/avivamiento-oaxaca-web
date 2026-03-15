@@ -27,29 +27,35 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.avivamientooaxaca.com'),
   keywords: ["Vida Zoé", "Oaxaca", "Pasión 2026", "Identidad", "Potencial Humano", "Transformación Territorial", "Legado", "Diseño Original"],
   title: {
-    default: "Iglesia Avivamiento Oaxaca | Grupos Familiares y Servicios",
+    default: "Avivamiento Oaxaca | Restaurando el Diseño Original",
     template: "%s | Avivamiento Oaxaca"
   },
-  description: "Bienvenidos a la Iglesia Avivamiento en Oaxaca. Somos una comunidad de fe enfocada en la familia y la restauración de vidas a través de la Vida Zoé. Únete a nuestros Grupos Familiares y servicios dominicales.",
+  description: "Descubre tu potencial y únete a un movimiento de transformación territorial. El tiempo de activar tu legado ha llegado.",
   icons: {
     icon: "/favicon-aviva.png",
     apple: "/favicon-aviva.png",
   },
   openGraph: {
-    title: "Avivamiento | Restaurando el Diseño Original",
+    title: "Avivamiento Oaxaca | Restaurando el Diseño Original",
     description: "Descubre tu potencial y únete a un movimiento de transformación territorial. El tiempo de activar tu legado ha llegado.",
     url: 'https://www.avivamientooaxaca.com',
-    siteName: 'Avivamiento',
+    siteName: 'Avivamiento Oaxaca',
     locale: 'es_MX',
     type: 'website',
     images: [
       {
-        url: 'https://www.avivamientooaxaca.com/logo-aviva.png',
+        url: 'https://www.avivamientooaxaca.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Avivamiento - Legado y Transformación',
+        alt: 'Avivamiento Oaxaca - Legado y Transformación',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Avivamiento Oaxaca | Restaurando el Diseño Original",
+    description: "Descubre tu potencial y únete a un movimiento de transformación territorial. El tiempo de activar tu legado ha llegado.",
+    images: ['https://www.avivamientooaxaca.com/og-image.jpg'],
   },
 };
 
@@ -63,19 +69,23 @@ export default function RootLayout({
       <head>
         {/* CRÍTICO: PIXELES EN EL HEAD PARA CARGA RÁPIDA */}
         {/* 1. GA4 (Google Analytics) */}
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-1R8W0K0X0T"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-1R8W0K0X0T');
-          `}
-        </Script>
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+            `}
+            </Script>
+          </>
+        )}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

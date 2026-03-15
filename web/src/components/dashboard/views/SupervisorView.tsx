@@ -16,6 +16,13 @@ interface SupervisorStats {
     total_attendance: number;
     growth_rate: number;
     attention_needed: { nombre: string; id: string }[];
+    recent_reports?: {
+        id: string;
+        leader_name: string;
+        cell_name: string;
+        status: string;
+        date: string;
+    }[];
 }
 
 export default function SupervisorView() {
@@ -148,12 +155,26 @@ export default function SupervisorView() {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {/* Placeholder hasta tener endpoint de lista de reportes */}
-                            <tr>
-                                <td colSpan={4} className="px-6 py-8 text-center text-gray-500 text-sm">
-                                    <p>Para ver el desglose detallado, por favor consulte la sección de "Reportes" en el menú lateral.</p>
-                                </td>
-                            </tr>
+                            {stats?.recent_reports && stats.recent_reports.length > 0 ? (
+                                stats.recent_reports.map((report) => (
+                                    <tr key={report.id} className="hover:bg-gray-50 transition-colors">
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{report.leader_name}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.cell_name}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${report.status.toLowerCase() === 'recibido' || report.status.toLowerCase() === 'aprobado' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                                                {report.status}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(report.date).toLocaleDateString('es-MX')}</td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan={4} className="px-6 py-8 text-center text-gray-500 text-sm">
+                                        <p>No hay reportes recientes disponibles para tu sector.</p>
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>
