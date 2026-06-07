@@ -87,21 +87,23 @@ export async function syncYouTubeContent(): Promise<SyncResult> {
 
         console.log(`[YouTube Sync] Found ${videos.length} videos to process`);
 
-        // 3. Initialize Supabase client (server-side)
+        // 3. Initialize Supabase client (server-side con SERVICE_ROLE_KEY para bypass de RLS)
         const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+        // SEGURIDAD: usar SERVICE_ROLE_KEY para escrituras desde el servidor
+        // NUNCA exponer esta clave en el cliente
+        const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-        if (!supabaseUrl || !supabaseKey) {
+        if (!supabaseUrl || !supabaseServiceKey) {
             return {
                 success: false,
                 synced: 0,
                 updated: 0,
-                errors: ['Configuración de Supabase faltante'],
+                errors: ['Configuración de Supabase faltante. Verifica SUPABASE_SERVICE_ROLE_KEY en variables de entorno.'],
                 message: 'Error de configuración de base de datos'
             };
         }
 
-        const supabase = createClient(supabaseUrl, supabaseKey);
+        const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
         // 4. Process and upsert each video
         const errors: string[] = [];

@@ -5,6 +5,7 @@ import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 import FloatingServiceButton from "@/components/FloatingServiceButton";
+import { siteConfig } from "@/config/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,11 +70,11 @@ export default function RootLayout({
       <head>
         {/* CRÍTICO: PIXELES EN EL HEAD PARA CARGA RÁPIDA */}
         {/* 1. GA4 (Google Analytics) */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
+        {siteConfig.analytics.gaId && (
           <>
             <Script
               async
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.analytics.gaId}`}
               strategy="afterInteractive"
             />
             <Script id="google-analytics" strategy="afterInteractive">
@@ -81,7 +82,7 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              gtag('config', '${siteConfig.analytics.gaId}');
             `}
             </Script>
           </>
@@ -118,7 +119,7 @@ export default function RootLayout({
                 },
                 "contactPoint": {
                   "@type": "ContactPoint",
-                  "telephone": "+52-951-428-3375",
+                  "telephone": siteConfig.contact.phone,
                   "contactType": "leadership office",
                   "areaServed": "MX",
                   "availableLanguage": "Spanish"

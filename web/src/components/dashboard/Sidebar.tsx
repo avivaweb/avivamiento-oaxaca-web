@@ -39,6 +39,7 @@ export default function Sidebar() {
     }
 
     if (rol === 'Lider de Celula') {
+      items.push({ name: 'Reporte Rápido', href: '/dashboard/lider', icon: HandRaisedIcon });
       items.push({ name: 'Discipulado', href: '/dashboard/discipulado', icon: AcademicCapIcon });
       items.push({ name: 'Reportar Asistencia', href: '/dashboard/mis-celulas/reportar', icon: HandRaisedIcon });
     }

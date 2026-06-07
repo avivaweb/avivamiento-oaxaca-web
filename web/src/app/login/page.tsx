@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -14,10 +14,11 @@ export default function LoginPage() {
   const router = useRouter();
 
   // Redirigir si ya está autenticado
-  if (isAuthenticated) {
-    router.push('/reportar');
-    return null;
-  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/dashboard/curaduria');
+    }
+  }, [isAuthenticated, router]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -26,33 +27,34 @@ export default function LoginPage() {
 
     try {
       await login(email, password);
-      // Obtener URL de redirección si existe
-      const searchParams = new URLSearchParams(window.location.search);
-      const redirectUrl = searchParams.get('redirect') || '/reportar';
-      router.push(redirectUrl);
+      // La redirección ahora ocurre automáticamente gracias al useEffect superior
+      // o dentro del AuthContext
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al iniciar sesión');
-    } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F5F5DC] px-4">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
+    <div className="min-h-screen flex items-center justify-center bg-black relative px-4 overflow-hidden">
+      {/* Background layers */}
+      <div className="absolute inset-0 bg-gradient-to-b from-aviva-wine/20 via-black to-black" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(218,165,32,0.05)_0%,transparent_70%)]" />
+
+      <div className="relative z-10 max-w-md w-full space-y-8 glass-light p-10 rounded-3xl border border-white/5 shadow-gold-subtle">
         {/* Logo */}
         <div className="text-center">
           <Image
             src="/logo-aviva.png"
             alt="AVIVA Logo"
-            width={120}
-            height={120}
-            className="mx-auto"
+            width={100}
+            height={100}
+            className="mx-auto drop-shadow-2xl animate-float"
           />
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">
-            Dashboard de Liderazgo
+          <h2 className="mt-8 text-3xl font-black text-white uppercase tracking-tight leading-none italic">
+            Centro de <span className="text-gradient-gold">Comando</span>
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-3 text-xs uppercase tracking-widest text-gray-500 font-light">
             Inicia sesión para acceder al sistema
           </p>
         </div>
@@ -60,14 +62,14 @@ export default function LoginPage() {
         {/* Formulario */}
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+            <div className="bg-red-950/40 border border-red-500/30 text-red-400 p-4 rounded-2xl text-sm font-medium">
               {error}
             </div>
           )}
 
-          <div className="space-y-4">
+          <div className="space-y-5">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-xs uppercase tracking-[0.2em] text-aviva-gold/80 font-bold ml-1 mb-2">
                 Correo Electrónico
               </label>
               <input
@@ -78,13 +80,13 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#A5002F] focus:border-[#A5002F]"
+                className="w-full bg-black/60 border border-white/10 rounded-2xl p-4 focus:border-aviva-gold/50 focus:bg-black focus:outline-none transition-all placeholder-white/25 text-white font-light text-base"
                 placeholder="tu@email.com"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-xs uppercase tracking-[0.2em] text-aviva-gold/80 font-bold ml-1 mb-2">
                 Contraseña
               </label>
               <input
@@ -95,7 +97,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#A5002F] focus:border-[#A5002F]"
+                className="w-full bg-black/60 border border-white/10 rounded-2xl p-4 focus:border-aviva-gold/50 focus:bg-black focus:outline-none transition-all placeholder-white/25 text-white font-light text-base"
                 placeholder="••••••••"
               />
             </div>
@@ -105,14 +107,14 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#A5002F] hover:bg-[#8A0026] text-white font-bold py-3 px-8 rounded-full focus:outline-none focus:shadow-outline transition-all duration-300 shadow-lg hover:shadow-[#A5002F]/20 transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-4 bg-aviva-gold hover:bg-white text-black font-black uppercase tracking-[0.2em] transition-all duration-300 rounded-2xl shadow-[0_0_30px_rgba(218,165,32,0.15)] hover:shadow-[0_0_50px_rgba(218,165,32,0.3)] disabled:opacity-50 disabled:cursor-not-allowed italic text-base"
             >
-              {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+              {loading ? 'Iniciando sesión...' : 'Entrar al Altar'}
             </button>
           </div>
 
-          <div className="text-center">
-            <a href="/" className="text-sm text-[#A5002F] hover:underline">
+          <div className="text-center pt-2">
+            <a href="/" className="text-[10px] text-aviva-gold/60 hover:text-aviva-gold uppercase tracking-[0.2em] font-bold transition-colors">
               Volver al sitio principal
             </a>
           </div>

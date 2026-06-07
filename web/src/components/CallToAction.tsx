@@ -1,21 +1,23 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { siteConfig } from '@/config/site'
 
 export default function CallToAction() {
     return (
-        <div className="my-8 text-center p-6 bg-aviva-bone/10 rounded-xl backdrop-blur-sm border border-aviva-bone/20 shadow-xl">
-            <h2 className="text-2xl md:text-3xl font-bold text-aviva-bone mb-3 uppercase tracking-tighter">
-                ESTABLECE UN ALTAR EN TU CASA
-            </h2>
-            <p className="text-lg text-aviva-gold font-bold mb-6 max-w-2xl mx-auto">
-                No es una reunión. Es la manifestación de <span className="text-white">Vida Zoé</span> en tu hogar. <br />
-                Únete a los 1,000 Altares Familiares de Pasión 2026.
-            </p>
+        <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="inline-block mx-auto mt-4 mb-8"
+        >
             <Link
-                href="/grupos-familiares"
-                className="inline-block bg-aviva-gold text-black font-black text-xl py-4 px-12 rounded-full min-h-[48px] border border-aviva-bone/20 hover:bg-white transition-all transform hover:scale-105 shadow-2xl hover:shadow-aviva-gold/40 uppercase tracking-widest"
+                href={`https://wa.me/${siteConfig.whatsapp.number}?text=Hola,%20quiero%20conocer%20el%20diseño%20original%20de%20mi%20vida`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 md:px-12 py-4 md:py-5 bg-black border border-[#DAA520] text-[#DAA520] font-black text-xs md:text-sm uppercase tracking-widest rounded-full hover:bg-[#DAA520]/10 transition-colors shadow-[0_0_20px_rgba(218,165,32,0.15)] hover:shadow-[0_0_30px_rgba(218,165,32,0.3)] backdrop-blur-sm"
             >
-                Unirse a un Altar
+                Conecta con el Diseño Original
             </Link>
-        </div>
+        </motion.div>
     )
 }

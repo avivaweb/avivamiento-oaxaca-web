@@ -40,33 +40,82 @@ export default function IglesiaPage() {
                 </div>
             </section>
 
-            {/* 2. RESEÑA HISTÓRICA */}
-            <section className="py-24 px-6 relative">
-                <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-                    <div className="space-y-8">
-                        <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter italic leading-tight">
-                            Un Mover Nacido en el <span className="text-aviva-gold">Corazón de Dios</span>
-                        </h2>
-                        <div className="space-y-6 text-lg text-gray-400 font-light leading-relaxed text-justify">
-                            <p>
-                                A finales de octubre de 2014, en la sala de una casa, surgió un mover divino que no nació de la voluntad humana, sino del diseño eterno del Padre. Sin recursos visibles pero con una fe inquebrantable, dimos los primeros pasos hacia lo que hoy es una plataforma de transformación territorial.
-                            </p>
-                            <p>
-                                El milagro de <strong className="text-aviva-gold font-bold">Rehoboth</strong> permanece como testimonio fundacional: un lugar levantado por fe en una sola semana, desafiando toda lógica y demostrando que cuando Dios da la visión, Él provee la provisión.
-                            </p>
-                            <p>
-                                No contamos nuestra historia en números, sino en fidelidad. Han sido 11 años de ver la Gloria de Dios manifestada, no como un evento, sino como una cultura de vida que ha reformado familias y activado destinos.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="relative h-[600px] w-full bg-white/5 rounded-[2rem] border border-white/10 overflow-hidden group">
-                        <div className="absolute inset-0 bg-aviva-gold/10 group-hover:bg-transparent transition-all duration-500" />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <p className="text-aviva-gold font-black opacity-20 text-[120px] -rotate-12 italic tracking-tighter mix-blend-overlay">2014</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      {/* 2. RESEÑA HISTÓRICA: EL TESTIMONIO DE 11 AÑOS */}
+      <section className="py-32 px-6 relative bg-[#050505]">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-aviva-gold/5 via-black to-black" />
+        
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="text-center mb-24">
+            <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter italic leading-tight">
+              Un Mover Nacido en el <span className="text-aviva-gold">Corazón de Dios</span>
+            </h2>
+            <div className="w-24 h-1 bg-aviva-gold mx-auto mt-8 opacity-50" />
+          </div>
+
+          <div className="space-y-16">
+            {/* INTRODUCCIÓN */}
+            <div className="group border-l-2 border-white/10 pl-8 md:pl-12 hover:border-aviva-gold transition-colors duration-500 relative">
+              <div className="absolute w-4 h-4 rounded-full bg-black border-2 border-white/20 -left-[9px] top-2 group-hover:border-aviva-gold group-hover:bg-aviva-gold transition-all shadow-[0_0_15px_rgba(218,165,32,0.5)]" />
+              <span className="text-aviva-gold font-bold tracking-[0.3em] uppercase text-xs mb-2 block">El Inicio (2014)</span>
+              <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic mb-4">El Sueño en una Sala</h3>
+              <p className="text-lg text-gray-400 font-light leading-relaxed">
+                Todo comenzó con un sueño a finales de 2014. No en un gran edificio, sino en la sala de una casa, con unos pocos amigos y una fe inmensa. Desde ese primer momento, supimos lo que queríamos: edificar una casa donde el Espíritu Santo fuese la Persona más amada. ¡Él es todo!
+              </p>
+            </div>
+
+            {/* AÑOS 1 a 5 */}
+            <div className="group border-l-2 border-white/10 pl-8 md:pl-12 hover:border-aviva-gold transition-colors duration-500 relative">
+              <div className="absolute w-4 h-4 rounded-full bg-black border-2 border-white/20 -left-[9px] top-2 group-hover:border-aviva-gold group-hover:bg-aviva-gold transition-all" />
+              <span className="text-aviva-gold font-bold tracking-[0.3em] uppercase text-xs mb-2 block">Años 1 al 5</span>
+              <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic mb-4">La Unción y la Raíz</h3>
+              <p className="text-lg text-gray-400 font-light leading-relaxed">
+                Y Él nos respondió. Vimos el río de Dios desatarse en sanidad, salvación y milagros. Del "Honor al Espíritu Santo" a nuestro "Jubileo" (ciclo de aprobación). Escuchamos el grito profético "¡Tiempo de Dar a Luz!" y para el quinto año, estábamos en aceleración, tomando la promesa para ir por más territorio.
+              </p>
+            </div>
+
+            {/* AÑO 6 */}
+            <div className="group border-l-2 border-white/10 pl-8 md:pl-12 hover:border-aviva-gold transition-colors duration-500 relative">
+              <div className="absolute w-4 h-4 rounded-full bg-black border-2 border-white/20 -left-[9px] top-2 group-hover:border-aviva-gold group-hover:bg-aviva-gold transition-all shadow-[0_0_15px_rgba(218,165,32,0.5)]" />
+              <span className="text-aviva-gold font-bold tracking-[0.3em] uppercase text-xs mb-2 block">Año 6 (2020)</span>
+              <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic mb-4">La Prueba y la Obediencia</h3>
+              <p className="text-lg text-gray-400 font-light leading-relaxed">
+                El mundo se detuvo, pero escuchamos una voz: <strong className="text-white italic">"¡No cierres la Iglesia!"</strong>. Obedecer fue un acto de fe radical que resultó en un milagro: una explosión de crecimiento en medio de la pandemia. Vimos cómo Dios nos guardó y nos respaldó.
+              </p>
+            </div>
+
+            {/* AÑO 7 y 8 */}
+            <div className="group border-l-2 border-white/10 pl-8 md:pl-12 hover:border-aviva-gold transition-colors duration-500 relative">
+              <div className="absolute w-4 h-4 rounded-full bg-black border-2 border-white/20 -left-[9px] top-2 group-hover:border-aviva-gold group-hover:bg-aviva-gold transition-all" />
+              <span className="text-aviva-gold font-bold tracking-[0.3em] uppercase text-xs mb-2 block">Años 7 y 8</span>
+              <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic mb-4">La Expansión Milagrosa</h3>
+              <p className="text-lg text-gray-400 font-light leading-relaxed">
+                Salimos al Centro de Convenciones como testimonio público. Pero lo más increíble llegó en el "Tiempo de Cumplimiento". El Señor nos trajo a esta Tierra Ancha, a Rehoboth. Por fe tomamos la decisión, y en <strong className="text-aviva-gold">una semana</strong> este auditorio se levantó. Un milagro sobrenatural que marcó nuestra expansión.
+              </p>
+            </div>
+
+            {/* AÑO 9 y 10 */}
+            <div className="group border-l-2 border-white/10 pl-8 md:pl-12 hover:border-aviva-gold transition-colors duration-500 relative">
+              <div className="absolute w-4 h-4 rounded-full bg-black border-2 border-white/20 -left-[9px] top-2 group-hover:border-aviva-gold group-hover:bg-aviva-gold transition-all" />
+              <span className="text-aviva-gold font-bold tracking-[0.3em] uppercase text-xs mb-2 block">Años 9 y 10</span>
+              <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic mb-4">Milagros y Fortaleza</h3>
+              <p className="text-lg text-gray-400 font-light leading-relaxed">
+                Desatamos la "Unción para Conquistar", viendo un aumento imparable de milagros. Luego vino el tiempo de "Ir a la Guerra"; años de prueba y ajustes donde el Señor fortaleció nuestro corazón para salir más fuertes y sostenidos por Su gracia.
+              </p>
+            </div>
+          </div>
+
+          {/* CLÍMAX */}
+          <div className="mt-24 bg-aviva-gold/10 border border-aviva-gold/30 p-10 md:p-16 rounded-[2rem] text-center relative overflow-hidden group hover:bg-aviva-gold/20 transition-all duration-700">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-aviva-gold/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+            <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter italic mb-8 relative z-10">
+              11 Años: Pasión <span className="text-aviva-gold">2026</span>
+            </h3>
+            <p className="text-xl md:text-2xl text-aviva-bone/90 font-light leading-relaxed relative z-10 max-w-2xl mx-auto italic">
+              "De una sala a una visión que hoy se expande. Hemos caminado sobre el temor y la crisis. La verdadera fe es la que persevera. ¡El invierno terminó! La voz de la tórtola se oye. Vamos a una etapa mayor, a una <strong className="text-aviva-gold font-black uppercase">Gloria Mayor</strong>."
+            </p>
+          </div>
+        </div>
+      </section>
 
             {/* 3. NUESTRA BRÚJULA (VISIÓN, MISIÓN, VALORES) */}
             <section className="py-32 bg-aviva-onyx/30 border-y border-white/5">

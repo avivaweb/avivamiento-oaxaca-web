@@ -36,6 +36,95 @@ body {
   color: var(--foreground);
 }
 
+/* ── Gold Glow Shadows ─────────────────────────────────── */
+.shadow-gold {
+  box-shadow: 0 0 30px rgba(218, 165, 32, 0.15);
+}
+.shadow-gold-lg {
+  box-shadow: 0 0 60px rgba(218, 165, 32, 0.2), 0 0 120px rgba(218, 165, 32, 0.08);
+}
+.shadow-gold-subtle {
+  box-shadow: 0 4px 20px rgba(218, 165, 32, 0.1);
+}
+
+/* ── Glass Utility ─────────────────────────────────────── */
+.glass {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.glass-light {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Gold Gradient Text ────────────────────────────────── */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #DAA520 0%, #F5D77A 40%, #DAA520 70%, #B8860B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Aviva Red Gradient Button ─────────────────────────── */
+.btn-aviva-red {
+  background: linear-gradient(135deg, #A5002F 0%, #C41040 100%);
+  color: white;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-aviva-red:hover {
+  background: linear-gradient(135deg, #C41040 0%, #E01050 100%);
+  box-shadow: 0 8px 40px rgba(165, 0, 47, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ── Animations ────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.3); }
+  50% { box-shadow: 0 0 20px 8px rgba(218, 165, 32, 0.1); }
+}
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+.animate-pulse-gold {
+  animation: pulse-gold 3s ease-in-out infinite;
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Stagger delays for sections ───────────────────────── */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* ── Divider line ──────────────────────────────────────── */
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #DAA520 50%, transparent 100%);
+}
+
 @layer base {
   h1 {
     @apply text-3xl font-bold text-[var(--aviva-principal)];

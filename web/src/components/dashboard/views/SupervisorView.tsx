@@ -1,184 +1,302 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import Image from 'next/image';
 import {
     UserGroupIcon,
     ClipboardDocumentCheckIcon,
     ChartBarIcon,
     ArrowTrendingUpIcon,
-    ExclamationTriangleIcon
+    ArrowTrendingDownIcon,
+    ExclamationTriangleIcon,
+    MapPinIcon
 } from '@heroicons/react/24/outline';
 import { supabase } from '@/lib/supabase';
+import ErrorState, { classifySupabaseError, type ErrorType } from '@/components/dashboard/ErrorState';
 
-interface SupervisorStats {
-    total_cells: number;
-    reports_received: number;
-    total_attendance: number;
-    growth_rate: number;
-    attention_needed: { nombre: string; id: string }[];
-    recent_reports?: {
-        id: string;
-        leader_name: string;
-        cell_name: string;
-        status: string;
-        date: string;
-    }[];
-}
+const ZONAS = [
+    "Todas",
+    "Santa Cruz Xoxocotlán",
+    "Centro Histórico",
+    "San Felipe del Agua",
+    "Jalpan",
+    "Cuilápam",
+    "Zaachila",
+    "San Nicolás",
+    "Cañada",
+    "Norte",
+];
 
-export default function SupervisorView() {
-    const [stats, setStats] = useState<SupervisorStats | null>(null);
-    const [loading, setLoading] = useState(true);
+const FallbackAvatar = ({ src, alt }: { src: string; alt: string }) => {
+    const [error, setError] = useState(false);
+    const isPlaceholder = src && src.includes('placeholder-');
 
-    useEffect(() => {
-        const fetchStats = async () => {
-            try {
-                // Obtener sesión para el token
-                const { data: { session } } = await supabase.auth.getSession();
-
-                if (!session) {
-                    setLoading(false);
-                    return;
-                }
-
-                const response = await fetch('/api/supervisor/stats', {
-                    headers: {
-                        'Authorization': `Bearer ${session.access_token}`
-                    }
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    setStats(data);
-                } else {
-                    console.error('Error fetching stats:', await response.text());
-                }
-            } catch (error) {
-                console.error('Error fetching supervisor stats:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchStats();
-    }, []);
-
-    if (loading) {
+    if (error || isPlaceholder || !src) {
         return (
-            <div className="min-h-[200px] flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#DAA520]"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1F2937] to-black flex items-center justify-center border border-[#DAA520]/20 rounded-full overflow-hidden shadow-sm">
+                <span className="text-sm md:text-base text-[#DAA520] opacity-80 drop-shadow-lg">✝</span>
             </div>
         );
     }
 
+    return (
+        <Image
+            src={src}
+            alt={alt}
+            fill
+            className="object-cover rounded-full"
+            onError={() => setError(true)}
+            placeholder="empty"
+        />
+    );
+};
+
+export default function SupervisorView() {
+    const [stats, setStats] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+    const [selectedZona, setSelectedZona] = useState('Todas');
+    const [error, setError] = useState<string | null>(null);
+    const [errorType, setErrorType] = useState<ErrorType>('unknown');
+    const [retrying, setRetrying] = useState(false);
+
+    const fetchStats = useCallback(async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const { data: { session } } = await supabase.auth.getSession();
+
+            if (!session) {
+                setLoading(false);
+                return;
+            }
+
+            const zonaFiltro = selectedZona === 'Todas' ? null : selectedZona;
+
+            const { data, error: rpcError } = await supabase.rpc('get_supervisor_stats', {
+                p_supervisor_id: session.user.id,
+                p_zona: zonaFiltro
+            });
+
+            if (rpcError) throw rpcError;
+            setStats(data || {});
+        } catch (err) {
+            const classified = classifySupabaseError(err);
+            const message = err instanceof Error
+                ? err.message
+                : typeof err === 'object' && err !== null
+                    ? JSON.stringify(err)
+                    : String(err);
+
+            console.error('[SupervisorView] Error al cargar métricas:', { classified, message, err });
+            setErrorType(classified);
+            setError(message);
+        } finally {
+            setLoading(false);
+            setRetrying(false);
+        }
+    }, [selectedZona]);
+
+    useEffect(() => {
+        fetchStats();
+    }, [fetchStats]);
+
+    /** Handler for the ErrorState retry button */
+    const handleRetry = () => {
+        setRetrying(true);
+        fetchStats();
+    };
+
+
     const metrics = [
         {
-            name: 'Reportes Recibidos',
-            value: `${stats?.reports_received || 0}/${stats?.total_cells || 0}`,
-            subtext: 'Líderes que han reportado',
-            icon: ClipboardDocumentCheckIcon,
-            color: 'text-green-600',
-            bg: 'bg-green-100'
-        },
-        {
             name: 'Asistencia Total',
-            value: stats?.total_attendance || 0,
-            subtext: 'Personas esta semana',
+            value: stats?.asistencia_total || 0,
+            subtext: 'Adultos esta semana',
+            tendency: stats?.tendencia_asistencia || 0,
             icon: UserGroupIcon,
-            color: 'text-blue-600',
-            bg: 'bg-blue-100'
         },
         {
-            name: 'Crecimiento',
-            value: `${stats?.growth_rate || 0}%`,
-            subtext: 'Vs. semana anterior',
+            name: 'Invitados Nuevos',
+            value: stats?.invitados_nuevos || 0,
+            subtext: 'Personas por primera vez',
+            tendency: stats?.tendencia_invitados || 0,
             icon: ArrowTrendingUpIcon,
-            color: 'text-purple-600',
-            bg: 'bg-purple-100'
+        },
+        {
+            name: 'Células Activas',
+            value: stats?.celulas_activas || 0,
+            subtext: 'Grupos que reportaron',
+            tendency: stats?.tendencia_celulas || 0,
+            icon: ClipboardDocumentCheckIcon,
+        },
+        {
+            name: 'Zona de Desempeño',
+            value: stats?.zona_desempeno || 'N/A',
+            subtext: 'Con mayor crecimiento',
+            tendency: null,
+            icon: MapPinIcon,
         }
     ];
 
     return (
-        <div className="space-y-6 animate-fade-in">
-            <div className="bg-[#111111] border border-[#DAA520]/20 rounded-xl p-6 shadow-lg shadow-[#DAA520]/5">
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                    <ChartBarIcon className="w-6 h-6 mr-2 text-[#DAA520]" />
-                    Métricas de Mi Sector
-                </h3>
+        <div className="space-y-6 animate-fade-in pb-10">
+            {/* Header & Filter */}
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-black p-4 rounded-xl border border-[#DAA520]/20 shadow-lg px-6">
+                <div className="flex items-center gap-3">
+                    <ChartBarIcon className="w-8 h-8 text-[#DAA520]" />
+                    <div>
+                        <h3 className="text-xl font-bold text-white tracking-wide">Visión General</h3>
+                        <p className="text-sm text-[#DAA520] uppercase tracking-widest font-semibold">Métricas de Conquista</p>
+                    </div>
+                </div>
+                
+                <div className="w-full md:w-auto flex items-center justify-between md:justify-end gap-3">
+                    <label htmlFor="zona-filter" className="text-sm font-medium text-[#B4B4B4]">
+                        Filtrar por:
+                    </label>
+                    <select
+                        id="zona-filter"
+                        value={selectedZona}
+                        onChange={(e) => setSelectedZona(e.target.value)}
+                        className="bg-black text-white border border-[#DAA520]/50 rounded-lg py-2 px-4 focus:ring-2 focus:ring-[#DAA520] focus:border-transparent transition-all outline-none"
+                    >
+                        {ZONAS.map((z) => (
+                            <option key={z} value={z}>{z}</option>
+                        ))}
+                    </select>
+                </div>
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {metrics.map((stat) => (
-                        <div key={stat.name} className="bg-white/5 border border-white/10 rounded-lg p-5 hover:bg-white/10 transition-colors">
-                            <div className="flex justify-between items-start mb-4">
-                                <div className={`p-3 rounded-lg ${stat.bg} ${stat.color}`}>
-                                    <stat.icon className="w-6 h-6" />
-                                </div>
-                                <span className="text-xs font-medium text-gray-400 bg-black/30 px-2 py-1 rounded">Semanal</span>
+            {loading ? (
+                // Golden Skeleton State
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {[1, 2, 3, 4].map(idx => (
+                        <div key={idx} className="bg-gradient-to-br from-[#333333] to-[#1a1a1a] border border-[#DAA520]/30 rounded-xl p-5 shadow-lg relative overflow-hidden">
+                            <div className="animate-pulse flex flex-col items-center justify-center h-24">
+                                <div className="w-10 h-10 rounded-full bg-[#DAA520]/20 mb-3 block"></div>
+                                <div className="w-16 h-6 rounded bg-[#DAA520]/30 mb-2"></div>
+                                <div className="w-24 h-3 rounded bg-gray-600/50"></div>
                             </div>
-                            <p className="text-sm font-medium text-gray-400">{stat.name}</p>
-                            <p className="text-2xl font-bold text-white mt-1">{stat.value}</p>
-                            <p className="text-xs text-gray-500 mt-1">{stat.subtext}</p>
                         </div>
                     ))}
                 </div>
-
-                {/* Zona de Atención */}
-                {stats?.attention_needed && stats.attention_needed.length > 0 && (
-                    <div className="mt-6 bg-red-900/20 border border-red-500/30 rounded-lg p-4 animate-pulse">
-                        <div className="flex items-center text-red-400 font-bold mb-2">
-                            <ExclamationTriangleIcon className="w-5 h-5 mr-2" />
-                            Zona de Atención Necesaria
+            ) : error ? (
+                // Error State — classified feedback with retry
+                <ErrorState
+                    errorType={errorType}
+                    rawMessage={error}
+                    onRetry={handleRetry}
+                    retrying={retrying}
+                />
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    {metrics.map((stat, idx) => (
+                        <div key={idx} className="bg-gradient-to-br from-[#333333] to-[#1a1a1a] border border-[#DAA520] rounded-xl p-5 shadow-[0_0_15px_rgba(218,165,32,0.1)] hover:shadow-[0_0_20px_rgba(218,165,32,0.2)] transition-shadow">
+                            <div className="flex justify-between items-start mb-2">
+                                <div className="p-2 rounded-lg bg-black/40 border border-[#DAA520]/30 text-[#DAA520]">
+                                    <stat.icon className="w-6 h-6" />
+                                </div>
+                                {stat.tendency !== null && (
+                                    <div className={`flex items-center text-sm font-bold px-2 py-1 rounded border ${stat.tendency >= 0 ? 'bg-green-900/30 text-green-400 border-green-500/30' : 'bg-red-900/30 text-red-400 border-red-500/30'}`}>
+                                        {stat.tendency >= 0 ? <ArrowTrendingUpIcon className="w-3 h-3 mr-1" /> : <ArrowTrendingDownIcon className="w-3 h-3 mr-1" />}
+                                        {Math.abs(stat.tendency)}%
+                                    </div>
+                                )}
+                            </div>
+                            <p className="text-sm uppercase text-[#B4B4B4] tracking-wider font-semibold mt-4">{stat.name}</p>
+                            <p className="text-3xl font-black text-white my-1 tracking-tight">{stat.value}</p>
+                            <p className="text-sm text-[#B4B4B4]">{stat.subtext}</p>
                         </div>
-                        <p className="text-sm text-gray-400 mb-2">
-                            Las siguientes células requieren atención inmediata (0 invitados recientemente):
-                        </p>
-                        <ul className="list-disc list-inside text-sm text-red-300">
-                            {stats.attention_needed.map((cell: any, idx: number) => (
-                                <li key={cell.id || idx}>
-                                    {cell.nombre || `Célula ID: ${cell.id}`}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-            </div>
+                    ))}
+                </div>
+            )}
 
-            <div className="bg-white rounded-xl shadow p-6 border border-gray-100">
-                <h4 className="text-lg font-semibold text-gray-800 mb-4">Estado de Reportes Detallado</h4>
-                <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-gray-200">
-                        <thead>
-                            <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Líder</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Célula</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
-                            </tr>
-                        </thead>
-                        <tbody className="bg-white divide-y divide-gray-200">
-                            {stats?.recent_reports && stats.recent_reports.length > 0 ? (
-                                stats.recent_reports.map((report) => (
-                                    <tr key={report.id} className="hover:bg-gray-50 transition-colors">
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{report.leader_name}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.cell_name}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${report.status.toLowerCase() === 'recibido' || report.status.toLowerCase() === 'aprobado' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
-                                                {report.status}
-                                            </span>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(report.date).toLocaleDateString('es-MX')}</td>
-                                    </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan={4} className="px-6 py-8 text-center text-gray-500 text-sm">
-                                        <p>No hay reportes recientes disponibles para tu sector.</p>
-                                    </td>
+            {/* Zonas de Atención */}
+            {!loading && stats?.attention_needed && stats.attention_needed.length > 0 && (
+                <div className="mt-6 bg-red-900/20 border-l-4 border-l-red-500 border-y border-y-red-500/20 border-r border-r-red-500/20 rounded-lg p-5 animate-pulse-slow">
+                    <div className="flex items-center text-red-400 font-bold mb-3 text-lg">
+                        <ExclamationTriangleIcon className="w-6 h-6 mr-2" />
+                        Atención Pastoral Requerida
+                    </div>
+                    <p className="text-sm text-[#B4B4B4] mb-3">
+                        Las siguientes células requieren intervención pastoral inmediata (0 invitados reportados recientemente):
+                    </p>
+                    <ul className="text-sm text-red-300 grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {stats.attention_needed.map((cell: any, idx: number) => (
+                            <li key={cell.id || idx} className="flex items-center bg-black/30 p-2 rounded border border-red-500/10">
+                                <span className="w-2 h-2 rounded-full bg-red-500 mr-2"></span>
+                                <span className="font-medium">{cell.nombre || `Célula ID: ${cell.id}`}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+
+            {/* Tabla Detalle */}
+            <div className="bg-[#111111] border border-[#DAA520]/20 rounded-xl shadow-lg p-0 overflow-hidden">
+                <div className="p-5 md:p-6 border-b border-white/5 bg-gradient-to-r from-black/80 to-[#111]">
+                    <h4 className="text-lg font-bold text-white flex items-center gap-2">
+                        <ClipboardDocumentCheckIcon className="w-6 h-6 text-[#DAA520]" />
+                        Estado Detallado por Líder
+                    </h4>
+                </div>
+                <div className="overflow-x-auto w-full">
+                    {loading ? (
+                        <div className="p-10 text-center text-[#DAA520] animate-pulse">Cargando reportes...</div>
+                    ) : (
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-black/50 border-b border-white/10">
+                                    <th className="p-4 text-sm font-bold text-[#DAA520] uppercase tracking-wider">Líder / Ministerio</th>
+                                    <th className="p-4 text-sm font-bold text-[#DAA520] uppercase tracking-wider">Célula / Red</th>
+                                    <th className="p-4 text-sm font-bold text-[#DAA520] uppercase tracking-wider">Último Reporte</th>
+                                    <th className="p-4 text-sm font-bold text-[#DAA520] uppercase tracking-wider text-right">Estado</th>
                                 </tr>
-                            )}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody className="divide-y divide-white/5 text-sm">
+                                {stats?.recent_reports && stats.recent_reports.length > 0 ? (
+                                    stats.recent_reports.map((report: any) => (
+                                        <tr key={report.id} className="hover:bg-white/5 transition-colors group">
+                                            <td className="p-4">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="relative w-10 h-10 shrink-0">
+                                                        <FallbackAvatar src={report.avatar_url || ''} alt={report.leader_name} />
+                                                    </div>
+                                                    <div>
+                                                        <p className="font-bold text-white group-hover:text-[#DAA520] transition-colors">{report.leader_name}</p>
+                                                        {report.celula_zona && <p className="text-sm text-[#B4B4B4] uppercase tracking-widest">{report.celula_zona}</p>}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className="p-4 text-gray-300 font-medium">{report.cell_name}</td>
+                                            <td className="p-4 text-[#B4B4B4]">{new Date(report.date).toLocaleDateString('es-MX', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
+                                            <td className="p-4 text-right">
+                                                <span className={`px-3 py-1 inline-flex text-sm uppercase tracking-widest font-bold rounded-full ${
+                                                    report.status?.toLowerCase() === 'recibido' || report.status?.toLowerCase() === 'aprobado' || report.status?.toLowerCase() === 'online' 
+                                                        ? 'bg-green-900/30 text-green-400 border border-green-500/30' 
+                                                        : 'bg-yellow-900/30 text-yellow-500 border border-yellow-500/30'
+                                                }`}>
+                                                    {report.status || 'Pendiente'}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan={4} className="p-10 text-center">
+                                            <div className="flex flex-col items-center justify-center opacity-60">
+                                                <ClipboardDocumentCheckIcon className="w-12 h-12 text-[#B4B4B4] mb-3" />
+                                                <p className="text-[#B4B4B4] font-medium">No hay reportes recientes con los filtros activos.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    )}
                 </div>
             </div>
         </div>
     );
 }
+

@@ -9,7 +9,7 @@ const FallbackAvatar = ({ src, alt }: { src: string; alt: string }) => {
 
     if (error || isPlaceholder || !src) {
         return (
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1F2937] to-black flex items-center justify-center animate-pulse border border-[#DAA520]/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1F2937] to-black flex items-center justify-center border border-[#DAA520]/20">
                 <span className="text-4xl text-[#DAA520] opacity-50 drop-shadow-md">✝</span>
             </div>
         );
@@ -27,55 +27,57 @@ const FallbackAvatar = ({ src, alt }: { src: string; alt: string }) => {
 };
 
 
+// TODO: Conectar a Supabase Storage para fotos reales de pastores por zona.
+// Las imágenes se cargarán de la tabla 'zonas_pastorales' cuando esté disponible.
 const ZONES = [
     {
         id: 1,
         name: 'Jalpan',
-        pastors: 'Ps. Familia Jalpan', // Placeholder
+        pastors: 'Ps. Familia Jalpan',
         description: 'Extendiendo el Reino en la zona de Jalpan con fidelidad y amor.',
-        image: '/images/pastors/placeholder-jalpan.jpg' // Placeholder path
+        image: '' // Fallback intencional: muestra ícono ✝ dorado
     },
     {
         id: 2,
         name: 'Cuilápam',
         pastors: 'Ps. Familia Cuilápam',
         description: 'Pastoreando el corazón de Cuilápam para Cristo.',
-        image: '/images/pastors/placeholder-cuilapam.jpg'
+        image: ''
     },
     {
         id: 3,
         name: 'Zaachila',
         pastors: 'Ps. Familia Zaachila',
         description: 'Estableciendo la cultura del Reino en Zaachila.',
-        image: '/images/pastors/placeholder-zaachila.jpg'
+        image: ''
     },
     {
         id: 4,
         name: 'San Nicolás',
         pastors: 'Ps. Familia San Nicolás',
         description: 'Levantando una generación apasionada en San Nicolás.',
-        image: '/images/pastors/placeholder-sannicolas.jpg'
+        image: ''
     },
     {
         id: 5,
         name: 'Cañada',
         pastors: 'Ps. Familia Cañada',
         description: 'Brillando la luz de Jesús en la región de la Cañada.',
-        image: '/images/pastors/placeholder-canada.jpg'
+        image: ''
     },
     {
         id: 6,
         name: 'Centro/Oaxaca Juárez',
         pastors: 'Ps. Familia Centro',
         description: 'El corazón de la ciudad latiendo al ritmo del cielo.',
-        image: '/images/pastors/placeholder-centro.jpg'
+        image: ''
     },
     {
         id: 7,
         name: 'Etla/Valles Centrales',
         pastors: 'Ps. Familia Etla',
         description: 'Conquistando los Valles Centrales para Su Gloria.',
-        image: '/images/pastors/placeholder-etla.jpg'
+        image: ''
     }
 ];
 

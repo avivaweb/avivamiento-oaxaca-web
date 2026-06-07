@@ -1,10 +1,21 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaFacebookF, FaInstagram, FaYoutube, FaTiktok, FaWhatsapp, FaSpotify, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaYoutube, FaTiktok, FaSpotify, FaMapMarkerAlt } from 'react-icons/fa';
+import { siteConfig } from '@/config/site';
 
 export default function Footer() {
+    const { social, address, schedule, navLinks, slogan } = siteConfig;
+
     return (
-        <footer className="bg-black text-aviva-bone border-t-4 border-aviva-gold">
+        <footer className="bg-aviva-onyx text-aviva-bone border-t border-aviva-gold/20">
+
+            {/* ── Slogan Banner ─────────────────────────── */}
+            <div className="w-full py-8 text-center border-b border-white/5">
+                <p className="text-2xl md:text-3xl font-serif italic text-aviva-gold tracking-wide opacity-80">
+                    &ldquo;{slogan}&rdquo;
+                </p>
+            </div>
+
             <div className="container mx-auto px-6 py-16">
 
                 {/* 4-COLUMN GRID */}
@@ -21,118 +32,138 @@ export default function Footer() {
                                 className="object-contain"
                             />
                         </Link>
-                        <p className="text-sm font-light leading-relaxed text-gray-300 text-pretty border-l-2 border-aviva-gold pl-4 italic">
-                            <strong className="text-aviva-gold block mb-1 uppercase tracking-widest text-xs font-black">Nuestra Iglesia</strong>
-                            Una familia de fe en Oaxaca dedicada a restaurar vidas y fortalecer la comunidad a través de la Vida Zoé.
+                        <p className="text-sm font-light leading-relaxed text-gray-400 text-pretty border-l-2 border-aviva-gold/40 pl-4">
+                            <strong className="text-aviva-gold block mb-1 uppercase tracking-widest text-xs font-black">
+                                Nuestra Familia
+                            </strong>
+                            Una comunidad de identidad en Oaxaca dedicada a restaurar el diseño original de cada persona a través de la Vida Zoé.
                         </p>
                     </div>
 
-                    {/* COL 2: LOCATION & SCHEDULE */}
+                    {/* COL 2: LOCATION + MAP */}
                     <div>
-                        <h4 className="font-serif font-bold text-lg mb-6 text-aviva-bone uppercase tracking-wider">
-                            Ubicación y Horarios
+                        <h4 className="font-bold text-sm mb-6 text-aviva-gold uppercase tracking-[0.2em]">
+                            Ubicación
                         </h4>
-                        <div className="space-y-6 text-sm font-light text-gray-300">
+                        <div className="space-y-4 text-sm font-light text-gray-400">
                             <div className="flex items-start gap-3">
-                                <FaMapMarkerAlt className="text-aviva-gold mt-1 shrink-0 text-lg" />
+                                <FaMapMarkerAlt className="text-aviva-gold mt-1 shrink-0 text-base" />
                                 <span>
-                                    <strong>Sede Principal</strong><br />
-                                    Carretera Nueva Oaxaca-Zaachila,<br />
-                                    Privada Rehoboth 101, <br />
-                                    San Raymundo Jalpan, Oaxaca.
+                                    <strong className="text-aviva-bone/80">{address.label}</strong><br />
+                                    {address.street},<br />
+                                    {address.locality}
                                 </span>
                             </div>
-                            <div className="space-y-2 border-t border-gray-800 pt-4">
-                                <p className="flex items-center gap-2">
-                                    <span className="w-2 h-2 rounded-full bg-aviva-gold"></span>
-                                    <span><strong>Martes 6:30 pm</strong> (Oración)</span>
-                                </p>
-                                <p className="flex items-center gap-2">
-                                    <span className="w-2 h-2 rounded-full bg-aviva-gold"></span>
-                                    <span><strong>Domingos 11:00 am</strong> (Reunión General)</span>
-                                </p>
+
+                            {/* Google Maps Embed */}
+                            <div className="rounded-xl overflow-hidden border border-white/10 shadow-gold-subtle mt-4">
+                                <iframe
+                                    src={address.mapEmbedUrl}
+                                    width="100%"
+                                    height="160"
+                                    style={{ border: 0 }}
+                                    allowFullScreen={false}
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    title="Ubicación Avivamiento Oaxaca — San Raymundo Jalpan"
+                                    className="grayscale hover:grayscale-0 transition-all duration-700"
+                                />
+                            </div>
+
+                            {/* Schedule */}
+                            <div className="space-y-2 border-t border-white/5 pt-4 mt-4">
+                                {schedule.map((item) => (
+                                    <p key={item.name} className="flex items-center gap-2">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-aviva-gold shrink-0" />
+                                        <span>
+                                            <strong className="text-aviva-bone/70">{item.day} {item.time}</strong>{' '}
+                                            <span className="text-gray-500">— {item.description}</span>
+                                        </span>
+                                    </p>
+                                ))}
                             </div>
                         </div>
                     </div>
 
                     {/* COL 3: STRATEGIC LINKS */}
                     <div>
-                        <h4 className="font-serif font-bold text-lg mb-6 text-aviva-bone uppercase tracking-wider">
-                            Enlaces
+                        <h4 className="font-bold text-sm mb-6 text-aviva-gold uppercase tracking-[0.2em]">
+                            Navegar
                         </h4>
-                        <nav className="flex flex-col space-y-3 text-sm text-gray-300">
-                            <Link href="/" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group font-bold text-xs uppercase tracking-widest">
-                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Inicio
-                            </Link>
-                            <Link href="/nosotros" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group font-bold text-xs uppercase tracking-widest">
-                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Iglesia
-                            </Link>
-                            <Link href="/grupos-familiares" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group font-bold text-xs uppercase tracking-widest">
-                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Grupos Familiares
-                            </Link>
-                            <Link href="/media" className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group font-bold text-xs uppercase tracking-widest">
-                                <span className="w-0 group-hover:w-2 h-[1px] bg-aviva-gold transition-all"></span> Media
-                            </Link>
-                            <Link href="/donar" className="text-aviva-gold hover:text-white transition-colors duration-300 flex items-center gap-2 group font-black text-xs uppercase tracking-widest">
-                                <span className="w-0 group-hover:w-2 h-[1px] bg-white transition-all"></span> DONAR
+                        <nav className="flex flex-col space-y-3 text-sm text-gray-400" aria-label="Enlaces del footer">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="hover:text-aviva-gold transition-colors duration-300 flex items-center gap-2 group font-medium text-xs uppercase tracking-widest"
+                                >
+                                    <span className="w-0 group-hover:w-3 h-px bg-aviva-gold transition-all duration-300" />
+                                    {link.label}
+                                </Link>
+                            ))}
+                            <Link
+                                href="/donar"
+                                className="text-aviva-gold hover:text-white transition-colors duration-300 flex items-center gap-2 group font-black text-xs uppercase tracking-widest mt-2"
+                            >
+                                <span className="w-0 group-hover:w-3 h-px bg-white transition-all duration-300" />
+                                DONAR
                             </Link>
                         </nav>
                     </div>
 
                     {/* COL 4: DIGITAL CONNECTION */}
                     <div>
-                        <h4 className="font-serif font-bold text-lg mb-6 text-aviva-bone uppercase tracking-wider">
+                        <h4 className="font-bold text-sm mb-6 text-aviva-gold uppercase tracking-[0.2em]">
                             Conexión Digital
                         </h4>
 
                         {/* Social Icons */}
                         <div className="flex gap-4 mb-8">
-                            <a href="https://www.facebook.com/AvivamientoElLugarDeSuPresencia/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-aviva-gold transition-colors transform hover:scale-110">
-                                <FaFacebookF size={22} />
+                            <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-500 hover:text-aviva-gold hover:border-aviva-gold/40 transition-all duration-300" aria-label="Facebook">
+                                <FaFacebookF size={16} />
                             </a>
-                            <a href="https://www.instagram.com/avivamientooaxaca/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-aviva-gold transition-colors transform hover:scale-110">
-                                <FaInstagram size={24} />
+                            <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-500 hover:text-aviva-gold hover:border-aviva-gold/40 transition-all duration-300" aria-label="Instagram">
+                                <FaInstagram size={17} />
                             </a>
-                            <a href="https://www.youtube.com/@AvivamientoOaxacaOficial" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-aviva-gold transition-colors transform hover:scale-110">
-                                <FaYoutube size={24} />
+                            <a href={social.youtube} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-500 hover:text-aviva-gold hover:border-aviva-gold/40 transition-all duration-300" aria-label="YouTube">
+                                <FaYoutube size={17} />
                             </a>
-                            <a href="https://www.tiktok.com/@avivamiento_oaxaca" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-aviva-gold transition-colors transform hover:scale-110">
-                                <FaTiktok size={22} />
+                            <a href={social.tiktok} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-500 hover:text-aviva-gold hover:border-aviva-gold/40 transition-all duration-300" aria-label="TikTok">
+                                <FaTiktok size={15} />
                             </a>
                         </div>
 
-                        {/* Spotify Special Section */}
-                        <div className="bg-[#191414] rounded-xl p-4 border border-gray-800">
-                            <div className="flex items-center gap-2 mb-3 text-[#1DB954] font-bold text-sm">
-                                <FaSpotify size={20} />
-                                <span>Spotify Channels</span>
+                        {/* Spotify Section */}
+                        <div className="bg-black/60 rounded-xl p-4 border border-white/5">
+                            <div className="flex items-center gap-2 mb-3 text-[#1DB954] font-bold text-xs uppercase tracking-widest">
+                                <FaSpotify size={16} />
+                                <span>Spotify</span>
                             </div>
-                            <div className="space-y-2 text-xs">
-                                <a href="https://open.spotify.com/search/AvivaBand" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-aviva-bone hover:bg-aviva-bone/5 p-2 rounded transition-all flex justify-between items-center group">
-                                    <span>1. AvivaBand</span>
-                                    <span className="text-aviva-gold opacity-0 group-hover:opacity-100">↗</span>
+                            <div className="space-y-1 text-xs">
+                                <a href={social.spotify.avivaBand} target="_blank" rel="noopener noreferrer" className="block text-gray-500 hover:text-aviva-bone hover:bg-white/5 p-2 rounded-lg transition-all flex justify-between items-center group">
+                                    <span>AvivaBand</span>
+                                    <span className="text-aviva-gold opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
                                 </a>
-                                <a href="https://open.spotify.com/show/4Prj1pzkAPNe0Mvk0LKLEo" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-aviva-bone hover:bg-aviva-bone/5 p-2 rounded transition-all flex justify-between items-center group">
-                                    <span>2. Mujeres en Victoria</span>
-                                    <span className="text-aviva-gold opacity-0 group-hover:opacity-100">↗</span>
+                                <a href={social.spotify.mujeresEnVictoria} target="_blank" rel="noopener noreferrer" className="block text-gray-500 hover:text-aviva-bone hover:bg-white/5 p-2 rounded-lg transition-all flex justify-between items-center group">
+                                    <span>Mujeres en Victoria</span>
+                                    <span className="text-aviva-gold opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
                                 </a>
-                                <a href="https://open.spotify.com/search/Avivamiento%20Oaxaca%20Sermones" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-aviva-bone hover:bg-aviva-bone/5 p-2 rounded transition-all flex justify-between items-center group">
-                                    <span>3. Sermones</span>
-                                    <span className="text-aviva-gold opacity-0 group-hover:opacity-100">↗</span>
+                                <a href={social.spotify.sermones} target="_blank" rel="noopener noreferrer" className="block text-gray-500 hover:text-aviva-bone hover:bg-white/5 p-2 rounded-lg transition-all flex justify-between items-center group">
+                                    <span>Mensajes</span>
+                                    <span className="text-aviva-gold opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
                                 </a>
                             </div>
                         </div>
-
                     </div>
 
                 </div>
 
                 {/* COPYRIGHT */}
-                <div className="mt-16 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-                    <p>© 2026 Avivamiento Oaxaca | Asociación Religiosa. Todos los derechos reservados.</p>
+                <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                    <p>© {new Date().getFullYear()} Avivamiento Oaxaca. Todos los derechos reservados.</p>
                     <div className="flex gap-6 mt-4 md:mt-0">
-                        <a href="#" className="hover:text-white transition-colors">Políticas de Privacidad</a>
-                        <a href="/login" className="hover:text-white transition-colors">Acceso Pastoral</a>
+                        <a href="#" className="hover:text-aviva-gold transition-colors">Privacidad</a>
+                        <a href="/login" className="hover:text-aviva-gold transition-colors">Acceso Pastoral</a>
                     </div>
                 </div>
 

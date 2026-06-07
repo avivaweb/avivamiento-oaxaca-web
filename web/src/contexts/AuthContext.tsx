@@ -87,7 +87,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       console.log(`🔐 Intentando login... (intento ${retryCount + 1}/${MAX_RETRIES + 1})`);
 
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
@@ -102,8 +102,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         throw new Error(error.message);
       }
 
-      console.log('✅ Login exitoso, redirigiendo...');
-      router.push('/dashboard');
+      if (data.session?.user) {
+        await fetchProfile(data.session.user.id, data.session.user.email!);
+      }
+
+      console.log('✅ Login exitoso, redirigiendo de forma forzada...');
+      window.location.href = '/dashboard/curaduria';
     } catch (error: any) {
       console.error('❌ Error en login:', error);
 
